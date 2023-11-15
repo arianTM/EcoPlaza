@@ -24,5 +24,26 @@ namespace Presentacion.pages
         {
             InitializeComponent();
         }
+
+        private void Navegar(object root)
+        {
+            // root --> página (new SigninPage(), por ejemplo)
+            NavigationService?.Navigate(root);
+        }
+
+        private void btnUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new UsuarioPage());
+        }
+
+        private void btnIncidencias_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new IncidenciasPage());
+        }
+
+        private void btnVerSubcontrata_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new SubcontrataPage());
+        }
     }
 }
