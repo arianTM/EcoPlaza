@@ -65,5 +65,16 @@
             MinWidth="200"
             HorizontalAlignment="Center"
             Content="REGISTRARSE" />
+        <TextBlock
+            Width="Auto"
+            Margin="0,10"
+            HorizontalAlignment="Center">
+            <Hyperlink x:Name="linkIniciarSesion" Click="linkIniciarSesion_Click">
+                <TextBlock
+                    FontSize="12"
+                    Foreground="#555"
+                    Text="¿Ya tienes una cuenta creada? Inicia sesión" />
+            </Hyperlink>
+        </TextBlock>
     </StackPanel>
 </Page>
