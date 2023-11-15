@@ -4,16 +4,101 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Presentacion.modals"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AgregarSubcontrataWindow"
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Grid>
+    <StackPanel Background="White">
+        <Button
+            x:Name="btnRegresar"
+            Width="75"
+            Height="50"
+            HorizontalAlignment="Left"
+            VerticalContentAlignment="Center"
+            Click="btnRegresar_Click">
+            <materialDesign:PackIcon
+                Width="30"
+                Height="30"
+                Kind="ArrowBack" />
+        </Button>
+
         <TextBlock
             HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             FontSize="30"
             Text="Agregar Subcontrata" />
-        <Button Content="AGREGAR" />
-    </Grid>
+
+        <Grid
+            MaxWidth="1000"
+            Margin="0,15"
+            HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="Nombre:" />
+            <TextBox
+                x:Name="txtNombre"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="300" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="Descripción:" />
+            <RichTextBox
+                x:Name="txtContra"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="300" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="RUC:" />
+            <TextBox
+                x:Name="txtRuc"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="300" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="Número de teléfono:" />
+            <TextBox
+                x:Name="txtCelular"
+                Grid.Row="3"
+                Grid.Column="1"
+                Width="300" />
+        </Grid>
+        <Grid Width="300" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="btnAgregar"
+                Grid.Column="0"
+                Margin="10,0"
+                Content="AGREGAR" />
+            <Button
+                Grid.Column="1"
+                Margin="10,0"
+                Content="LIMPIAR" />
+        </Grid>
+    </StackPanel>
 </Window>
