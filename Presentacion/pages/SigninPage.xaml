@@ -64,6 +64,7 @@
             x:Name="btnRegistrarse"
             MinWidth="200"
             HorizontalAlignment="Center"
+            Click="btnRegistrarse_Click"
             Content="REGISTRARSE" />
         <TextBlock
             Width="Auto"
