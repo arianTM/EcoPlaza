@@ -17,5 +17,10 @@ namespace Presentacion.pages
         {
             NavigationService?.Navigate(new SigninPage());
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new MenuPage());
+        }
     }
 }

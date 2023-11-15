@@ -51,6 +51,7 @@
             x:Name="btnLogin"
             MinWidth="200"
             HorizontalAlignment="Center"
+            Click="btnLogin_Click"
             Content="INICIAR SESIÓN" />
         <TextBlock
             Width="Auto"
