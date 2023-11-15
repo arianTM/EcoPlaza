@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentacion.pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace Presentacion
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new LoginPage();
         }
     }
 }
