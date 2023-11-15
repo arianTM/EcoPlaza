@@ -11,9 +11,39 @@
     mc:Ignorable="d">
 
     <Grid Background="White">
-        <TextBlock
-            HorizontalAlignment="Center"
-            FontSize="30"
-            Text="Menú principal" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Height="Auto"
+                VerticalAlignment="Top">
+                <Button Content="ariantm" />
+                <Button Content="Agregar subcontrata" />
+                <StackPanel>
+                    <Button Content="Subcontrata 1" />
+                    <Button Content="Subcontrata 2" />
+                    <Button Content="Subcontrata 3" />
+                </StackPanel>
+                <Button VerticalAlignment="Bottom" Content="Incidencias" />
+            </StackPanel>
+            <Button Grid.Row="1" Content="Incidencias" />
+        </Grid>
+        <StackPanel Grid.Column="1">
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="30"
+                Text="Menú principal" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="12"
+                Text="*Aquí van los reportes" />
+        </StackPanel>
     </Grid>
 </Page>
