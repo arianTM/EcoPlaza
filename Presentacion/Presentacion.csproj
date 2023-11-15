@@ -94,6 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\SubcontrataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\UsuarioPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +115,9 @@
     </Compile>
     <Compile Include="pages\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\SubcontrataPage.xaml.cs">
+      <DependentUpon>SubcontrataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\UsuarioPage.xaml.cs">
       <DependentUpon>UsuarioPage.xaml</DependentUpon>
