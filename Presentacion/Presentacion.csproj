@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\UsuarioPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="pages\LoginPage.xaml.cs">
@@ -100,6 +104,9 @@
     </Compile>
     <Compile Include="pages\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\UsuarioPage.xaml.cs">
+      <DependentUpon>UsuarioPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
