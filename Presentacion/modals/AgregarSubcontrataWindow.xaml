@@ -94,10 +94,13 @@
                 x:Name="btnAgregar"
                 Grid.Column="0"
                 Margin="10,0"
+                Click="btnAgregar_Click"
                 Content="AGREGAR" />
             <Button
+                x:Name="btnLimpiar"
                 Grid.Column="1"
                 Margin="10,0"
+                Click="btnLimpiar_Click"
                 Content="LIMPIAR" />
         </Grid>
     </StackPanel>
