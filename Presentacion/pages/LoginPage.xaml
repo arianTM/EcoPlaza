@@ -82,7 +82,7 @@
                 <Button
                     x:Name="btnLogin"
                     Height="46"
-                    MinWidth="300"
+                    MinWidth="340"
                     HorizontalAlignment="Center"
                     Click="btnLogin_Click"
                     Content="INICIAR SESIÓN"
@@ -95,10 +95,7 @@
                         x:Name="linkRegistrarse"
                         Click="linkRegistrarse_Click"
                         Style="{StaticResource MaterialDesignBody1Hyperlink}">
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="#555"
-                            Text="¿No tienes una cuenta? Regístrate" />
+                        <TextBlock FontSize="12" Text="¿No tienes una cuenta? Regístrate" />
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>
