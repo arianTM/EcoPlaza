@@ -13,14 +13,20 @@ namespace Presentacion.pages
             InitializeComponent();
         }
 
+        private void Navegar(object root)
+        {
+            // root --> página (new SigninPage(), por ejemplo)
+            NavigationService?.Navigate(root);
+        }
+
         private void linkRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new SigninPage());
+            Navegar(new SigninPage());
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new MenuPage());
+            Navegar(new MenuPage());
         }
     }
 }
