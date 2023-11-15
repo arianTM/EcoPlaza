@@ -4,16 +4,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Presentacion.pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AsistenciasPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <StackPanel Background="White">
+        <Button
+            x:Name="btnRegresar"
+            Width="75"
+            Height="50"
+            HorizontalAlignment="Left"
+            VerticalContentAlignment="Center">
+            <materialDesign:PackIcon
+                Width="30"
+                Height="30"
+                Kind="ArrowBack" />
+        </Button>
+        <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center">
+            <materialDesign:PackIcon
+                Width="60"
+                Height="60"
+                Kind="Calendar" />
+
+        </TextBlock>
         <TextBlock
             HorizontalAlignment="Center"
-            FontSize="30"
+            FontSize="24"
             Text="Asistencias" />
-    </Grid>
+        <DataGrid />
+        <Grid Margin="0,15" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="btnRegistrar"
+                Grid.Column="0"
+                MinWidth="200"
+                HorizontalAlignment="Center"
+                Content="AGREGAR" />
+            <Button
+                x:Name="btnModificar"
+                Grid.Column="1"
+                MinWidth="200"
+                HorizontalAlignment="Center"
+                Content="MODIFICAR" />
+            <Button
+                x:Name="btnEliminar"
+                Grid.Column="2"
+                MinWidth="200"
+                HorizontalAlignment="Center"
+                Content="ELIMINAR" />
+        </Grid>
+    </StackPanel>
 </Page>
