@@ -24,5 +24,36 @@ namespace Presentacion.pages
         {
             InitializeComponent();
         }
+
+        private void Navegar(object root)
+        {
+            // root --> página (new SigninPage(), por ejemplo)
+            NavigationService?.Navigate(root);
+        }
+
+        private void Modificar()
+        {
+
+        }
+
+        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new MenuPage());
+        }
+
+        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            Modificar();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new LoginPage());
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new LoginPage());
+        }
     }
 }

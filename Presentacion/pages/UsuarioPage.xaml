@@ -17,7 +17,8 @@
             Width="75"
             Height="50"
             HorizontalAlignment="Left"
-            VerticalContentAlignment="Center">
+            VerticalContentAlignment="Center"
+            Click="btnRegresar_Click">
             <materialDesign:PackIcon
                 Width="30"
                 Height="30"
@@ -73,16 +74,19 @@
                 x:Name="btnModificar"
                 MinWidth="200"
                 HorizontalAlignment="Center"
+                Click="btnModificar_Click"
                 Content="GUARDAR CAMBIOS" />
             <Button
                 x:Name="btnLogout"
                 MinWidth="200"
                 HorizontalAlignment="Center"
+                Click="btnLogout_Click"
                 Content="CERRAR SESIÓN" />
             <Button
                 x:Name="btnEliminar"
                 MinWidth="200"
                 HorizontalAlignment="Center"
+                Click="btnEliminar_Click"
                 Content="ELIMINAR CUENTA" />
         </StackPanel>
     </StackPanel>
