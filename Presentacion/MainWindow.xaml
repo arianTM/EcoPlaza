@@ -16,7 +16,6 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     mc:Ignorable="d">
     <Grid>
-        <Button Content="asdsadasdasd" />
-        <TextBlock FontSize="30" Text="asdasd" />
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
