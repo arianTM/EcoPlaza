@@ -95,8 +95,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button
+                x:Name="btnAsistencias"
                 Grid.Column="0"
                 Margin="10,0"
+                Click="btnAsistencias_Click"
                 Content="ASISTENCIAS" />
             <Button
                 Grid.Column="1"
