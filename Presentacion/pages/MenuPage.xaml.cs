@@ -1,17 +1,8 @@
-﻿using System;
+﻿using Presentacion.modals;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Presentacion.pages
 {
@@ -31,6 +22,11 @@ namespace Presentacion.pages
             NavigationService?.Navigate(root);
         }
 
+        private void AbrirVentana(object root)
+        {
+            ((Window)root).ShowDialog();
+        }
+
         private void btnUsuario_Click(object sender, RoutedEventArgs e)
         {
             Navegar(new UsuarioPage());
@@ -44,6 +40,11 @@ namespace Presentacion.pages
         private void btnVerSubcontrata_Click(object sender, RoutedEventArgs e)
         {
             Navegar(new SubcontrataPage());
+        }
+
+        private void btnAgregarSubcontrata_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirVentana(new AgregarSubcontrataWindow());
         }
     }
 }

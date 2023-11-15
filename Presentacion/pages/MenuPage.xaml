@@ -28,7 +28,10 @@
                     x:Name="btnUsuario"
                     Click="btnUsuario_Click"
                     Content="ariantm" />
-                <Button Content="Agregar subcontrata" />
+                <Button
+                    x:Name="btnAgregarSubcontrata"
+                    Click="btnAgregarSubcontrata_Click"
+                    Content="Agregar subcontrata" />
                 <StackPanel>
                     <Button Click="btnVerSubcontrata_Click" Content="Subcontrata 1" />
                     <Button Click="btnVerSubcontrata_Click" Content="Subcontrata 2" />
