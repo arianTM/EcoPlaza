@@ -78,7 +78,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="modals\AgregarAsistenciaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="modals\AgregarSubcontrataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\AsistenciasPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,8 +116,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="modals\AgregarAsistenciaWindow.xaml.cs">
+      <DependentUpon>AgregarAsistenciaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="modals\AgregarSubcontrataWindow.xaml.cs">
       <DependentUpon>AgregarSubcontrataWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AsistenciasPage.xaml.cs">
+      <DependentUpon>AsistenciasPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\IncidenciasPage.xaml.cs">
       <DependentUpon>IncidenciasPage.xaml</DependentUpon>
