@@ -10,10 +10,60 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <StackPanel Background="White">
         <TextBlock
             HorizontalAlignment="Center"
             FontSize="30"
-            Text="Registrarse" />
-    </Grid>
+            Text="Regístrese" />
+        <Grid
+            MaxWidth="1000"
+            Margin="0,20"
+            HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="Nombre de usuario:" />
+            <TextBox
+                x:Name="txtNombreUsuario"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="300" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="Nombres y apellidos:" />
+            <TextBox
+                x:Name="txtNombresYApellidos"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="300" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalContentAlignment="Right"
+                Content="Contraseña:" />
+            <PasswordBox
+                x:Name="txtContra"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="300" />
+        </Grid>
+        <Button
+            x:Name="btnRegistrarse"
+            MinWidth="200"
+            HorizontalAlignment="Center"
+            Content="REGISTRARSE" />
+    </StackPanel>
 </Page>
