@@ -17,7 +17,8 @@
             Width="75"
             Height="50"
             HorizontalAlignment="Left"
-            VerticalContentAlignment="Center">
+            VerticalContentAlignment="Center"
+            Click="btnRegresar_Click">
             <materialDesign:PackIcon
                 Width="30"
                 Height="30"
@@ -46,6 +47,7 @@
                 Grid.Column="0"
                 MinWidth="200"
                 HorizontalAlignment="Center"
+                Click="btnRegistrar_Click"
                 Content="AGREGAR" />
             <Button
                 x:Name="btnModificar"
