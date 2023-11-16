@@ -41,6 +41,7 @@
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontSize="24"
+                        Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="Subcontrata 1" />
                     <Grid
                         MaxWidth="1000"
