@@ -18,7 +18,5 @@
     TextElement.FontWeight="Medium"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     mc:Ignorable="d">
-    <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
-    </Grid>
+    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
 </Window>
