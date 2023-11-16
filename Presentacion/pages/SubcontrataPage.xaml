@@ -7,117 +7,155 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="SubcontrataPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
     mc:Ignorable="d">
 
     <StackPanel Background="White">
         <Button
             x:Name="btnRegresar"
             Width="75"
-            Height="50"
+            Height="75"
+            Margin="10,0"
             HorizontalAlignment="Left"
             VerticalContentAlignment="Center"
-            Click="btnRegresar_Click">
+            Click="btnRegresar_Click"
+            Style="{StaticResource MaterialDesignIconButton}">
             <materialDesign:PackIcon
                 Width="30"
                 Height="30"
                 Kind="ArrowBack" />
         </Button>
-        <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center">
-            <materialDesign:PackIcon
-                Width="60"
-                Height="60"
-                Kind="Company" />
-        </TextBlock>
-        <TextBlock
-            HorizontalAlignment="Center"
-            FontSize="24"
-            Text="Subcontrata 1" />
-        <Grid
-            MaxWidth="1000"
-            Margin="0,15"
-            HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Nombre:" />
-            <TextBox
-                x:Name="txtNombre"
-                Grid.Row="0"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Descripción:" />
-            <RichTextBox
-                x:Name="txtContra"
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="RUC:" />
-            <TextBox
-                x:Name="txtRuc"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="3"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Número de teléfono:" />
-            <TextBox
-                x:Name="txtCelular"
-                Grid.Row="3"
-                Grid.Column="1"
-                Width="300" />
-        </Grid>
-        <Grid Width="300">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button
-                x:Name="btnAsistencias"
-                Grid.Column="0"
-                Margin="10,0"
-                Click="btnAsistencias_Click"
-                Content="ASISTENCIAS" />
-            <Button
-                Grid.Column="1"
-                Margin="10,0"
-                Content="MATERIALES" />
-        </Grid>
-        <StackPanel Margin="0,10">
-            <Button
-                x:Name="btnModificar"
-                MinWidth="200"
-                HorizontalAlignment="Center"
-                Click="btnModificar_Click"
-                Content="GUARDAR CAMBIOS" />
-            <Button
-                x:Name="btnEliminar"
-                MinWidth="200"
-                HorizontalAlignment="Center"
-                Click="btnEliminar_Click"
-                Content="ELIMINAR" />
-        </StackPanel>
+        <Border MaxWidth="600" Padding="15">
+            <materialDesign:Card
+                Padding="10,15"
+                Background="{StaticResource MaterialDesignPaper}"
+                FontFamily="{StaticResource MaterialDesignFont}"
+                UniformCornerRadius="5">
+
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon
+                            Width="70"
+                            Height="70"
+                            Kind="Company" />
+                    </TextBlock>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        Text="Subcontrata 1" />
+                    <Grid
+                        MaxWidth="1000"
+                        Margin="0,15"
+                        HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="5,10"
+                            HorizontalContentAlignment="Right"
+                            Content="Nombre:"
+                            FontSize="14" />
+                        <TextBox
+                            x:Name="txtNombre"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Width="300"
+                            Margin="5,10"
+                            FontSize="14" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="5,10"
+                            HorizontalContentAlignment="Right"
+                            Content="Descripción:"
+                            FontSize="14" />
+                        <RichTextBox
+                            x:Name="txtContra"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="300"
+                            Margin="5,10"
+                            FontSize="14" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="5,10"
+                            HorizontalContentAlignment="Right"
+                            Content="RUC:"
+                            FontSize="14" />
+                        <TextBox
+                            x:Name="txtRuc"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Width="300"
+                            Margin="5,10"
+                            FontSize="14" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Margin="5,10"
+                            HorizontalContentAlignment="Right"
+                            Content="Número de teléfono:"
+                            FontSize="14" />
+                        <TextBox
+                            x:Name="txtCelular"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Width="300"
+                            Margin="5,10"
+                            FontSize="14" />
+                    </Grid>
+                    <Grid MaxWidth="500">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            x:Name="btnAsistencias"
+                            Grid.Column="0"
+                            Width="200"
+                            Height="40"
+                            Margin="10,0"
+                            Click="btnAsistencias_Click"
+                            Content="ASISTENCIAS"
+                            Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                        <Button
+                            Grid.Column="1"
+                            Width="200"
+                            Height="40"
+                            Margin="10,0"
+                            Content="MATERIALES"
+                            Style="{StaticResource MaterialDesignOutlinedSecondaryButton}" />
+                    </Grid>
+                    <StackPanel Margin="0,10">
+                        <Button
+                            x:Name="btnModificar"
+                            Height="40"
+                            MinWidth="350"
+                            Margin="0,5"
+                            HorizontalAlignment="Center"
+                            Click="btnModificar_Click"
+                            Content="GUARDAR CAMBIOS"
+                            Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
+                        <Button
+                            x:Name="btnEliminar"
+                            Height="40"
+                            MinWidth="350"
+                            Margin="0,5"
+                            HorizontalAlignment="Center"
+                            Click="btnEliminar_Click"
+                            Content="ELIMINAR" />
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+        </Border>
     </StackPanel>
 </Page>
