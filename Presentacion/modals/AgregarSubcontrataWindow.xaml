@@ -9,6 +9,7 @@
     Title="AgregarSubcontrataWindow"
     Width="620"
     Height="600"
+    Loaded="Window_Loaded"
     ResizeMode="CanResizeWithGrip"
     mc:Ignorable="d">
     <Border Padding="20">
@@ -63,7 +64,8 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtNombre_TextChanged" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
@@ -72,12 +74,13 @@
                         Content="Descripción:"
                         FontSize="14" />
                     <RichTextBox
-                        x:Name="txtContra"
+                        x:Name="txtDescripcion"
                         Grid.Row="1"
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                                 TextChanged="txtDescripcion_TextChanged" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
@@ -91,7 +94,8 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtRuc_TextChanged" />
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"
@@ -105,9 +109,11 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtCelular_TextChanged" />
                 </Grid>
                 <TextBlock
+                    x:Name="tbError"
                     Margin="10,5"
                     HorizontalAlignment="Center"
                     FontSize="12"
