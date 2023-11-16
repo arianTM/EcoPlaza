@@ -19,6 +19,7 @@
             Margin="10,0"
             HorizontalAlignment="Left"
             VerticalContentAlignment="Center"
+            Click="btnRegresar_Click"
             Style="{StaticResource MaterialDesignIconButton}">
             <materialDesign:PackIcon
                 Width="30"
