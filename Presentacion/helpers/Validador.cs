@@ -28,6 +28,12 @@ namespace Presentacion.helpers
         {
             return cmb.SelectedIndex.Equals(-1);
         }
+
+        public static bool DataGridSinSeleccion(DataGrid dg)
+        {
+            return dg.SelectedIndex.Equals(-1);
+        }
+
         #endregion
 
         #region Campos sin Formato Numérico
