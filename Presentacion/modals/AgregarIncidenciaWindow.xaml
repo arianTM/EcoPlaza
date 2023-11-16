@@ -9,6 +9,7 @@
     Title="AgregarIncidenciaWindow"
     Width="600"
     Height="600"
+    ResizeMode="CanResizeWithGrip"
     mc:Ignorable="d">
     <Border Padding="20">
 

@@ -13,6 +13,7 @@
     FontFamily="{materialDesign:MaterialDesignFont}"
     Icon="images/ecoplaza_logo.jpg"
     Loaded="Window_Loaded"
+    ResizeMode="CanResizeWithGrip"
     TextElement.FontSize="14"
     TextElement.FontWeight="Medium"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"

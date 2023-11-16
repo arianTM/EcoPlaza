@@ -9,6 +9,7 @@
     Title="AgregarAsistenciaWindow"
     Width="620"
     Height="550"
+    ResizeMode="CanResizeWithGrip"
     mc:Ignorable="d">
     <Border Padding="20">
 

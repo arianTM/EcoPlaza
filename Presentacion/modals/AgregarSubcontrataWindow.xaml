@@ -9,6 +9,7 @@
     Title="AgregarSubcontrataWindow"
     Width="620"
     Height="600"
+    ResizeMode="CanResizeWithGrip"
     mc:Ignorable="d">
     <Border Padding="20">
         <materialDesign:Card MaxWidth="600" Padding="20">
