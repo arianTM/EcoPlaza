@@ -43,5 +43,10 @@ namespace Presentacion.pages
         {
             Navegar(new AsistenciasPage());
         }
+
+        private void btnMateriales_Click(object sender, RoutedEventArgs e)
+        {
+            Navegar(new MaterialesPage());
+        }
     }
 }

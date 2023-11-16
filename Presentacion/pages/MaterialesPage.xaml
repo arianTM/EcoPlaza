@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="Presentacion.pages.MaterialesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Presentacion.pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MaterialesPage"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Background="White">
+        <Button
+            x:Name="btnRegresar"
+            Width="75"
+            Height="75"
+            Margin="10,0"
+            HorizontalAlignment="Left"
+            VerticalContentAlignment="Center"
+            Style="{StaticResource MaterialDesignIconButton}">
+            <materialDesign:PackIcon
+                Width="30"
+                Height="30"
+                Kind="ArrowBack" />
+        </Button>
+        <Border MaxWidth="900" Padding="20">
+            <materialDesign:Card
+                Padding="10,15"
+                Background="{StaticResource MaterialDesignPaper}"
+                FontFamily="{StaticResource MaterialDesignFont}"
+                UniformCornerRadius="5">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon
+                            Width="75"
+                            Height="75"
+                            Kind="Tools" />
+
+                    </TextBlock>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                        Text="Materiales" />
+                    <DataGrid />
+                    <TextBlock
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="Red"
+                        Style="{StaticResource MaterialDesignBody1TextBlock}"
+                        Text="Error de conexión. Inténtelo de nuevo más tarde." />
+                    <Grid Margin="0,15" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            x:Name="btnRegistrar"
+                            Grid.Column="0"
+                            Height="40"
+                            MinWidth="200"
+                            HorizontalAlignment="Center"
+                            Click="btnRegistrar_Click"
+                            Content="AGREGAR" />
+                        <Button
+                            x:Name="btnModificar"
+                            Grid.Column="1"
+                            Height="40"
+                            MinWidth="200"
+                            HorizontalAlignment="Center"
+                            Click="btnModificar_Click"
+                            Content="MODIFICAR"
+                            Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
+                        <Button
+                            x:Name="btnEliminar"
+                            Grid.Column="2"
+                            Height="40"
+                            MinWidth="200"
+                            HorizontalAlignment="Center"
+                            Content="ELIMINAR"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                    </Grid>
+                </StackPanel>
+            </materialDesign:Card>
+        </Border>
+    </StackPanel>
+</Page>
