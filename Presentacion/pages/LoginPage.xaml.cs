@@ -26,6 +26,18 @@ namespace Presentacion.pages
             // root --> página (new SigninPage(), por ejemplo)
             NavigationService?.Navigate(root);
         }
+
+        private bool ValidarCampos()
+        {
+            if (Validador.TextBoxVacio(txtNombre) || Validador.PasswordBoxVacio(txtContra))
+            {
+                MostrarError("¡Complete todos los campos!");
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
         #region Errores
@@ -41,6 +53,7 @@ namespace Presentacion.pages
             tbError.Text = mensaje;
             tbError.Visibility = Visibility.Visible;
         }
+
         #endregion
 
         #region Login de Usuario
@@ -49,21 +62,10 @@ namespace Presentacion.pages
         /// </summary>
         /// 
 
-        private bool Camposs()
-        {
-            if (Validador.TextBoxVacio(txtNombre) || Validador.PasswordBoxVacio(txtContra))
-            {
-                MostrarError("¡Complete todos los campos!");
-                return false;
-            }
-
-            return true;
-        }
-
         private void Login()
         {
             // VALIDAR CAMPOS
-            if (!Camposs()) return;
+            if (!ValidarCampos()) return;
 
 
             //LOGIN

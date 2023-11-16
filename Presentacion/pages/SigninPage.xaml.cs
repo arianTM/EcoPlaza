@@ -28,28 +28,6 @@ namespace Presentacion.pages
             NavigationService?.Navigate(root);
         }
 
-        #endregion
-
-        #region Errores
-
-        private void OcultarError()
-        {
-            tbError.Text = String.Empty;
-            tbError.Visibility = Visibility.Hidden;
-        }
-
-        private void MostrarError(String mensaje)
-        {
-            tbError.Text = mensaje;
-            tbError.Visibility = Visibility.Visible;
-        }
-        #endregion
-
-        #region Registro de Usuario
-        /// <summary>
-        /// Funciones para el Sign-in del usuario
-        /// </summary>
-
         private bool ValidarCampos()
         {
             if (Validador.TextBoxVacio(txtNombreUsuario) || Validador.TextBoxVacio(txtNombresYApellidos) || Validador.PasswordBoxVacio(txtContra))
@@ -72,6 +50,28 @@ namespace Presentacion.pages
 
             return true;
         }
+
+        #endregion
+
+        #region Errores
+
+        private void OcultarError()
+        {
+            tbError.Text = String.Empty;
+            tbError.Visibility = Visibility.Hidden;
+        }
+
+        private void MostrarError(String mensaje)
+        {
+            tbError.Text = mensaje;
+            tbError.Visibility = Visibility.Visible;
+        }
+        #endregion
+
+        #region Registro de Usuario
+        /// <summary>
+        /// Funciones para el Sign-in del usuario
+        /// </summary>
 
         private void Registrar()
         {
