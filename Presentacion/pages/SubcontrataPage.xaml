@@ -43,6 +43,28 @@
                         FontSize="24"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="Subcontrata 1" />
+                    <Grid MaxWidth="500" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            x:Name="btnAsistencias"
+                            Grid.Column="0"
+                            Width="200"
+                            Height="40"
+                            Margin="10,0"
+                            Click="btnAsistencias_Click"
+                            Content="ASISTENCIAS"
+                            Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                        <Button
+                            Grid.Column="1"
+                            Width="200"
+                            Height="40"
+                            Margin="10,0"
+                            Content="MATERIALES"
+                            Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
+                    </Grid>
                     <Grid
                         MaxWidth="1000"
                         Margin="0,15"
@@ -121,29 +143,7 @@
                         Foreground="Red"
                         Style="{StaticResource MaterialDesignBody1TextBlock}"
                         Text="Error de conexión. Inténtelo de nuevo más tarde." />
-                    <Grid MaxWidth="500">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Button
-                            x:Name="btnAsistencias"
-                            Grid.Column="0"
-                            Width="200"
-                            Height="40"
-                            Margin="10,0"
-                            Click="btnAsistencias_Click"
-                            Content="ASISTENCIAS"
-                            Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
-                        <Button
-                            Grid.Column="1"
-                            Width="200"
-                            Height="40"
-                            Margin="10,0"
-                            Content="MATERIALES"
-                            Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" />
-                    </Grid>
-                    <StackPanel Margin="0,10">
+                    <StackPanel Margin="0">
                         <Button
                             x:Name="btnModificar"
                             Height="40"
