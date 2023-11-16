@@ -58,6 +58,7 @@
                             Height="40"
                             MinWidth="200"
                             HorizontalAlignment="Center"
+                            Click="btnRegistrar_Click"
                             Content="AGREGAR" />
                         <Button
                             x:Name="btnModificar"
