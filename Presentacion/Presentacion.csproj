@@ -86,6 +86,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="modals\AgregarMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="modals\AgregarSubcontrataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +141,9 @@
     </Compile>
     <Compile Include="modals\AgregarIncidenciaWindow.xaml.cs">
       <DependentUpon>AgregarIncidenciaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modals\AgregarMaterialWindow.xaml.cs">
+      <DependentUpon>AgregarMaterialWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="modals\AgregarSubcontrataWindow.xaml.cs">
       <DependentUpon>AgregarSubcontrataWindow.xaml</DependentUpon>

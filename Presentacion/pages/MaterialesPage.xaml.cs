@@ -34,7 +34,7 @@ namespace Presentacion.pages
 
         private void btnRegistrar_Click(object sender, RoutedEventArgs e)
         {
-
+            AbrirVentana(new AgregarMaterialWindow());
         }
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
