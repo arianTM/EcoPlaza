@@ -90,7 +90,16 @@ namespace Presentacion.pages
         {
             Login();
         }
-        #endregion
 
+        private void txtNombre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OcultarError();
+        }
+
+        private void txtContra_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            OcultarError();
+        }
+        #endregion
     }
 }
