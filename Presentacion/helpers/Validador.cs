@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Presentacion.helpers
 {
@@ -10,6 +11,12 @@ namespace Presentacion.helpers
         public static bool TextBoxVacio(TextBox txt)
         {
             return String.IsNullOrWhiteSpace(txt.Text);
+        }
+
+        public static bool RichTextBoxVacio(RichTextBox txt)
+        {
+            TextRange textRange = new TextRange(txt.Document.ContentStart, txt.Document.ContentEnd);
+            return String.IsNullOrWhiteSpace(textRange.Text);
         }
 
         public static bool PasswordBoxVacio(PasswordBox contra)
