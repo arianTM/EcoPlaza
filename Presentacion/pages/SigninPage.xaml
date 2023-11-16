@@ -4,78 +4,126 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Presentacion.pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="SigninPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
     mc:Ignorable="d">
 
-    <StackPanel Background="White">
-        <TextBlock
-            HorizontalAlignment="Center"
-            FontSize="30"
-            Text="Regístrese" />
-        <Grid
-            MaxWidth="1000"
-            Margin="0,20"
-            HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Nombre de usuario:" />
-            <TextBox
-                x:Name="txtNombreUsuario"
-                Grid.Row="0"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Nombres y apellidos:" />
-            <TextBox
-                x:Name="txtNombresYApellidos"
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Contraseña:" />
-            <PasswordBox
-                x:Name="txtContra"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="300" />
-        </Grid>
-        <Button
-            x:Name="btnRegistrarse"
-            MinWidth="200"
-            HorizontalAlignment="Center"
-            Click="btnRegistrarse_Click"
-            Content="REGISTRARSE" />
-        <TextBlock
-            Width="Auto"
-            Margin="0,10"
-            HorizontalAlignment="Center">
-            <Hyperlink x:Name="linkIniciarSesion" Click="linkIniciarSesion_Click">
+    <Border MaxWidth="600" Padding="20">
+        <materialDesign:Card
+            VerticalContentAlignment="Center"
+            Background="{StaticResource MaterialDesignPaper}"
+            FontFamily="{StaticResource MaterialDesignFont}"
+            UniformCornerRadius="5">
+            <StackPanel>
+                <Image
+                    Width="100"
+                    Margin="0,10"
+                    Source="../images/ecoplaza_logo.jpg" />
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        FontSize="40"
+                        Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                        Text="SIGNIN" />
+                    <materialDesign:PackIcon
+                        Grid.Column="1"
+                        Width="45"
+                        Height="45"
+                        Margin="8,0,0,0"
+                        Kind="SignIn" />
+                </Grid>
+                <Grid
+                    MaxWidth="1000"
+                    Margin="10,25,10,0"
+                    HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Nombre de usuario:"
+                        FontSize="14" />
+                    <TextBox
+                        x:Name="txtNombreUsuario"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Width="200"
+                        Margin="5,10"
+                        FontSize="14" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Nombres y apellidos:"
+                        FontSize="14" />
+                    <TextBox
+                        x:Name="txtNombresYApellidos"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="200"
+                        Margin="5,10"
+                        FontSize="14" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Contraseña:"
+                        FontSize="14" />
+                    <PasswordBox
+                        x:Name="txtContra"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Width="200"
+                        Margin="5,10"
+                        FontSize="14" />
+                </Grid>
                 <TextBlock
+                    Margin="10,5"
+                    HorizontalAlignment="Center"
                     FontSize="12"
-                    Foreground="#555"
-                    Text="¿Ya tienes una cuenta creada? Inicia sesión" />
-            </Hyperlink>
-        </TextBlock>
-    </StackPanel>
+                    Foreground="Red"
+                    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                    Text="Error de conexión. Inténtelo de nuevo más tarde." />
+                <Button
+                    x:Name="btnRegistrarse"
+                    Height="46"
+                    MinWidth="340"
+                    Margin="0,10"
+                    HorizontalAlignment="Center"
+                    Click="btnRegistrarse_Click"
+                    Content="REGISTRARSE"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                <TextBlock
+                    Width="Auto"
+                    Margin="0,10"
+                    HorizontalAlignment="Center">
+                    <Hyperlink
+                        x:Name="linkIniciarSesion"
+                        Click="linkIniciarSesion_Click"
+                        Style="{StaticResource MaterialDesignBody1Hyperlink}">
+                        <TextBlock FontSize="12" Text="¿Ya tienes una cuenta creada? Inicia sesión" />
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </materialDesign:Card>
+    </Border>
 </Page>
