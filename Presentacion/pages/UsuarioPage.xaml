@@ -41,6 +41,7 @@
                     <TextBlock
                         HorizontalAlignment="Center"
                         FontSize="24"
+                        Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="ariantm" />
                     <Grid
                         MaxWidth="1000"
