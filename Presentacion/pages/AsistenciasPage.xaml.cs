@@ -94,7 +94,6 @@ namespace Presentacion.pages
         #endregion
 
         #region Eventos de Controles
-        #endregion
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -120,5 +119,7 @@ namespace Presentacion.pages
         {
             Eliminar();
         }
+
+        #endregion
     }
 }
