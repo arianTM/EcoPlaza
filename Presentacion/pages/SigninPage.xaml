@@ -68,6 +68,7 @@
                         Width="200"
                         Margin="5,10"
                         FontSize="14"
+                        TextChanged="txtNombreUsuario_TextChanged"
                         ToolTip="Solo puede contener letras, números y los caracteres: _, . [¡De 4 a 20 caracteres!]" />
                     <Label
                         Grid.Row="1"
@@ -83,6 +84,7 @@
                         Width="200"
                         Margin="5,10"
                         FontSize="14"
+                        TextChanged="txtNombresYApellidos_TextChanged"
                         ToolTip="Puede contener espacios." />
                     <Label
                         Grid.Row="2"
@@ -98,6 +100,7 @@
                         Width="200"
                         Margin="5,10"
                         FontSize="14"
+                        PasswordChanged="txtContra_PasswordChanged"
                         ToolTip="Solo puede contener letras, números y los caracteres: _, @, #, $, %, ^, +, - [¡De 5 a 30 caracteres!]" />
                 </Grid>
                 <TextBlock

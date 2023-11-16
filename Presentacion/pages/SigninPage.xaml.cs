@@ -101,7 +101,21 @@ namespace Presentacion.pages
         {
             Navegar(new LoginPage());
         }
-        #endregion
 
+        private void txtNombreUsuario_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OcultarError();
+        }
+
+        private void txtNombresYApellidos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OcultarError();
+        }
+
+        private void txtContra_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            OcultarError();
+        }
+        #endregion
     }
 }
