@@ -15,52 +15,70 @@
         <Button
             x:Name="btnRegresar"
             Width="75"
-            Height="50"
+            Height="75"
+            Margin="10,0"
             HorizontalAlignment="Left"
             VerticalContentAlignment="Center"
-            Click="btnRegresar_Click">
+            Click="btnRegresar_Click"
+            Style="{StaticResource MaterialDesignIconButton}">
             <materialDesign:PackIcon
                 Width="30"
                 Height="30"
                 Kind="ArrowBack" />
         </Button>
-        <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center">
-            <materialDesign:PackIcon
-                Width="60"
-                Height="60"
-                Kind="Calendar" />
+        <Border MaxWidth="900" Padding="20">
+            <materialDesign:Card
+                Padding="10,15"
+                Background="{StaticResource MaterialDesignPaper}"
+                FontFamily="{StaticResource MaterialDesignFont}"
+                UniformCornerRadius="5">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,10" HorizontalAlignment="Center">
+                        <materialDesign:PackIcon
+                            Width="75"
+                            Height="75"
+                            Kind="Calendar" />
 
-        </TextBlock>
-        <TextBlock
-            HorizontalAlignment="Center"
-            FontSize="24"
-            Text="Asistencias" />
-        <DataGrid />
-        <Grid Margin="0,15" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button
-                x:Name="btnRegistrar"
-                Grid.Column="0"
-                MinWidth="200"
-                HorizontalAlignment="Center"
-                Click="btnRegistrar_Click"
-                Content="AGREGAR" />
-            <Button
-                x:Name="btnModificar"
-                Grid.Column="1"
-                MinWidth="200"
-                HorizontalAlignment="Center"
-                Content="MODIFICAR" />
-            <Button
-                x:Name="btnEliminar"
-                Grid.Column="2"
-                MinWidth="200"
-                HorizontalAlignment="Center"
-                Content="ELIMINAR" />
-        </Grid>
+                    </TextBlock>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                        Text="Asistencias" />
+                    <DataGrid />
+                    <Grid Margin="0,15" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            x:Name="btnRegistrar"
+                            Grid.Column="0"
+                            Height="40"
+                            MinWidth="200"
+                            HorizontalAlignment="Center"
+                            Click="btnRegistrar_Click"
+                            Content="AGREGAR" />
+                        <Button
+                            x:Name="btnModificar"
+                            Grid.Column="1"
+                            Height="40"
+                            MinWidth="200"
+                            HorizontalAlignment="Center"
+                            Content="MODIFICAR"
+                            Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
+                        <Button
+                            x:Name="btnEliminar"
+                            Grid.Column="2"
+                            Height="40"
+                            MinWidth="200"
+                            HorizontalAlignment="Center"
+                            Content="ELIMINAR"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                    </Grid>
+                </StackPanel>
+            </materialDesign:Card>
+        </Border>
     </StackPanel>
 </Page>
