@@ -7,101 +7,136 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AgregarSubcontrataWindow"
-    Width="800"
-    Height="450"
+    Width="620"
+    Height="600"
     mc:Ignorable="d">
-    <StackPanel Background="White">
-        <Button
-            x:Name="btnRegresar"
-            Width="75"
-            Height="50"
-            HorizontalAlignment="Left"
-            VerticalContentAlignment="Center"
-            Click="btnRegresar_Click">
-            <materialDesign:PackIcon
-                Width="30"
-                Height="30"
-                Kind="ArrowBack" />
-        </Button>
+    <Border Padding="20">
+        <materialDesign:Card MaxWidth="600" Padding="20">
+            <StackPanel Background="White">
+                <Button
+                    x:Name="btnRegresar"
+                    Width="75"
+                    Height="75"
+                    Margin="10,0"
+                    HorizontalAlignment="Right"
+                    VerticalContentAlignment="Center"
+                    Click="btnRegresar_Click"
+                    Style="{StaticResource MaterialDesignIconButton}">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Kind="Close" />
+                </Button>
 
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="30"
-            Text="Agregar Subcontrata" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="30"
+                    Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                    Text="Agregar Subcontrata" />
 
-        <Grid
-            MaxWidth="1000"
-            Margin="0,15"
-            HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Nombre:" />
-            <TextBox
-                x:Name="txtNombre"
-                Grid.Row="0"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Descripción:" />
-            <RichTextBox
-                x:Name="txtContra"
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="RUC:" />
-            <TextBox
-                x:Name="txtRuc"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="300" />
-            <Label
-                Grid.Row="3"
-                Grid.Column="0"
-                HorizontalContentAlignment="Right"
-                Content="Número de teléfono:" />
-            <TextBox
-                x:Name="txtCelular"
-                Grid.Row="3"
-                Grid.Column="1"
-                Width="300" />
-        </Grid>
-        <Grid Width="300" Margin="0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button
-                x:Name="btnAgregar"
-                Grid.Column="0"
-                Margin="10,0"
-                Click="btnAgregar_Click"
-                Content="AGREGAR" />
-            <Button
-                x:Name="btnLimpiar"
-                Grid.Column="1"
-                Margin="10,0"
-                Click="btnLimpiar_Click"
-                Content="LIMPIAR" />
-        </Grid>
-    </StackPanel>
+                <Grid
+                    MaxWidth="1000"
+                    Margin="0,15"
+                    HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Nombre:"
+                        FontSize="14" />
+                    <TextBox
+                        x:Name="txtNombre"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Descripción:"
+                        FontSize="14" />
+                    <RichTextBox
+                        x:Name="txtContra"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="RUC:"
+                        FontSize="14" />
+                    <TextBox
+                        x:Name="txtRuc"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Número de teléfono:"
+                        FontSize="14" />
+                    <TextBox
+                        x:Name="txtCelular"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14" />
+                </Grid>
+                <TextBlock
+                    Margin="10,5"
+                    HorizontalAlignment="Center"
+                    FontSize="12"
+                    Foreground="Red"
+                    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                    Text="Error de conexión. Inténtelo de nuevo más tarde." />
+                <Grid MaxWidth="500" Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        x:Name="btnAgregar"
+                        Grid.Column="0"
+                        Width="210"
+                        Height="40"
+                        Margin="10,0"
+                        Click="btnAgregar_Click"
+                        Content="AGREGAR" />
+                    <Button
+                        x:Name="btnLimpiar"
+                        Grid.Column="1"
+                        Width="210"
+                        Height="40"
+                        Margin="10,0"
+                        Click="btnLimpiar_Click"
+                        Content="LIMPIAR"
+                        Style="{StaticResource MaterialDesignOutlinedButton}" />
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+    </Border>
 </Window>
