@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AgregarIncidenciaWindow"
     Width="600"
-    Height="570"
+    Height="600"
     mc:Ignorable="d">
     <Border Padding="20">
 
