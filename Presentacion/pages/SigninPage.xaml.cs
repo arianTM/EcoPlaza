@@ -30,7 +30,7 @@ namespace Presentacion.pages
 
         #endregion
 
-        #region Mensajes de Error
+        #region Errores
 
         private void OcultarError()
         {
@@ -43,7 +43,6 @@ namespace Presentacion.pages
             tbError.Text = mensaje;
             tbError.Visibility = Visibility.Visible;
         }
-
         #endregion
 
         #region Registro de Usuario
@@ -51,7 +50,7 @@ namespace Presentacion.pages
         /// Funciones para el Sign-in del usuario
         /// </summary>
 
-        private bool Camposss()
+        private bool ValidarCampos()
         {
             if (Validador.TextBoxVacio(txtNombreUsuario) || Validador.TextBoxVacio(txtNombresYApellidos) || Validador.PasswordBoxVacio(txtContra))
             {
@@ -65,15 +64,23 @@ namespace Presentacion.pages
                 return false;
             }
 
+            if (Validador.ContraSinFormato(txtContra))
+            {
+                MostrarError("¡Formato no válido de la contraseña (poner el mouse sobre el campo para ver detalles)!");
+                return false;
+            }
+
             return true;
         }
 
         private void Registrar()
         {
             // VALIDAR CAMPOS
-            if (!Camposss()) return;
+            if (!ValidarCampos()) return;
 
             // REGISTRAR USUARIO
+
+            // NAVEGAR
             Navegar(new MenuPage());
         }
 

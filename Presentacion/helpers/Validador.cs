@@ -41,6 +41,12 @@ namespace Presentacion.helpers
             Regex userRegex = new Regex("^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+");
             return !userRegex.IsMatch(txt.Text);
         }
+
+        public static bool ContraSinFormato(PasswordBox contra)
+        {
+            Regex passwordRegex = new Regex("^[a-zA-Z0-9_@#$%^+=-]{5,30}$");
+            return !passwordRegex.IsMatch(contra.Password);
+        }
         #endregion
     }
 }
