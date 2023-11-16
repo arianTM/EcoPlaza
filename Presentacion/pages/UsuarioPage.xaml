@@ -101,8 +101,7 @@
                             Margin="0,5"
                             HorizontalAlignment="Center"
                             Click="btnModificar_Click"
-                            Content="GUARDAR CAMBIOS"
-                            Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
+                            Content="GUARDAR CAMBIOS" />
                         <Button
                             x:Name="btnLogout"
                             Height="40"
@@ -119,7 +118,8 @@
                             Margin="0,5"
                             HorizontalAlignment="Center"
                             Click="btnEliminar_Click"
-                            Content="ELIMINAR CUENTA" />
+                            Content="ELIMINAR CUENTA"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
                     </StackPanel>
                 </StackPanel>
             </materialDesign:Card>

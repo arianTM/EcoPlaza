@@ -32,7 +32,7 @@
                         x:Name="btnUsuario"
                         Height="60"
                         Click="btnUsuario_Click"
-                        Style="{StaticResource MaterialDesignFlatDarkBgButton}">
+                        Style="{StaticResource MaterialDesignFlatAccentBgButton}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
                                 Width="22"
@@ -45,8 +45,7 @@
                         x:Name="btnAgregarSubcontrata"
                         Height="40"
                         VerticalContentAlignment="Center"
-                        Click="btnAgregarSubcontrata_Click"
-                        Style="{StaticResource MaterialDesignFlatAccentBgButton}">
+                        Click="btnAgregarSubcontrata_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
                                 Width="20"
@@ -85,7 +84,7 @@
                     Grid.Row="1"
                     Height="40"
                     Click="btnIncidencias_Click"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}">
+                    Style="{StaticResource MaterialDesignOutlinedButton}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon
                             Width="22"
