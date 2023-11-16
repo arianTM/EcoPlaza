@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="modals\ModificarAsistenciaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="modals\ModificarIncidenciaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +136,9 @@
     </Compile>
     <Compile Include="modals\AgregarSubcontrataWindow.xaml.cs">
       <DependentUpon>AgregarSubcontrataWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modals\ModificarAsistenciaWindow.xaml.cs">
+      <DependentUpon>ModificarAsistenciaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="modals\ModificarIncidenciaWindow.xaml.cs">
       <DependentUpon>ModificarIncidenciaWindow.xaml</DependentUpon>
