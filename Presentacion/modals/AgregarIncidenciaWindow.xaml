@@ -1,12 +1,138 @@
-﻿<Window x:Class="Presentacion.modals.AgregarIncidenciaWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Presentacion.modals"
-        mc:Ignorable="d"
-        Title="AgregarIncidenciaWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+﻿<Window
+    x:Class="Presentacion.modals.AgregarIncidenciaWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Presentacion.modals"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AgregarIncidenciaWindow"
+    Width="600"
+    Height="550"
+    mc:Ignorable="d">
+    <Border Padding="20">
+
+        <materialDesign:Card MaxWidth="600" Padding="20">
+            <StackPanel Background="White">
+                <Button
+                    x:Name="btnRegresar"
+                    Width="75"
+                    Height="75"
+                    Margin="10,0"
+                    HorizontalAlignment="Right"
+                    VerticalContentAlignment="Center"
+                    Style="{StaticResource MaterialDesignIconButton}">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Kind="Close" />
+                </Button>
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="30"
+                    Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                    Text="Agregar Incidencia" />
+
+                <Grid
+                    MaxWidth="1000"
+                    Margin="0,15"
+                    HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Descripción:"
+                        FontSize="14" />
+                    <RichTextBox
+                        x:Name="txtDescripcion"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14"
+                        Style="{StaticResource MaterialDesignRichTextBox}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Categoría:"
+                        FontSize="14" />
+                    <ComboBox
+                        x:Name="cbCategoria"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14"
+                        Style="{StaticResource MaterialDesignComboBox}">
+                        <ComboBoxItem Content="Opción 1" />
+                        <ComboBoxItem Content="Opción 2" />
+                    </ComboBox>
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Fecha:"
+                        FontSize="14" />
+                    <DatePicker
+                        x:Name="dpFecha"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Margin="5,10"
+                        HorizontalContentAlignment="Right"
+                        Content="Hora:"
+                        FontSize="14" />
+                    <materialDesign:TimePicker
+                        x:Name="tpHora"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Width="300"
+                        Margin="5,10"
+                        FontSize="14" />
+                </Grid>
+                <Grid MaxWidth="450" Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        x:Name="btnAgregar"
+                        Grid.Column="0"
+                        Width="200"
+                        Height="40"
+                        Margin="10,0"
+                        Content="AGREGAR" />
+                    <Button
+                        x:Name="btnLimpiar"
+                        Grid.Column="1"
+                        Width="200"
+                        Height="40"
+                        Margin="10,0"
+                        Content="LIMPIAR"
+                        Style="{StaticResource MaterialDesignOutlinedButton}" />
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+    </Border>
 </Window>
