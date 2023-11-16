@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -32,6 +33,16 @@ namespace Presentacion.helpers
         public static bool DataGridSinSeleccion(DataGrid dg)
         {
             return dg.SelectedIndex.Equals(-1);
+        }
+
+        public static bool DatePickerSinSeleccion(DatePicker dp)
+        {
+            return dp.SelectedDate == null;
+        }
+
+        public static bool TimePickerSinSeleccion(TimePicker tp)
+        {
+            return tp.SelectedTime == null;
         }
 
         #endregion

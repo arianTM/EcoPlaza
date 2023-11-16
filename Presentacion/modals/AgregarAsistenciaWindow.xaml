@@ -9,6 +9,7 @@
     Title="AgregarAsistenciaWindow"
     Width="620"
     Height="550"
+    Loaded="Window_Loaded"
     ResizeMode="CanResizeWithGrip"
     mc:Ignorable="d">
     <Border Padding="20">
@@ -63,7 +64,8 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtNombreTrabajador_TextChanged" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
@@ -77,7 +79,8 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        SelectedDateChanged="dpFecha_SelectedDateChanged" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
@@ -91,9 +94,11 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        SelectedTimeChanged="tpHora_SelectedTimeChanged" />
                 </Grid>
                 <TextBlock
+                    x:Name="tbError"
                     Margin="10,5"
                     HorizontalAlignment="Center"
                     FontSize="12"
@@ -119,6 +124,7 @@
                         Width="210"
                         Height="40"
                         Margin="10,0"
+                        Click="btnLimpiar_Click"
                         Content="LIMPIAR"
                         Style="{StaticResource MaterialDesignOutlinedButton}" />
                 </Grid>
