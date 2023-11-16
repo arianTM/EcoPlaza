@@ -9,6 +9,7 @@
     Title="MaterialesPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
 
     <StackPanel Background="White">
@@ -45,8 +46,9 @@
                         FontSize="24"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="Materiales" />
-                    <DataGrid />
+                    <DataGrid x:Name="dgMateriales" />
                     <TextBlock
+                        x:Name="tbError"
                         Margin="0,10,0,0"
                         HorizontalAlignment="Center"
                         FontSize="12"
@@ -82,6 +84,7 @@
                             Height="40"
                             MinWidth="200"
                             HorizontalAlignment="Center"
+                            Click="btnEliminar_Click"
                             Content="ELIMINAR"
                             Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
                     </Grid>
