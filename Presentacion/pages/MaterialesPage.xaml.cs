@@ -39,7 +39,7 @@ namespace Presentacion.pages
 
         private void btnModificar_Click(object sender, RoutedEventArgs e)
         {
-
+            AbrirVentana(new ModificarMaterialWindow());
         }
     }
 }

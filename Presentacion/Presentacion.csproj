@@ -102,6 +102,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="modals\ModificarMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\AsistenciasPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,6 +157,9 @@
     </Compile>
     <Compile Include="modals\ModificarIncidenciaWindow.xaml.cs">
       <DependentUpon>ModificarIncidenciaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modals\ModificarMaterialWindow.xaml.cs">
+      <DependentUpon>ModificarMaterialWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\AsistenciasPage.xaml.cs">
       <DependentUpon>AsistenciasPage.xaml</DependentUpon>
