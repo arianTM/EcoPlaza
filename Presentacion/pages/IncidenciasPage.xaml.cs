@@ -22,7 +22,9 @@ namespace Presentacion.pages
 
         private void AbrirVentana(object root)
         {
-            ((Window)root).ShowDialog();
+            Window window = (Window)root;
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.ShowDialog();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
