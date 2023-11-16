@@ -9,6 +9,7 @@
     Title="ModificarMaterialWindow"
     Width="600"
     Height="600"
+    Loaded="Window_Loaded"
     ResizeMode="CanResizeWithGrip"
     mc:Ignorable="d">
     <Border Padding="20">
@@ -64,7 +65,8 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtNombre_TextChanged" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
@@ -79,6 +81,7 @@
                         Width="300"
                         Margin="5,10"
                         FontSize="14"
+                        SelectionChanged="cbMarca_SelectionChanged"
                         Style="{StaticResource MaterialDesignComboBox}">
                         <ComboBoxItem Content="Opción 1" />
                         <ComboBoxItem Content="Opción 2" />
@@ -96,7 +99,8 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtCantidad_TextChanged" />
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"
@@ -110,9 +114,11 @@
                         Grid.Column="1"
                         Width="300"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        TextChanged="txtCosto_TextChanged" />
                 </Grid>
                 <TextBlock
+                    x:Name="tbError"
                     Margin="0,0,0,10"
                     HorizontalAlignment="Center"
                     FontSize="12"
@@ -138,6 +144,7 @@
                         Width="210"
                         Height="40"
                         Margin="10,0"
+                        Click="btnLimpiar_Click"
                         Content="LIMPIAR"
                         Style="{StaticResource MaterialDesignOutlinedButton}" />
                 </Grid>
