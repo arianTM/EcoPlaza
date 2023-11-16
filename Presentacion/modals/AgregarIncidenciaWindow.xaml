@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AgregarIncidenciaWindow"
     Width="600"
-    Height="550"
+    Height="570"
     mc:Ignorable="d">
     <Border Padding="20">
 
@@ -112,6 +112,13 @@
                         Margin="5,10"
                         FontSize="14" />
                 </Grid>
+                <TextBlock
+                    Margin="0,0,0,10"
+                    HorizontalAlignment="Center"
+                    FontSize="12"
+                    Foreground="Red"
+                    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                    Text="Error de conexión. Inténtelo de nuevo más tarde." />
                 <Grid MaxWidth="500" Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
