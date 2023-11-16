@@ -66,7 +66,8 @@
                         Grid.Column="1"
                         Width="200"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        ToolTip="Solo puede contener letras, números y los caracteres: _, . [¡De 4 a 20 caracteres!]" />
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
@@ -80,7 +81,8 @@
                         Grid.Column="1"
                         Width="200"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        ToolTip="Puede contener espacios." />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
@@ -94,7 +96,8 @@
                         Grid.Column="1"
                         Width="200"
                         Margin="5,10"
-                        FontSize="14" />
+                        FontSize="14"
+                        ToolTip="Solo puede contener letras, números y los caracteres: _, @, #, $, %, ^, +, - [¡De 5 a 30 caracteres!]" />
                 </Grid>
                 <TextBlock
                     Margin="10,5"
