@@ -85,7 +85,8 @@
                     Grid.Row="1"
                     Height="40"
                     Click="btnIncidencias_Click"
-                    Content="Incidencias" />
+                    Content="Incidencias"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
             </Grid>
         </Border>
         <StackPanel Grid.Column="1">
