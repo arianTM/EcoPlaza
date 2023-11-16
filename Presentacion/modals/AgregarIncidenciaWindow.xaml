@@ -21,6 +21,7 @@
                     Margin="10,0"
                     HorizontalAlignment="Right"
                     VerticalContentAlignment="Center"
+                    Click="btnRegresar_Click"
                     Style="{StaticResource MaterialDesignIconButton}">
                     <materialDesign:PackIcon
                         Width="30"
@@ -111,7 +112,7 @@
                         Margin="5,10"
                         FontSize="14" />
                 </Grid>
-                <Grid MaxWidth="450" Margin="0,10">
+                <Grid MaxWidth="500" Margin="0,10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -119,14 +120,15 @@
                     <Button
                         x:Name="btnAgregar"
                         Grid.Column="0"
-                        Width="200"
+                        Width="210"
                         Height="40"
                         Margin="10,0"
+                        Click="btnAgregar_Click"
                         Content="AGREGAR" />
                     <Button
                         x:Name="btnLimpiar"
                         Grid.Column="1"
-                        Width="200"
+                        Width="210"
                         Height="40"
                         Margin="10,0"
                         Content="LIMPIAR"
