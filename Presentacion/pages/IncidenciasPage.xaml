@@ -66,6 +66,7 @@
                             Height="40"
                             MinWidth="200"
                             HorizontalAlignment="Center"
+                            Click="btnModificar_Click"
                             Content="MODIFICAR"
                             Style="{StaticResource MaterialDesignFlatAccentBgButton}" />
                         <Button

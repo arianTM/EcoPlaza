@@ -34,5 +34,10 @@ namespace Presentacion.pages
         {
             AbrirVentana(new AgregarIncidenciaWindow());
         }
+
+        private void btnModificar_Click(object sender, RoutedEventArgs e)
+        {
+            AbrirVentana(new ModificarIncidenciaWindow());
+        }
     }
 }
