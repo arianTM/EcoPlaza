@@ -1,4 +1,6 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +12,8 @@ namespace Presentacion.pages
     /// </summary>
     public partial class UsuarioPage : Page
     {
+        private NUsuario _nUsuario = new NUsuario();
+
         #region Constructor
         public UsuarioPage()
         {
@@ -66,9 +70,27 @@ namespace Presentacion.pages
             // CONFIRMAR
             MessageBoxResult result = MostrarDecision("¿Guardar cambios?", "MODIFICACIÓN");
 
-            if (result == MessageBoxResult.Yes)
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            // CREAR OBJETO USUARIO
+            Usuario usuario = new Usuario()
+            {
+                id = Administrador.GetIdUsuario(),
+                username = txtNombreUsuario.Text,
+                nombre = txtNombresYApellidos.Text,
+            };
+
+            try
             {
                 // GUARDAR CAMBIOS
+                _nUsuario.Modificar(usuario);
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
             }
         }
 
