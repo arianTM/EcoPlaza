@@ -1,4 +1,5 @@
-﻿using Presentacion.helpers;
+﻿using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,8 @@ namespace Presentacion.pages
     /// </summary>
     public partial class LoginPage : Page
     {
+        private NUsuario _nUsuario = new NUsuario();
+
         #region Constructor
         public LoginPage()
         {
@@ -67,12 +70,18 @@ namespace Presentacion.pages
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
+            try
+            {
+                //LOGIN
+                _nUsuario.GetIdUsuario(txtNombre.Text, txtContra.Password);
 
-            //LOGIN
-
-
-            // NAVEGAR
-            Navegar(new MenuPage());
+                // NAVEGAR
+                Navegar(new MenuPage());
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         #endregion
