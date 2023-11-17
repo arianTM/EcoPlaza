@@ -1,4 +1,6 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 
@@ -9,6 +11,7 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarMaterialWindow : Window
     {
+        private NMaterial _nMaterial = new NMaterial();
         #region Constructor
         public AgregarMaterialWindow()
         {
@@ -62,8 +65,32 @@ namespace Presentacion.modals
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // CERRAR FORMULARIO
-            Close();
+            // CREAR OBJETO MATERIAL
+            Material material = new Material()
+            {
+                nombre = txtNombre.Text,
+                marca = cbMarca.Text,
+                cantidad = int.Parse(txtCantidad.Text),
+                costo = decimal.Parse(txtCosto.Text),
+                subcontrata_id = Administrador.GetIdSubcontrata(),
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                created_by = Administrador.GetIdUsuario(),
+                updated_by = Administrador.GetIdUsuario(),
+            };
+
+            try
+            {
+                // REGISTRAR
+                _nMaterial.Registrar(material);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         private void Limpiar()

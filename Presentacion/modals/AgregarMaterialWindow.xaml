@@ -84,8 +84,15 @@
                         FontSize="14"
                         SelectionChanged="cbMarca_SelectionChanged"
                         Style="{StaticResource MaterialDesignComboBox}">
-                        <ComboBoxItem Content="Opción 1" />
-                        <ComboBoxItem Content="Opción 2" />
+                        <ComboBoxItem Content="DeWalt" />
+                        <ComboBoxItem Content="Makita" />
+                        <ComboBoxItem Content="Bosch" />
+                        <ComboBoxItem Content="Milwaukee" />
+                        <ComboBoxItem Content="Hilti" />
+                        <ComboBoxItem Content="Stanley" />
+                        <ComboBoxItem Content="Metabo HPT" />
+                        <ComboBoxItem Content="Caterpillar" />
+                        <ComboBoxItem Content="Ryobi" />
                     </ComboBox>
                     <Label
                         Grid.Row="2"
