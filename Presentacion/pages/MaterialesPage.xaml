@@ -27,7 +27,7 @@
                 Height="30"
                 Kind="ArrowBack" />
         </Button>
-        <Border MaxWidth="900" Padding="20">
+        <Border MaxWidth="1200" Padding="20">
             <materialDesign:Card
                 Padding="10,15"
                 Background="{StaticResource MaterialDesignPaper}"
@@ -46,7 +46,25 @@
                         FontSize="24"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="Materiales" />
-                    <DataGrid x:Name="dgMateriales" />
+                    <DataGrid
+                        x:Name="dgMateriales"
+                        Margin="0,15,0,7"
+                        AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding id, Mode=OneWay}"
+                                Header="ID"
+                                Visibility="Hidden" />
+                            <DataGridTextColumn Binding="{Binding nombre, Mode=OneWay}" Header="Nombre" />
+                            <DataGridTextColumn Binding="{Binding marca, Mode=OneWay}" Header="Marca" />
+                            <DataGridTextColumn Binding="{Binding cantidad, Mode=OneWay}" Header="Cantidad" />
+                            <DataGridTextColumn Binding="{Binding costo, Mode=OneWay}" Header="Costo" />
+                            <DataGridTextColumn Binding="{Binding created_by, Mode=OneWay}" Header="Creado por" />
+                            <DataGridTextColumn Binding="{Binding created_at, Mode=OneWay}" Header="Creado el" />
+                            <DataGridTextColumn Binding="{Binding updated_by, Mode=OneWay}" Header="Editado por" />
+                            <DataGridTextColumn Binding="{Binding updated_at, Mode=OneWay}" Header="Editado el" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <TextBlock
                         x:Name="tbError"
                         Margin="0,10,0,0"

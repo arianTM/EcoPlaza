@@ -1,16 +1,46 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using Presentacion.modals;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Presentacion.pages
 {
+    #region ViewModel de Materiales
+    /// <summary>
+    /// El ViewModel crea una clase que guarda los datos que se desean mostrar
+    /// Todos los datos son String ya que solo se usarán para mostrar
+    /// El id se guarda para la seleccion
+    /// </summary>
+    internal class MaterialViewModel
+    {
+        public int id { get; set; }
+        public String nombre { get; set; }
+        public String marca { get; set; }
+        public String cantidad { get; set; }
+        public String costo { get; set; }
+        public String created_by { get; set; }
+        public String created_at { get; set; }
+        public String updated_by { get; set; }
+        public String updated_at { get; set; }
+    }
+    #endregion
+
     /// <summary>
     /// Interaction logic for MaterialesPage.xaml
     /// </summary>
     public partial class MaterialesPage : Page
     {
+        private NMaterial _nMaterial = new NMaterial();
+        private NUsuario _nUsuario = new NUsuario();
+        /// <summary>
+        /// _materialesOC guarda los registros de materiales con el formato de MaterialViewModel
+        /// </summary>
+        private ObservableCollection<MaterialViewModel> _materialesOC { get; set; }
         #region Constructor
         public MaterialesPage()
         {
@@ -32,8 +62,15 @@ namespace Presentacion.pages
         {
             Window window = (Window)root;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Closed += VentanaCerrada;
             window.ShowDialog();
         }
+
+        private void VentanaCerrada(object sender, EventArgs e)
+        {
+            MostrarDatos();
+        }
+
         private bool DataGridSeleccionado()
         {
             if (Validador.DataGridSinSeleccion(dgMateriales))
@@ -61,7 +98,44 @@ namespace Presentacion.pages
         }
         #endregion
 
-        #region Opciones de Materiales (Registrar, Modificar y Eliminar)
+        #region Opciones de Materiales (Mostrar datos, Registrar, Modificar y Eliminar)
+        private void MostrarDatos()
+        {
+            List<Material> materiales = new List<Material>();
+            try
+            {
+                materiales = _nMaterial.GetMaterialesPorSubcontrata(Administrador.GetIdSubcontrata());
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+
+            _materialesOC = new ObservableCollection<MaterialViewModel>();
+
+            materiales.ForEach(material =>
+            {
+                Usuario creador = _nUsuario.GetUsuario(material.created_by);
+                Usuario editor = _nUsuario.GetUsuario(material.updated_by);
+
+                MaterialViewModel materialViewModel = new MaterialViewModel()
+                {
+                    id = material.id,
+                    nombre = material.nombre,
+                    marca = material.marca,
+                    cantidad = material.cantidad.ToString(),
+                    costo = $"S/. {material.costo:0.00}",
+                    created_by = creador.username,
+                    created_at = material.created_at.ToString("dd/MM/yyyy HH:mm"),
+                    updated_by = editor.username,
+                    updated_at = material.updated_at.ToString("dd/MM/yyyy HH:mm"),
+                };
+
+                _materialesOC.Add(materialViewModel);
+            });
+
+            dgMateriales.ItemsSource = _materialesOC;
+        }
         private void Registrar()
         {
             OcultarError();
@@ -95,6 +169,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            MostrarDatos();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)

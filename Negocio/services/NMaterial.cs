@@ -27,9 +27,9 @@ namespace Negocio.services
             _dMaterial.Eliminar(id);
         }
 
-        public List<Material> GetMateriales()
+        public List<Material> GetMaterialesPorSubcontrata(int idSubcontrata)
         {
-            return _dMaterial.GetMateriales();
+            return _dMaterial.GetMaterialesPorSubcontrata(idSubcontrata);
         }
     }
 }

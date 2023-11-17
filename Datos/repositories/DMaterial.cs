@@ -92,13 +92,13 @@ namespace Datos.repositories
             }
         }
 
-        public List<Material> GetMateriales()
+        public List<Material> GetMaterialesPorSubcontrata(int idSubcontrata)
         {
             try
             {
                 using (var context = new BDEFEntities())
                 {
-                    return context.Materials.ToList();
+                    return context.Materials.ToList().FindAll(el => el.subcontrata_id == idSubcontrata);
                 }
             }
             catch (Exception ex)
