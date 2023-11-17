@@ -54,12 +54,16 @@ namespace Datos.repositories
         {
             try
             {
-                if (Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
+                if (Existe(usuario.username)) throw new OwnException("¡Nombre de usuario no disponible!");
                 using (var context = new BDEFEntities())
                 {
                     context.Usuarios.Add(usuario);
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -79,10 +83,14 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Usuario usuario = context.Usuarios.FirstOrDefault(el => String.Equals(el.username, username) && String.Equals(el.contra, contra)) ?? throw new Exception("¡Usuario o contraseña incorrectas! Vuelva a intentarlo.");
+                    Usuario usuario = context.Usuarios.FirstOrDefault(el => String.Equals(el.username, username) && String.Equals(el.contra, contra)) ?? throw new OwnException("¡Usuario o contraseña incorrectas! Vuelva a intentarlo.");
                     if (!usuario.activo) throw new Exception("¡Usuario eliminado!");
                     return usuario.id;
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -100,13 +108,17 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Usuario usuario = context.Usuarios.Find(id) ?? throw new Exception("¡Usuario no encontrado!");
+                    Usuario usuario = context.Usuarios.Find(id) ?? throw new OwnException("¡Usuario no encontrado!");
                     return new Usuario()
                     {
                         username = usuario.username,
                         nombre = usuario.nombre,
                     };
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -125,12 +137,16 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Usuario usuarioModificado = context.Usuarios.Find(usuario.id) ?? throw new Exception("¡Usuario no encontrado!");
-                    if (!String.Equals(usuarioModificado.username, usuario.username) && Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
+                    Usuario usuarioModificado = context.Usuarios.Find(usuario.id) ?? throw new OwnException("¡Usuario no encontrado!");
+                    if (!String.Equals(usuarioModificado.username, usuario.username) && Existe(usuario.username)) throw new OwnException("¡Nombre de usuario no disponible!");
                     usuarioModificado.username = usuario.username;
                     usuarioModificado.nombre = usuario.nombre;
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -149,10 +165,14 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Usuario usuarioEliminado = context.Usuarios.Find(id) ?? throw new Exception("¡Usuario no encontrado!");
+                    Usuario usuarioEliminado = context.Usuarios.Find(id) ?? throw new OwnException("¡Usuario no encontrado!");
                     usuarioEliminado.activo = false;
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

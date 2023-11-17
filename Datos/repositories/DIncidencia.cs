@@ -29,8 +29,12 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    return context.Incidencias.Find(id) ?? throw new Exception("¡Incidencia no encontrada!");
+                    return context.Incidencias.Find(id) ?? throw new OwnException("¡Incidencia no encontrada!");
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -45,7 +49,7 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Incidencia incidenciaModificada = context.Incidencias.Find(incidencia.id) ?? throw new Exception("¡Incidencia no encontrada!");
+                    Incidencia incidenciaModificada = context.Incidencias.Find(incidencia.id) ?? throw new OwnException("¡Incidencia no encontrada!");
                     incidenciaModificada.descripcion = incidencia.descripcion;
                     incidenciaModificada.categoria = incidencia.categoria;
                     incidenciaModificada.fecha = incidencia.fecha;
@@ -54,6 +58,10 @@ namespace Datos.repositories
                     incidenciaModificada.updated_by = incidencia.updated_by;
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -68,10 +76,14 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Incidencia incidencia = context.Incidencias.Find(id) ?? throw new Exception("¡Incidencia no encontrada!");
+                    Incidencia incidencia = context.Incidencias.Find(id) ?? throw new OwnException("¡Incidencia no encontrada!");
                     context.Incidencias.Remove(incidencia);
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

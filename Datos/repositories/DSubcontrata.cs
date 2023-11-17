@@ -29,8 +29,12 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    return context.Subcontratas.Find(id) ?? throw new Exception("¡Subcontrata no encontrada!");
+                    return context.Subcontratas.Find(id) ?? throw new OwnException("¡Subcontrata no encontrada!");
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -45,7 +49,7 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Subcontrata subcontrataModificada = context.Subcontratas.Find(subcontrata.id) ?? throw new Exception("¡Subcontrata no encontrada!");
+                    Subcontrata subcontrataModificada = context.Subcontratas.Find(subcontrata.id) ?? throw new OwnException("¡Subcontrata no encontrada!");
                     subcontrataModificada.nombre = subcontrata.nombre;
                     subcontrataModificada.descripcion = subcontrata.descripcion;
                     subcontrataModificada.ruc = subcontrata.ruc;
@@ -54,6 +58,10 @@ namespace Datos.repositories
                     subcontrataModificada.updated_by = subcontrata.updated_by;
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -68,10 +76,14 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Subcontrata subcontrata = GetSubcontrata(id);
+                    Subcontrata subcontrata = context.Subcontratas.Find(id) ?? throw new OwnException("¡Subcontrata no encontrada!");
                     context.Subcontratas.Remove(subcontrata);
                     context.SaveChanges();
                 }
+            }
+            catch (OwnException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
