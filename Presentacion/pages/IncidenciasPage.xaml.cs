@@ -40,6 +40,7 @@ namespace Presentacion.pages
         /// _incidenciasOC guarda los registros de incidencias con el formato de IncidenciaViewModel
         /// </summary>
         private ObservableCollection<IncidenciaViewModel> _incidenciasOC { get; set; }
+
         #region Constructor
         public IncidenciasPage()
         {
@@ -63,6 +64,11 @@ namespace Presentacion.pages
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Closed += VentanaCerrada;
             window.ShowDialog();
+        }
+
+        private MessageBoxResult MostrarDecision(String mensaje, String titulo)
+        {
+            return MessageBox.Show(mensaje, titulo, MessageBoxButton.YesNo, MessageBoxImage.Warning);
         }
 
         private bool DataGridSeleccionado()
@@ -174,6 +180,30 @@ namespace Presentacion.pages
 
             // VALIDAR SELECCIÓN
             if (!DataGridSeleccionado()) return;
+
+            // CONFIRMAR
+            MessageBoxResult result = MostrarDecision("¿Eliminar incidencia?", "ELIMINACIÓN");
+
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            // GUARDAR ID DE LA INCIDENCIA SELECCIONADA
+            int idIncidencia = ObtenerIdSeleccionado();
+
+            try
+            {
+                // ELIMINAR INCIDENCIA
+                _nIncidencia.Eliminar(idIncidencia);
+
+                // MOSTRAR DATOS
+                MostrarDatos();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
         #endregion
 
