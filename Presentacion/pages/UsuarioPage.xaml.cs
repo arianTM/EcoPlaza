@@ -105,13 +105,16 @@ namespace Presentacion.pages
             // CONFIRMAR
             MessageBoxResult result = MostrarDecision("¿Cerrar sesión?", "LOG OUT");
 
-            if (result == MessageBoxResult.Yes)
-            {
-                // LOG OUT
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
 
-                // NAVEGAR
-                Navegar(new LoginPage());
-            }
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            // BORRAR EL ID USUARIO DE ADMINISTRADOR
+            Administrador.ClearIdUsuario();
+
+            // NAVEGAR
+            Navegar(new LoginPage());
         }
 
         private void Eliminar()
@@ -119,12 +122,22 @@ namespace Presentacion.pages
             // CONFIRMAR
             MessageBoxResult result = MostrarDecision("¿Eliminar cuenta?", "ELIMINACIÓN");
 
-            if (result == MessageBoxResult.Yes)
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            try
             {
                 // ELIMINAR CUENTA
+                _nUsuario.Eliminar(Administrador.GetIdUsuario());
 
                 // NAVEGAR
                 Navegar(new LoginPage());
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
             }
         }
 
