@@ -1,4 +1,6 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +12,8 @@ namespace Presentacion.pages
     /// </summary>
     public partial class SigninPage : Page
     {
+        private NUsuario _nUsuario = new NUsuario();
+
         #region Constructor
         public SigninPage()
         {
@@ -78,10 +82,27 @@ namespace Presentacion.pages
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // REGISTRAR USUARIO
+            // CREAR OBJETO USUARIO
+            Usuario usuario = new Usuario()
+            {
+                username = txtNombreUsuario.Text,
+                nombre = txtNombresYApellidos.Text,
+                contra = txtContra.Password,
+                activo = true
+            };
 
-            // NAVEGAR
-            Navegar(new MenuPage());
+            try
+            {
+                // REGISTRAR USUARIO
+                _nUsuario.Registrar(usuario);
+
+                // NAVEGAR
+                Navegar(new MenuPage());
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         #endregion
