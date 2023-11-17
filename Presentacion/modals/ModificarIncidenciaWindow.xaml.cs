@@ -100,8 +100,35 @@ namespace Presentacion.modals
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // CERRAR FORMULARIO
-            Close();
+            // GUARDAR DESCRIPCION (RICHTEXTBOX)
+            String descripcion = TextoDeRichTextBox(txtDescripcion);
+
+            // CREAR OBJETO INCIDENCIA
+            Incidencia incidencia = new Incidencia()
+            {
+                id = _idIncidencia,
+                descripcion = descripcion.Trim(),
+                categoria = cbCategoria.Text,
+                fecha = dpFecha.SelectedDate.Value,
+                hora = tpHora.SelectedTime.Value.TimeOfDay,
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                created_by = Administrador.GetIdUsuario(),
+                updated_by = Administrador.GetIdUsuario()
+            };
+
+            try
+            {
+                // REGISTRAR
+                _nIncidencia.Modificar(incidencia);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         private void Limpiar()
