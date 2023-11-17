@@ -50,6 +50,8 @@ namespace Datos.repositories
                     subcontrataModificada.descripcion = subcontrata.descripcion;
                     subcontrataModificada.ruc = subcontrata.ruc;
                     subcontrataModificada.celular = subcontrata.celular;
+                    subcontrataModificada.updated_at = subcontrata.updated_at;
+                    subcontrataModificada.updated_by = subcontrata.updated_by;
                     context.SaveChanges();
                 }
             }
