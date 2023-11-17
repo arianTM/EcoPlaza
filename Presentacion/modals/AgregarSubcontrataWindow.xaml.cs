@@ -55,10 +55,15 @@ namespace Presentacion.modals
             tbError.Text = mensaje;
             tbError.Visibility = Visibility.Visible;
         }
+
+        private TextBox GetTxtRuc()
+        {
+            return txtRuc;
+        }
         #endregion
 
         #region Opciones del formulario (Agregar y Limpiar)
-        private void Registrar()
+        private void Registrar(TextBox txtRuc)
         {
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
@@ -69,10 +74,10 @@ namespace Presentacion.modals
             // CREAR OBJETO SUBCONTRATA
             Subcontrata subcontrata = new Subcontrata()
             {
-                nombre = txtNombre.Text,
-                descripcion = descripcion,
-                ruc = txtRuc.Text,
-                celular = txtCelular.Text,
+                nombre = txtNombre.Text.Trim(),
+                descripcion = descripcion.Trim(),
+                ruc = txtRuc.Text.Trim(),
+                celular = txtCelular.Text.Trim(),
                 created_at = DateTime.Now,
                 updated_at = DateTime.Now,
                 created_by = Administrador.GetIdUsuario(),
@@ -115,7 +120,7 @@ namespace Presentacion.modals
 
         private void btnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            Registrar();
+            Registrar(GetTxtRuc());
         }
 
         private void txtNombre_TextChanged(object sender, TextChangedEventArgs e)

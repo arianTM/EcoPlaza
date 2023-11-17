@@ -114,10 +114,10 @@ namespace Presentacion.pages
             Subcontrata subcontrata = new Subcontrata()
             {
                 id = Administrador.GetIdSubcontrata(),
-                nombre = txtNombre.Text,
-                descripcion = descripcion,
-                ruc = txtRuc.Text,
-                celular = txtCelular.Text,
+                nombre = txtNombre.Text.Trim(),
+                descripcion = descripcion.Trim(),
+                ruc = txtRuc.Text.Trim(),
+                celular = txtCelular.Text.Trim(),
                 updated_at = DateTime.Now,
                 updated_by = Administrador.GetIdUsuario(),
             };
