@@ -8,6 +8,11 @@ namespace Negocio.services
     {
         private DUsuario _dUsuario = new DUsuario();
 
+        public void CargaInicial()
+        {
+            _dUsuario.CargaInicial();
+        }
+
         public void Registrar(Usuario usuario)
         {
             _dUsuario.Registrar(usuario);

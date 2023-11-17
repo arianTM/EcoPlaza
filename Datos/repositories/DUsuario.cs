@@ -6,6 +6,17 @@ namespace Datos.repositories
     public class DUsuario
     {
         /// <summary>
+        /// Carga inicial para agilizar el resto de queries
+        /// </summary>
+        public void CargaInicial()
+        {
+            using (var context = new BDEFEntities())
+            {
+                context.Usuarios.FirstOrDefault();
+            }
+        }
+
+        /// <summary>
         /// Determinar si el username ya está tomado
         /// *Nota: cuando un usuario se elimine, se conservará su username
         /// ~ Por tanto, no se podrá registrar un usuario con el mismo username

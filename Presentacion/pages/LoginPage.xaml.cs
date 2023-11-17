@@ -17,6 +17,7 @@ namespace Presentacion.pages
         public LoginPage()
         {
             InitializeComponent();
+            _nUsuario.CargaInicial();
         }
         #endregion
 
