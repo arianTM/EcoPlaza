@@ -1,6 +1,10 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Presentacion.modals
 {
@@ -9,6 +13,7 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarIncidenciaWindow : Window
     {
+        private NIncidencia _nIncidencia = new NIncidencia();
         #region Constructor
         public AgregarIncidenciaWindow()
         {
@@ -17,6 +22,7 @@ namespace Presentacion.modals
         #endregion
 
         #region Helpers
+
         private bool ValidarCampos()
         {
             if (Validador.RichTextBoxVacio(txtDescripcion) || Validador.ComboBoxSinSeleccion(cbCategoria) || Validador.DatePickerSinSeleccion(dpFecha) || Validador.TimePickerSinSeleccion(tpHora))
@@ -27,6 +33,13 @@ namespace Presentacion.modals
 
             return true;
         }
+
+        private String TextoDeRichTextBox(RichTextBox rtx)
+        {
+            TextRange text = new TextRange(rtx.Document.ContentStart, rtx.Document.ContentEnd);
+            return text.Text;
+        }
+
         #endregion
 
         #region Errores
@@ -50,8 +63,34 @@ namespace Presentacion.modals
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // CERRAR FORMULARIO
-            Close();
+            // GUARDAR DESCRIPCION (RICHTEXTBOX)
+            String descripcion = TextoDeRichTextBox(txtDescripcion);
+
+            // CREAR OBJETO INCIDENCIA
+            Incidencia incidencia = new Incidencia()
+            {
+                descripcion = descripcion.Trim(),
+                categoria = cbCategoria.Text,
+                fecha = dpFecha.SelectedDate.Value,
+                hora = tpHora.SelectedTime.Value.TimeOfDay,
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                created_by = Administrador.GetIdUsuario(),
+                updated_by = Administrador.GetIdUsuario()
+            };
+
+            try
+            {
+                // REGISTRAR
+                _nIncidencia.Registrar(incidencia);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         private void Limpiar()

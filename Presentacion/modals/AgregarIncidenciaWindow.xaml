@@ -85,8 +85,12 @@
                         FontSize="14"
                         SelectionChanged="cbCategoria_SelectionChanged"
                         Style="{StaticResource MaterialDesignComboBox}">
-                        <ComboBoxItem Content="Opción 1" />
-                        <ComboBoxItem Content="Opción 2" />
+                        <ComboBoxItem Content="Robo" />
+                        <ComboBoxItem Content="Desperfecto" />
+                        <ComboBoxItem Content="Retraso" />
+                        <ComboBoxItem Content="Accidente" />
+                        <ComboBoxItem Content="Riesgo" />
+                        <ComboBoxItem Content="Otro" />
                     </ComboBox>
                     <Label
                         Grid.Row="2"
