@@ -41,6 +41,12 @@ namespace Presentacion.pages
                 return false;
             }
 
+            if (Validador.NombreUsuarioSinFormato(txtNombreUsuario))
+            {
+                MostrarError("¡Formato no válido del usuario (poner el mouse sobre el campo para ver detalles)!");
+                return false;
+            }
+
             return true;
         }
 
