@@ -72,8 +72,8 @@ namespace Presentacion.pages
 
             try
             {
-                //LOGIN
-                _nUsuario.GetIdUsuario(txtNombre.Text, txtContra.Password);
+                // LOGIN y GUARDAR CLAVE DEL USUARIO
+                Administrador.SetIdUsuario(_nUsuario.GetIdUsuario(txtNombre.Text, txtContra.Password));
 
                 // NAVEGAR
                 Navegar(new MenuPage());

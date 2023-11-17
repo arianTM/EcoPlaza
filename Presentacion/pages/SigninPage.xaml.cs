@@ -96,6 +96,9 @@ namespace Presentacion.pages
                 // REGISTRAR USUARIO
                 _nUsuario.Registrar(usuario);
 
+                // GUARDAR CLAVE DEL USUARIO
+                Administrador.SetIdUsuario(_nUsuario.GetIdUsuario(usuario.username, usuario.contra));
+
                 // NAVEGAR
                 Navegar(new MenuPage());
             }
