@@ -119,7 +119,7 @@ namespace Presentacion.modals
 
             try
             {
-                // REGISTRAR
+                // MODIFICAR
                 _nIncidencia.Modificar(incidencia);
 
                 // CERRAR FORMULARIO
