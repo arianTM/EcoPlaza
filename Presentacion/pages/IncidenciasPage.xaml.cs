@@ -1,6 +1,10 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using Presentacion.modals;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +15,8 @@ namespace Presentacion.pages
     /// </summary>
     public partial class IncidenciasPage : Page
     {
+        private NUsuario _nUsuario = new NUsuario();
+        private NIncidencia _nIncidencia = new NIncidencia();
         #region Constructor
         public IncidenciasPage()
         {
@@ -32,6 +38,7 @@ namespace Presentacion.pages
         {
             Window window = (Window)root;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Closed += VentanaCerrada;
             window.ShowDialog();
         }
 
@@ -44,6 +51,11 @@ namespace Presentacion.pages
             }
 
             return true;
+        }
+
+        private void VentanaCerrada(object sender, EventArgs e)
+        {
+            MostrarDatos();
         }
 
         #endregion
@@ -62,7 +74,48 @@ namespace Presentacion.pages
         }
         #endregion
 
-        #region Opciones de Incidencias (Registrar, Modificar y Eliminar)
+        #region Opciones de Incidencias (Mostrar, Registrar, Modificar y Eliminar)
+
+        private void MostrarDatos()
+        {
+            try
+            {
+                List<Incidencia> incidencias = _nIncidencia.GetIncidencias();
+
+                ObservableCollection<object> incidenciasOC = new ObservableCollection<object>();
+
+                incidencias.ForEach(incidencia =>
+                {
+                    DateTime fecha = incidencia.fecha;
+                    TimeSpan hora = incidencia.hora;
+
+                    DateTime fechaIncidencia = fecha.Add(hora);
+
+                    Usuario creador = _nUsuario.GetUsuario(incidencia.created_by);
+                    Usuario editor = _nUsuario.GetUsuario(incidencia.updated_by);
+
+                    var incidenciaViewModel = new
+                    {
+                        descripcion = incidencia.descripcion,
+                        categoria = incidencia.categoria,
+                        fecha_hora = fechaIncidencia.ToString("dd/MM/yyyy HH:mm"),
+                        created_by = creador.username,
+                        created_at = incidencia.created_at.ToString("dd/MM/yyyy HH:mm"),
+                        updated_by = editor.username,
+                        updated_at = incidencia.updated_at.ToString("dd/MM/yyyy HH:mm"),
+                    };
+
+                    incidenciasOC.Add(incidenciaViewModel);
+                });
+
+                dgIncidencias.ItemsSource = incidenciasOC;
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
+
         private void Registrar()
         {
             OcultarError();
@@ -95,6 +148,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            MostrarDatos();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
