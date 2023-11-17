@@ -66,9 +66,10 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button
+                                    Margin="0,0,0,5"
                                     Click="btnVerSubcontrata_Click"
                                     Content="{Binding nombre}"
-                                    Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                    Style="{StaticResource MaterialDesignOutlinedButton}"
                                     Tag="{Binding id}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -79,7 +80,7 @@
                     Grid.Row="1"
                     Height="40"
                     Click="btnIncidencias_Click"
-                    Style="{StaticResource MaterialDesignOutlinedButton}">
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon
                             Width="22"
