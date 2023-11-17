@@ -97,8 +97,30 @@ namespace Presentacion.modals
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // CERRAR FORMULARIO
-            Close();
+            // CREAR OBJETO MATERIAL
+            Material material = new Material()
+            {
+                id = _idMaterial,
+                nombre = txtNombre.Text,
+                marca = cbMarca.Text,
+                cantidad = int.Parse(txtCantidad.Text),
+                costo = decimal.Parse(txtCosto.Text),
+                updated_at = DateTime.Now,
+                updated_by = Administrador.GetIdUsuario()
+            };
+
+            try
+            {
+                // MODIFICAR
+                _nMaterial.Modificar(material);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         private void Limpiar()
