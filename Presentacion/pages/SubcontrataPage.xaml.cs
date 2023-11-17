@@ -150,12 +150,21 @@ namespace Presentacion.pages
             // CONFIRMAR
             MessageBoxResult result = MostrarDecision("¿Eliminar subcontrata?", "ELIMINACIÓN");
 
-            if (result == MessageBoxResult.Yes)
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+            try
             {
-                // ELIMINAR SUBCONTRATA
+                // ELIMINAR
+                _nSubcontrata.Eliminar(Administrador.GetIdSubcontrata());
 
                 // NAVEGAR
                 Navegar(new MenuPage());
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
             }
         }
 
