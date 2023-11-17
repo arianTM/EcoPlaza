@@ -3,6 +3,7 @@ using Negocio.services;
 using Presentacion.helpers;
 using Presentacion.modals;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,12 +15,14 @@ namespace Presentacion.pages
     public partial class MenuPage : Page
     {
         private NUsuario _nUsuario = new NUsuario();
+        private NSubcontrata _nSubcontrata = new NSubcontrata();
 
         #region Constructor
         public MenuPage()
         {
             InitializeComponent();
             MostrarDatosUsuario();
+            MostrarSubcontratas();
         }
         #endregion
 
@@ -53,6 +56,32 @@ namespace Presentacion.pages
         }
         #endregion
 
+        #region Subcontratas
+
+        private void MostrarSubcontratas()
+        {
+            try
+            {
+                List<Subcontrata> subcontratas = _nSubcontrata.GetSubcontratas();
+                icSubcontratas.ItemsSource = subcontratas;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void VerSubcontrata(object sender)
+        {
+            Button btnVerSubcontrata = (Button)sender;
+            int idSeleccionado = int.Parse(btnVerSubcontrata.Tag.ToString());
+            MessageBox.Show($"El id es: {idSeleccionado}");
+            // NAVEGAR
+            //Navegar(new SubcontrataPage());
+        }
+
+        #endregion
+
         #region Eventos de Controles
 
         private void btnUsuario_Click(object sender, RoutedEventArgs e)
@@ -65,15 +94,15 @@ namespace Presentacion.pages
             Navegar(new IncidenciasPage());
         }
 
-        private void btnVerSubcontrata_Click(object sender, RoutedEventArgs e)
-        {
-            Navegar(new SubcontrataPage());
-        }
-
         private void btnAgregarSubcontrata_Click(object sender, RoutedEventArgs e)
         {
             AbrirVentana(new AgregarSubcontrataWindow());
         }
         #endregion
+
+        private void btnVerSubcontrata_Click(object sender, RoutedEventArgs e)
+        {
+            VerSubcontrata(sender);
+        }
     }
 }

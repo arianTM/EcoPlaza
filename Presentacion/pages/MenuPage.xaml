@@ -57,30 +57,22 @@
                             <TextBlock Margin="5,0" Text="Agregar subcontrata" />
                         </StackPanel>
                     </Button>
-                    <ListBox
-                        x:Name="lbSubcontratas"
-                        Margin="6,10"
-                        Style="{StaticResource MaterialDesignCardsListBox}">
-                        <ListBox.Resources />
-                        <ListBoxItem>
-                            <Button
-                                Click="btnVerSubcontrata_Click"
-                                Content="Subcontrata 1"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            <Button
-                                Click="btnVerSubcontrata_Click"
-                                Content="Subcontrata 2"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            <Button
-                                Click="btnVerSubcontrata_Click"
-                                Content="Subcontrata 3"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
-                        </ListBoxItem>
-                    </ListBox>
+                    <ItemsControl x:Name="icSubcontratas" Margin="6,10">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Click="btnVerSubcontrata_Click"
+                                    Content="{Binding nombre}"
+                                    Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                                    Tag="{Binding id}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
                 <Button
                     x:Name="btnIncidencias"
