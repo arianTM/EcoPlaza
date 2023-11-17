@@ -66,6 +66,11 @@ namespace Presentacion.pages
             window.ShowDialog();
         }
 
+        private MessageBoxResult MostrarDecision(String mensaje, String titulo)
+        {
+            return MessageBox.Show(mensaje, titulo, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        }
+
         private void VentanaCerrada(object sender, EventArgs e)
         {
             MostrarDatos();
@@ -80,6 +85,12 @@ namespace Presentacion.pages
             }
 
             return true;
+        }
+
+        private int ObtenerIdSeleccionado()
+        {
+            MaterialViewModel materialSeleccionado = (MaterialViewModel)dgMateriales.SelectedItem;
+            return materialSeleccionado.id;
         }
 
         #endregion
@@ -149,7 +160,7 @@ namespace Presentacion.pages
             OcultarError();
 
             // VALIDAR SELECCIÓN
-            //if (!DataGridSeleccionado()) return;
+            if (!DataGridSeleccionado()) return;
 
             // ABRIR VENTANA
             AbrirVentana(new ModificarMaterialWindow());
@@ -161,6 +172,30 @@ namespace Presentacion.pages
 
             // VALIDAR SELECCIÓN
             if (!DataGridSeleccionado()) return;
+
+            // CONFIRMAR
+            MessageBoxResult result = MostrarDecision("¿Eliminar material?", "ELIMINACIÓN");
+
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            // GUARDAR ID DEL MATERIAL SELECCIONADO
+            int idMaterial = ObtenerIdSeleccionado();
+
+            try
+            {
+                // ELIMINAR INCIDENCIA
+                _nMaterial.Eliminar(idMaterial);
+
+                // MOSTRAR DATOS
+                MostrarDatos();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
         #endregion
 
