@@ -1,7 +1,10 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Presentacion.modals
 {
@@ -10,6 +13,8 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarSubcontrataWindow : Window
     {
+        private NSubcontrata _nSubcontrata = new NSubcontrata();
+
         #region Constructor
         public AgregarSubcontrataWindow()
         {
@@ -28,6 +33,13 @@ namespace Presentacion.modals
 
             return true;
         }
+
+        private String TextoDeRichTextBox(RichTextBox rtx)
+        {
+            TextRange text = new TextRange(rtx.Document.ContentStart, rtx.Document.ContentEnd);
+            return text.Text;
+        }
+
         #endregion
 
         #region Errores
@@ -51,8 +63,34 @@ namespace Presentacion.modals
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // CERRAR FORMULARIO
-            Close();
+            // GUARDAR DESCRIPCION (RICHTEXTBOX)
+            String descripcion = TextoDeRichTextBox(txtDescripcion);
+
+            // CREAR OBJETO SUBCONTRATA
+            Subcontrata subcontrata = new Subcontrata()
+            {
+                nombre = txtNombre.Text,
+                descripcion = descripcion,
+                ruc = txtRuc.Text,
+                celular = txtCelular.Text,
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                created_by = Administrador.GetIdUsuario(),
+                updated_by = Administrador.GetIdUsuario(),
+            };
+
+            try
+            {
+                // REGISTRAR
+                _nSubcontrata.Registrar(subcontrata);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         private void Limpiar()
