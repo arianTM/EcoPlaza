@@ -70,10 +70,10 @@ namespace Datos.repositories
         /// </summary>
         public void Modificar(Usuario usuario)
         {
-            if (Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
             using (var context = new BDEFEntities())
             {
                 Usuario usuarioModificado = context.Usuarios.Find(usuario.id) ?? throw new Exception("¡Usuario no encontrado!");
+                if (!String.Equals(usuarioModificado.username, usuario.username) && Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
                 usuarioModificado.username = usuario.username;
                 usuarioModificado.nombre = usuario.nombre;
                 context.SaveChanges();
