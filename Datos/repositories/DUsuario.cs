@@ -10,9 +10,17 @@ namespace Datos.repositories
         /// </summary>
         public void CargaInicial()
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                context.Usuarios.FirstOrDefault();
+                using (var context = new BDEFEntities())
+                {
+                    context.Usuarios.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
@@ -23,9 +31,17 @@ namespace Datos.repositories
         /// </summary>
         private bool Existe(String username)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                return context.Usuarios.Any(el => String.Equals(el.username, username));
+                using (var context = new BDEFEntities())
+                {
+                    return context.Usuarios.Any(el => String.Equals(el.username, username));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
@@ -36,11 +52,19 @@ namespace Datos.repositories
         /// </summary>
         public void Registrar(Usuario usuario)
         {
-            if (Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
-            using (var context = new BDEFEntities())
+            try
             {
-                context.Usuarios.Add(usuario);
-                context.SaveChanges();
+                if (Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
+                using (var context = new BDEFEntities())
+                {
+                    context.Usuarios.Add(usuario);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
@@ -51,11 +75,19 @@ namespace Datos.repositories
         /// </summary>
         public int GetIdUsuario(String username, String contra)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                Usuario usuario = context.Usuarios.FirstOrDefault(el => String.Equals(el.username, username) && String.Equals(el.contra, contra)) ?? throw new Exception("¡Usuario o contraseña incorrectas! Vuelva a intentarlo.");
-                if (!usuario.activo) throw new Exception("¡Usuario eliminado!");
-                return usuario.id;
+                using (var context = new BDEFEntities())
+                {
+                    Usuario usuario = context.Usuarios.FirstOrDefault(el => String.Equals(el.username, username) && String.Equals(el.contra, contra)) ?? throw new Exception("¡Usuario o contraseña incorrectas! Vuelva a intentarlo.");
+                    if (!usuario.activo) throw new Exception("¡Usuario eliminado!");
+                    return usuario.id;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
@@ -64,14 +96,22 @@ namespace Datos.repositories
         /// </summary>
         public Usuario GetUsuario(int id)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                Usuario usuario = context.Usuarios.Find(id) ?? throw new Exception("¡Usuario no encontrado!");
-                return new Usuario()
+                using (var context = new BDEFEntities())
                 {
-                    username = usuario.username,
-                    nombre = usuario.nombre,
-                };
+                    Usuario usuario = context.Usuarios.Find(id) ?? throw new Exception("¡Usuario no encontrado!");
+                    return new Usuario()
+                    {
+                        username = usuario.username,
+                        nombre = usuario.nombre,
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
@@ -81,13 +121,21 @@ namespace Datos.repositories
         /// </summary>
         public void Modificar(Usuario usuario)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                Usuario usuarioModificado = context.Usuarios.Find(usuario.id) ?? throw new Exception("¡Usuario no encontrado!");
-                if (!String.Equals(usuarioModificado.username, usuario.username) && Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
-                usuarioModificado.username = usuario.username;
-                usuarioModificado.nombre = usuario.nombre;
-                context.SaveChanges();
+                using (var context = new BDEFEntities())
+                {
+                    Usuario usuarioModificado = context.Usuarios.Find(usuario.id) ?? throw new Exception("¡Usuario no encontrado!");
+                    if (!String.Equals(usuarioModificado.username, usuario.username) && Existe(usuario.username)) throw new Exception("¡Nombre de usuario no disponible!");
+                    usuarioModificado.username = usuario.username;
+                    usuarioModificado.nombre = usuario.nombre;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
@@ -97,11 +145,19 @@ namespace Datos.repositories
         /// </summary>
         public void Eliminar(int id)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                Usuario usuarioEliminado = context.Usuarios.Find(id) ?? throw new Exception("¡Usuario no encontrado!");
-                usuarioEliminado.activo = false;
-                context.SaveChanges();
+                using (var context = new BDEFEntities())
+                {
+                    Usuario usuarioEliminado = context.Usuarios.Find(id) ?? throw new Exception("¡Usuario no encontrado!");
+                    usuarioEliminado.activo = false;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
     }
