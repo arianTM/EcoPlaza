@@ -67,7 +67,22 @@ namespace Presentacion.pages
         }
         #endregion
 
-        #region Opciones de usuario (Modificar cuenta, Logout, Eliminar cuenta)
+        #region Opciones de usuario (Ver datos, Modificar cuenta, Logout, Eliminar cuenta)
+
+        private void MostrarDatos()
+        {
+            try
+            {
+                Usuario usuario = _nUsuario.GetUsuario(Administrador.GetIdUsuario());
+                tbUsuario.Text = txtNombreUsuario.Text = usuario.username;
+                txtNombresYApellidos.Text = usuario.nombre;
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
+
         private void Modificar()
         {
             // VALIDAR CAMPOS
@@ -93,6 +108,9 @@ namespace Presentacion.pages
             {
                 // GUARDAR CAMBIOS
                 _nUsuario.Modificar(usuario);
+
+                // MOSTRAR DATOS
+                MostrarDatos();
             }
             catch (Exception ex)
             {
@@ -147,6 +165,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            MostrarDatos();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)

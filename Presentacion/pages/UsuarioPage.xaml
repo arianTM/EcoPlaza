@@ -40,11 +40,12 @@
                             Kind="UserCircle" />
                     </TextBlock>
                     <TextBlock
+                        x:Name="tbUsuario"
                         Margin="0,0,0,10"
                         HorizontalAlignment="Center"
                         FontSize="24"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
-                        Text="ariantm" />
+                        Text="usuario1" />
                     <Grid
                         MaxWidth="1000"
                         Margin="0,10,0,15"
