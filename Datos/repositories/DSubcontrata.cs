@@ -45,7 +45,7 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Subcontrata subcontrataModificada = GetSubcontrata(subcontrata.id);
+                    Subcontrata subcontrataModificada = context.Subcontratas.Find(subcontrata.id) ?? throw new Exception("¡Subcontrata no encontrada!");
                     subcontrataModificada.nombre = subcontrata.nombre;
                     subcontrataModificada.descripcion = subcontrata.descripcion;
                     subcontrataModificada.ruc = subcontrata.ruc;

@@ -80,11 +80,15 @@ namespace Presentacion.pages
 
         private void VerSubcontrata(object sender)
         {
+            // OBTENER ID SUBCONTRATA DEL BOTÓN
             Button btnVerSubcontrata = (Button)sender;
             int idSeleccionado = int.Parse(btnVerSubcontrata.Tag.ToString());
-            MessageBox.Show($"El id es: {idSeleccionado}");
+
+            // GUARDAR ID SUBCONTRATA EN ADMINISTRADOR
+            Administrador.SetIdSubcontrata(idSeleccionado);
+
             // NAVEGAR
-            //Navegar(new SubcontrataPage());
+            Navegar(new SubcontrataPage());
         }
 
         #endregion
@@ -105,11 +109,11 @@ namespace Presentacion.pages
         {
             AbrirVentana(new AgregarSubcontrataWindow());
         }
-        #endregion
 
         private void btnVerSubcontrata_Click(object sender, RoutedEventArgs e)
         {
             VerSubcontrata(sender);
         }
+        #endregion
     }
 }

@@ -1,7 +1,10 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Presentacion.pages
 {
@@ -10,6 +13,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class SubcontrataPage : Page
     {
+        private NSubcontrata _nSubcontrata = new NSubcontrata();
         #region Constructor
         public SubcontrataPage()
         {
@@ -43,6 +47,18 @@ namespace Presentacion.pages
             return true;
         }
 
+        private void SetTextToRichTextBox(RichTextBox rtx, String msg)
+        {
+            FlowDocument doc = new FlowDocument(new Paragraph(new Run(msg)));
+            rtx.Document = doc;
+        }
+
+        private String TextoDeRichTextBox(RichTextBox rtx)
+        {
+            TextRange text = new TextRange(rtx.Document.ContentStart, rtx.Document.ContentEnd);
+            return text.Text;
+        }
+
         #endregion
 
         #region Errores
@@ -60,7 +76,23 @@ namespace Presentacion.pages
         }
         #endregion
 
-        #region Opciones de Subcontrata (Modificar subcontrata, Eliminar subcontrata)
+        #region Opciones de Subcontrata (Ver datos, Modificar subcontrata, Eliminar subcontrata)
+
+        private void MostrarDatos()
+        {
+            try
+            {
+                Subcontrata subcontrata = _nSubcontrata.GetSubcontrata(Administrador.GetIdSubcontrata());
+                tbNombre.Text = txtNombre.Text = subcontrata.nombre;
+                SetTextToRichTextBox(txtDescripcion, subcontrata.descripcion);
+                txtRuc.Text = subcontrata.ruc;
+                txtCelular.Text = subcontrata.celular;
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
 
         private void Modificar()
         {
@@ -70,9 +102,37 @@ namespace Presentacion.pages
             // CONFIRMAR
             MessageBoxResult result = MostrarDecision("¿Guardar cambios?", "MODIFICACIÓN");
 
-            if (result == MessageBoxResult.Yes)
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            // GUARDAR DESCRIPCION (RICHTEXTBOX)
+            String descripcion = TextoDeRichTextBox(txtDescripcion);
+
+            // CREAR OBJETO SUBCONTRATA
+            Subcontrata subcontrata = new Subcontrata()
+            {
+                id = Administrador.GetIdSubcontrata(),
+                nombre = txtNombre.Text,
+                descripcion = descripcion,
+                ruc = txtRuc.Text,
+                celular = txtCelular.Text,
+                updated_at = DateTime.Now,
+                updated_by = Administrador.GetIdUsuario(),
+            };
+
+            try
             {
                 // GUARDAR CAMBIOS
+                _nSubcontrata.Modificar(subcontrata);
+
+                // MOSTRAR DATOS
+                MostrarDatos();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
             }
         }
 
@@ -97,6 +157,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            MostrarDatos();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
