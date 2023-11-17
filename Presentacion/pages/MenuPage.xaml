@@ -38,7 +38,10 @@
                                 Width="22"
                                 Height="22"
                                 Kind="UserCircle" />
-                            <TextBlock Margin="5,0" Text="ariantm" />
+                            <TextBlock
+                                x:Name="tbUsuario"
+                                Margin="5,0"
+                                Text="ariantm" />
                         </StackPanel>
                     </Button>
                     <Button

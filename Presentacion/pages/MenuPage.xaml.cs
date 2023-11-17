@@ -1,6 +1,8 @@
-﻿using Presentacion.modals;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
+using Presentacion.modals;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,11 +13,17 @@ namespace Presentacion.pages
     /// </summary>
     public partial class MenuPage : Page
     {
+        private NUsuario _nUsuario = new NUsuario();
+
+        #region Constructor
         public MenuPage()
         {
             InitializeComponent();
+            MostrarDatosUsuario();
         }
+        #endregion
 
+        #region Helpers
         private void Navegar(object root)
         {
             // root --> página (new SigninPage(), por ejemplo)
@@ -28,6 +36,24 @@ namespace Presentacion.pages
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.ShowDialog();
         }
+        #endregion
+
+        #region Usuario
+        private void MostrarDatosUsuario()
+        {
+            try
+            {
+                Usuario usuario = _nUsuario.GetUsuario(Administrador.GetIdUsuario());
+                tbUsuario.Text = usuario.username;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        #endregion
+
+        #region Eventos de Controles
 
         private void btnUsuario_Click(object sender, RoutedEventArgs e)
         {
@@ -48,5 +74,6 @@ namespace Presentacion.pages
         {
             AbrirVentana(new AgregarSubcontrataWindow());
         }
+        #endregion
     }
 }
