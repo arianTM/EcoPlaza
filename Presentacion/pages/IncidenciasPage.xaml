@@ -51,6 +51,10 @@
                         Margin="0,15,0,7"
                         AutoGenerateColumns="False">
                         <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding id, Mode=OneWay}"
+                                Header="ID"
+                                Visibility="Hidden" />
                             <DataGridTextColumn Binding="{Binding descripcion, Mode=OneWay}" Header="Descripción" />
                             <DataGridTextColumn Binding="{Binding categoria, Mode=OneWay}" Header="Categoría" />
                             <DataGridTextColumn Binding="{Binding fecha_hora, Mode=OneWay}" Header="Fecha y Hora" />

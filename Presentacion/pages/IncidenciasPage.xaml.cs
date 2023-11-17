@@ -10,6 +10,25 @@ using System.Windows.Controls;
 
 namespace Presentacion.pages
 {
+    #region ViewModel de Incidencias
+    /// <summary>
+    /// El ViewModel crea una clase que guarda los datos que se desean mostrar
+    /// Todos los datos son String ya que solo se usarán para mostrar
+    /// El id se guarda para la seleccion
+    /// </summary>
+    internal class IncidenciaViewModel
+    {
+        public int id { get; set; }
+        public String descripcion { get; set; }
+        public String categoria { get; set; }
+        public String fecha_hora { get; set; }
+        public String created_by { get; set; }
+        public String created_at { get; set; }
+        public String updated_by { get; set; }
+        public String updated_at { get; set; }
+    }
+    #endregion
+
     /// <summary>
     /// Interaction logic for IncidenciasPage.xaml
     /// </summary>
@@ -17,6 +36,10 @@ namespace Presentacion.pages
     {
         private NUsuario _nUsuario = new NUsuario();
         private NIncidencia _nIncidencia = new NIncidencia();
+        /// <summary>
+        /// _incidenciasOC guarda los registros de incidencias con el formato de IncidenciaViewModel
+        /// </summary>
+        private ObservableCollection<IncidenciaViewModel> _incidenciasOC { get; set; }
         #region Constructor
         public IncidenciasPage()
         {
@@ -58,6 +81,13 @@ namespace Presentacion.pages
             MostrarDatos();
         }
 
+        private int ObtenerIdSeleccionado()
+        {
+            IncidenciaViewModel incidenciaSeleccionada = (IncidenciaViewModel)dgIncidencias.SelectedItem;
+            MessageBox.Show(incidenciaSeleccionada.id.ToString());
+            return 0;
+        }
+
         #endregion
 
         #region Errores
@@ -78,42 +108,43 @@ namespace Presentacion.pages
 
         private void MostrarDatos()
         {
+            List<Incidencia> incidencias = new List<Incidencia>();
             try
             {
-                List<Incidencia> incidencias = _nIncidencia.GetIncidencias();
-
-                ObservableCollection<object> incidenciasOC = new ObservableCollection<object>();
-
-                incidencias.ForEach(incidencia =>
-                {
-                    DateTime fecha = incidencia.fecha;
-                    TimeSpan hora = incidencia.hora;
-
-                    DateTime fechaIncidencia = fecha.Add(hora);
-
-                    Usuario creador = _nUsuario.GetUsuario(incidencia.created_by);
-                    Usuario editor = _nUsuario.GetUsuario(incidencia.updated_by);
-
-                    var incidenciaViewModel = new
-                    {
-                        descripcion = incidencia.descripcion,
-                        categoria = incidencia.categoria,
-                        fecha_hora = fechaIncidencia.ToString("dd/MM/yyyy HH:mm"),
-                        created_by = creador.username,
-                        created_at = incidencia.created_at.ToString("dd/MM/yyyy HH:mm"),
-                        updated_by = editor.username,
-                        updated_at = incidencia.updated_at.ToString("dd/MM/yyyy HH:mm"),
-                    };
-
-                    incidenciasOC.Add(incidenciaViewModel);
-                });
-
-                dgIncidencias.ItemsSource = incidenciasOC;
+                incidencias = _nIncidencia.GetIncidencias();
             }
             catch (Exception ex)
             {
                 MostrarError(ex.Message);
             }
+
+            _incidenciasOC = new ObservableCollection<IncidenciaViewModel>();
+
+            incidencias.ForEach(incidencia =>
+            {
+                DateTime fecha = incidencia.fecha;
+                TimeSpan hora = incidencia.hora;
+                DateTime fechaIncidencia = fecha.Add(hora);
+
+                Usuario creador = _nUsuario.GetUsuario(incidencia.created_by);
+                Usuario editor = _nUsuario.GetUsuario(incidencia.updated_by);
+
+                IncidenciaViewModel incidenciaViewModel = new IncidenciaViewModel()
+                {
+                    id = incidencia.id,
+                    descripcion = incidencia.descripcion,
+                    categoria = incidencia.categoria,
+                    fecha_hora = fechaIncidencia.ToString("dd/MM/yyyy HH:mm"),
+                    created_by = creador.username,
+                    created_at = incidencia.created_at.ToString("dd/MM/yyyy HH:mm"),
+                    updated_by = editor.username,
+                    updated_at = incidencia.updated_at.ToString("dd/MM/yyyy HH:mm"),
+                };
+
+                _incidenciasOC.Add(incidenciaViewModel);
+            });
+
+            dgIncidencias.ItemsSource = _incidenciasOC;
         }
 
         private void Registrar()
@@ -128,8 +159,11 @@ namespace Presentacion.pages
         {
             OcultarError();
 
-            // VALIDAR SELECCIÓN
-            //if (!DataGridSeleccionado()) return;
+            //VALIDAR SELECCIÓN
+            if (!DataGridSeleccionado()) return;
+
+            // GUARDAR ID DE LA INCIDENCIA SELECCIONADA
+            int idIncidencia = ObtenerIdSeleccionado();
 
             // ABRIR VENTANA
             AbrirVentana(new ModificarIncidenciaWindow());
