@@ -172,11 +172,13 @@
                             Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
                     </StackPanel>
                     <TextBlock
+                        x:Name="tbCreadoPor"
                         Margin="0,10,0,10"
                         HorizontalAlignment="Center"
                         Foreground="#555"
                         Text="Creado por ariantm el 27/8/23 a las 11:30" />
                     <TextBlock
+                        x:Name="tbEditadoPor"
                         Margin="0,0,0,10"
                         HorizontalAlignment="Center"
                         Foreground="#555"

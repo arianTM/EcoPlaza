@@ -13,6 +13,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class SubcontrataPage : Page
     {
+        private NUsuario _nUsuario = new NUsuario();
         private NSubcontrata _nSubcontrata = new NSubcontrata();
         #region Constructor
         public SubcontrataPage()
@@ -87,6 +88,14 @@ namespace Presentacion.pages
                 SetTextToRichTextBox(txtDescripcion, subcontrata.descripcion);
                 txtRuc.Text = subcontrata.ruc;
                 txtCelular.Text = subcontrata.celular;
+
+                Usuario usuarioCreador = _nUsuario.GetUsuario(subcontrata.created_by);
+                DateTime fechaCreacion = subcontrata.created_at;
+                tbCreadoPor.Text = $"Creado por {usuarioCreador.username} el {fechaCreacion.ToString("dd/MM/yyyy")} a las {fechaCreacion.ToString("HH:mm")}";
+
+                Usuario usuarioEditor = _nUsuario.GetUsuario(subcontrata.updated_by);
+                DateTime fechaEdicion = subcontrata.updated_at;
+                tbEditadoPor.Text = $"Editado por última vez por {usuarioEditor.username} el {fechaEdicion.Date.ToString("dd/MM/yyyy")} a las {fechaEdicion.ToString("HH:mm")}";
             }
             catch (Exception ex)
             {
