@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e1b26e3171304ac5a7b3bf5ebad850aa" Name="Diagram1">
+        <EntityTypeShape EntityType="EcoPlazaModel.Asistencia" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcoPlazaModel.Incidencia" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcoPlazaModel.Material" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcoPlazaModel.Subcontrata" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcoPlazaModel.Usuario" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="EcoPlazaModel.Asistencia_Subcontrata" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Asistencia_Usuario_Modificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Asistencia_Usuario_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Incidencia_Usuario_Modificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Incidencia_Usuario_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Material_Subcontrata" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Material_Usuario_Modificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Material_Usuario_Registro" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Subcontrata_Usuario_Modificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="EcoPlazaModel.Subcontrata_Usuario_Registro" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
