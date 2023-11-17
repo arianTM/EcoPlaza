@@ -84,8 +84,7 @@ namespace Presentacion.pages
         private int ObtenerIdSeleccionado()
         {
             IncidenciaViewModel incidenciaSeleccionada = (IncidenciaViewModel)dgIncidencias.SelectedItem;
-            MessageBox.Show(incidenciaSeleccionada.id.ToString());
-            return 0;
+            return incidenciaSeleccionada.id;
         }
 
         #endregion
@@ -166,7 +165,7 @@ namespace Presentacion.pages
             int idIncidencia = ObtenerIdSeleccionado();
 
             // ABRIR VENTANA
-            AbrirVentana(new ModificarIncidenciaWindow());
+            AbrirVentana(new ModificarIncidenciaWindow(idIncidencia));
         }
 
         private void Eliminar()

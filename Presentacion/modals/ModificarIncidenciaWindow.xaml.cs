@@ -1,6 +1,10 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace Presentacion.modals
 {
@@ -9,10 +13,14 @@ namespace Presentacion.modals
     /// </summary>
     public partial class ModificarIncidenciaWindow : Window
     {
+        private NIncidencia _nIncidencia = new NIncidencia();
+        private int _idIncidencia = 0;
+
         #region Constructor
-        public ModificarIncidenciaWindow()
+        public ModificarIncidenciaWindow(int idIncidencia)
         {
             InitializeComponent();
+            _idIncidencia = idIncidencia;
         }
         #endregion
 
@@ -27,6 +35,31 @@ namespace Presentacion.modals
 
             return true;
         }
+
+        private void SetTextToRichTextBox(RichTextBox rtx, String msg)
+        {
+            FlowDocument doc = new FlowDocument(new Paragraph(new Run(msg)));
+            rtx.Document = doc;
+        }
+
+        private String TextoDeRichTextBox(RichTextBox rtx)
+        {
+            TextRange text = new TextRange(rtx.Document.ContentStart, rtx.Document.ContentEnd);
+            return text.Text;
+        }
+
+        private void SetTextoComboBox(ComboBox cb, String txt)
+        {
+            foreach (object item in cb.Items)
+            {
+                if (item is ComboBoxItem cbItem && String.Equals(txt, cbItem.Content.ToString()))
+                {
+                    cb.SelectedItem = cbItem;
+                    break;
+                }
+            }
+        }
+
         #endregion
 
         #region Errores
@@ -44,7 +77,24 @@ namespace Presentacion.modals
         }
         #endregion
 
-        #region Opciones del formulario (Modificar y Limpiar)
+        #region Opciones del formulario (Mostrar datos, Modificar y Limpiar)
+
+        private void Mostrar()
+        {
+            try
+            {
+                Incidencia incidenciaSeleccionada = _nIncidencia.GetIncidencia(_idIncidencia);
+                SetTextToRichTextBox(txtDescripcion, incidenciaSeleccionada.descripcion);
+                SetTextoComboBox(cbCategoria, incidenciaSeleccionada.categoria);
+                dpFecha.SelectedDate = incidenciaSeleccionada.fecha;
+                tpHora.SelectedTime = incidenciaSeleccionada.fecha + incidenciaSeleccionada.hora;
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
+
         private void Modificar()
         {
             // VALIDAR CAMPOS
@@ -67,6 +117,7 @@ namespace Presentacion.modals
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            Mostrar();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
