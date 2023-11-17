@@ -8,49 +8,89 @@ namespace Datos.repositories
     {
         public void Registrar(Subcontrata subcontrata)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                context.Subcontratas.Add(subcontrata);
-                context.SaveChanges();
+                using (var context = new BDEFEntities())
+                {
+                    context.Subcontratas.Add(subcontrata);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
         public Subcontrata GetSubcontrata(int id)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                return context.Subcontratas.Find(id) ?? throw new Exception("¡Subcontrata no encontrada!");
+                using (var context = new BDEFEntities())
+                {
+                    return context.Subcontratas.Find(id) ?? throw new Exception("¡Subcontrata no encontrada!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
         public void Modificar(Subcontrata subcontrata)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                Subcontrata subcontrataModificada = GetSubcontrata(subcontrata.id);
-                subcontrataModificada.nombre = subcontrata.nombre;
-                subcontrataModificada.descripcion = subcontrata.descripcion;
-                subcontrataModificada.ruc = subcontrata.ruc;
-                subcontrataModificada.celular = subcontrata.celular;
-                context.SaveChanges();
+                using (var context = new BDEFEntities())
+                {
+                    Subcontrata subcontrataModificada = GetSubcontrata(subcontrata.id);
+                    subcontrataModificada.nombre = subcontrata.nombre;
+                    subcontrataModificada.descripcion = subcontrata.descripcion;
+                    subcontrataModificada.ruc = subcontrata.ruc;
+                    subcontrataModificada.celular = subcontrata.celular;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
         public void Eliminar(int id)
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                Subcontrata subcontrata = GetSubcontrata(id);
-                context.Subcontratas.Remove(subcontrata);
-                context.SaveChanges();
+                using (var context = new BDEFEntities())
+                {
+                    Subcontrata subcontrata = GetSubcontrata(id);
+                    context.Subcontratas.Remove(subcontrata);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
 
         public List<Subcontrata> GetSubcontratas()
         {
-            using (var context = new BDEFEntities())
+            try
             {
-                return context.Subcontratas.ToList();
+                using (var context = new BDEFEntities())
+                {
+                    return context.Subcontratas.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
     }
