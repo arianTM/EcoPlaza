@@ -17,7 +17,7 @@ namespace Presentacion.pages
         public LoginPage()
         {
             InitializeComponent();
-            _nUsuario.CargaInicial();
+            CargaInicial();
         }
         #endregion
 
@@ -25,6 +25,20 @@ namespace Presentacion.pages
         /// <summary>
         /// Módulos
         /// </summary>
+        /// 
+
+        private void CargaInicial()
+        {
+            try
+            {
+                _nUsuario.CargaInicial();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
+
         private void Navegar(object root)
         {
             // root --> página (new SigninPage(), por ejemplo)
