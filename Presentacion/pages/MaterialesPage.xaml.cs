@@ -162,8 +162,11 @@ namespace Presentacion.pages
             // VALIDAR SELECCIÓN
             if (!DataGridSeleccionado()) return;
 
+            // GUARDAR ID DEL MATERIAL SELECCIONADO
+            int idMaterial = ObtenerIdSeleccionado();
+
             // ABRIR VENTANA
-            AbrirVentana(new ModificarMaterialWindow());
+            AbrirVentana(new ModificarMaterialWindow(idMaterial));
         }
 
         private void Eliminar()

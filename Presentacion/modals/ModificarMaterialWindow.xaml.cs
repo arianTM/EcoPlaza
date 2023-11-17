@@ -1,6 +1,9 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Presentacion.modals
 {
@@ -9,10 +12,13 @@ namespace Presentacion.modals
     /// </summary>
     public partial class ModificarMaterialWindow : Window
     {
+        private NMaterial _nMaterial = new NMaterial();
+        private int _idMaterial = 0;
         #region Constructor
-        public ModificarMaterialWindow()
+        public ModificarMaterialWindow(int idMaterial)
         {
             InitializeComponent();
+            _idMaterial = idMaterial;
         }
         #endregion
 
@@ -39,6 +45,18 @@ namespace Presentacion.modals
 
             return true;
         }
+
+        private void SetTextoComboBox(ComboBox cb, String txt)
+        {
+            foreach (object item in cb.Items)
+            {
+                if (item is ComboBoxItem cbItem && String.Equals(txt, cbItem.Content.ToString()))
+                {
+                    cb.SelectedItem = cbItem;
+                    break;
+                }
+            }
+        }
         #endregion
 
         #region Errores
@@ -56,7 +74,23 @@ namespace Presentacion.modals
         }
         #endregion
 
-        #region Opciones del formulario (Modificar y Limpiar)
+        #region Opciones del formulario (Mostrar datos, Modificar y Limpiar)
+
+        private void Mostrar()
+        {
+            try
+            {
+                Material materialSeleccionado = _nMaterial.GetMaterial(_idMaterial);
+                txtNombre.Text = materialSeleccionado.nombre;
+                SetTextoComboBox(cbMarca, materialSeleccionado.marca);
+                txtCantidad.Text = materialSeleccionado.cantidad.ToString();
+                txtCosto.Text = materialSeleccionado.costo.ToString();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
 
         private void Modificar()
         {
@@ -91,6 +125,7 @@ namespace Presentacion.modals
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            Mostrar();
         }
 
         private void txtNombre_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
