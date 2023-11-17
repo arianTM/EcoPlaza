@@ -37,8 +37,15 @@ namespace Presentacion.pages
         {
             Window window = (Window)root;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Closed += VentanaCerrada;
             window.ShowDialog();
         }
+
+        private void VentanaCerrada(object sender, EventArgs e)
+        {
+            MostrarSubcontratas();
+        }
+
         #endregion
 
         #region Usuario
