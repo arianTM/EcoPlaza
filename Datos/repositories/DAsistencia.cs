@@ -106,5 +106,25 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
+
+        public void EliminarAsistenciasDeSubcontrata(int idSubcontrata)
+        {
+            try
+            {
+                using (var context = new BDEFEntities())
+                {
+                    List<Asistencia> asistencias = context.Asistencias.ToList().FindAll(el => el.subcontrata_id == idSubcontrata);
+                    asistencias.ForEach(material =>
+                    {
+                        Eliminar(material.id);
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
+            }
+        }
     }
 }
