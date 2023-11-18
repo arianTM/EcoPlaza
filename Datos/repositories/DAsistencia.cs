@@ -49,7 +49,7 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    Asistencia asistenciaModificada = context.Asistencias.Find(asistencia) ?? throw new OwnException("¡Asistencia no encontrada!");
+                    Asistencia asistenciaModificada = context.Asistencias.Find(asistencia.id) ?? throw new OwnException("¡Asistencia no encontrada!");
                     asistenciaModificada.trabajador = asistencia.trabajador;
                     asistenciaModificada.fecha = asistencia.fecha;
                     asistenciaModificada.hora = asistencia.hora;

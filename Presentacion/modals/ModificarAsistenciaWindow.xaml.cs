@@ -1,4 +1,6 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
 
@@ -9,10 +11,13 @@ namespace Presentacion.modals
     /// </summary>
     public partial class ModificarAsistenciaWindow : Window
     {
+        private NAsistencia _nAsistencia = new NAsistencia();
+        private int _idAsistencia = 0;
         #region Constructor
-        public ModificarAsistenciaWindow()
+        public ModificarAsistenciaWindow(int idAsistencia)
         {
             InitializeComponent();
+            _idAsistencia = idAsistencia;
         }
         #endregion
 
@@ -46,11 +51,51 @@ namespace Presentacion.modals
         }
         #endregion
 
-        #region Opciones del formulario (Modificar y Limpiar)
+        #region Opciones del formulario (Mostrar datos, Modificar y Limpiar)
+
+        private void Mostrar()
+        {
+            try
+            {
+                Asistencia asistencia = _nAsistencia.GetAsistencia(_idAsistencia);
+                txtNombreTrabajador.Text = asistencia.trabajador;
+                dpFecha.SelectedDate = asistencia.fecha;
+                tpHora.SelectedTime = asistencia.fecha + asistencia.hora;
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
+        }
+
         private void Modificar()
         {
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
+
+            // CREAR OBJETO ASISTENCIA
+            Asistencia asistencia = new Asistencia()
+            {
+                id = _idAsistencia,
+                trabajador = txtNombreTrabajador.Text,
+                fecha = dpFecha.SelectedDate.Value,
+                hora = tpHora.SelectedTime.Value.TimeOfDay,
+                updated_at = DateTime.Now,
+                updated_by = Administrador.GetIdUsuario()
+            };
+
+            try
+            {
+                // MODIFICAR
+                _nAsistencia.Modificar(asistencia);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
 
             // CERRAR FORMULARIO
             Close();
@@ -78,6 +123,7 @@ namespace Presentacion.modals
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            Mostrar();
         }
 
         private void txtNombreTrabajador_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

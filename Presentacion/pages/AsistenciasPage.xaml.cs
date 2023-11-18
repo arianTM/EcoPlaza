@@ -156,10 +156,13 @@ namespace Presentacion.pages
             OcultarError();
 
             // VALIDAR SELECCIÓN
-            //if (!DataGridSeleccionado()) return;
+            if (!DataGridSeleccionado()) return;
+
+            // GUARDAR ID DE LA ASISTENCIA SELECCIONADA
+            int idAsistencia = ObtenerIdSeleccionado();
 
             // ABRIR VENTANA
-            AbrirVentana(new ModificarAsistenciaWindow());
+            AbrirVentana(new ModificarAsistenciaWindow(idAsistencia));
         }
 
         private void Eliminar()
