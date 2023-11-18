@@ -63,6 +63,11 @@ namespace Presentacion.pages
             MostrarDatos();
         }
 
+        private MessageBoxResult MostrarDecision(String mensaje, String titulo)
+        {
+            return MessageBox.Show(mensaje, titulo, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        }
+
         private bool DataGridSeleccionado()
         {
             if (Validador.DataGridSinSeleccion(dgAsistencias))
@@ -163,6 +168,30 @@ namespace Presentacion.pages
 
             // VALIDAR SELECCIÓN
             if (!DataGridSeleccionado()) return;
+
+            // CONFIRMAR
+            MessageBoxResult result = MostrarDecision("¿Eliminar asistencia?", "ELIMINACIÓN");
+
+            // REGRESAR SI LA RESPUESTA ES NO
+            if (result == MessageBoxResult.No) return;
+
+            // CONTINUA SI LA RESPUESTA ES SÍ
+
+            // GUARDAR ID DE LA ASISTENCIA SELECCIONADA
+            int idAsistencia = ObtenerIdSeleccionado();
+
+            try
+            {
+                // ELIMINAR INCIDENCIA
+                _nAsistencia.Eliminar(idAsistencia);
+
+                // MOSTRAR DATOS
+                MostrarDatos();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         #endregion

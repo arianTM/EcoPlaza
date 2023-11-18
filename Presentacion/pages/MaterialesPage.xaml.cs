@@ -66,14 +66,14 @@ namespace Presentacion.pages
             window.ShowDialog();
         }
 
-        private MessageBoxResult MostrarDecision(String mensaje, String titulo)
-        {
-            return MessageBox.Show(mensaje, titulo, MessageBoxButton.YesNo, MessageBoxImage.Warning);
-        }
-
         private void VentanaCerrada(object sender, EventArgs e)
         {
             MostrarDatos();
+        }
+
+        private MessageBoxResult MostrarDecision(String mensaje, String titulo)
+        {
+            return MessageBox.Show(mensaje, titulo, MessageBoxButton.YesNo, MessageBoxImage.Warning);
         }
 
         private bool DataGridSeleccionado()
