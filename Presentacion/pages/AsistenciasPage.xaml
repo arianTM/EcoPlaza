@@ -46,7 +46,23 @@
                         FontSize="24"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="Asistencias" />
-                    <DataGrid x:Name="dgAsistencias" />
+                    <DataGrid
+                        x:Name="dgAsistencias"
+                        Margin="0,15,0,7"
+                        AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding id, Mode=OneWay}"
+                                Header="ID"
+                                Visibility="Hidden" />
+                            <DataGridTextColumn Binding="{Binding trabajador, Mode=OneWay}" Header="Nombre del trabajador" />
+                            <DataGridTextColumn Binding="{Binding fecha_hora, Mode=OneWay}" Header="Fecha y hora" />
+                            <DataGridTextColumn Binding="{Binding created_by, Mode=OneWay}" Header="Creado por" />
+                            <DataGridTextColumn Binding="{Binding created_at, Mode=OneWay}" Header="Creado el" />
+                            <DataGridTextColumn Binding="{Binding updated_by, Mode=OneWay}" Header="Editado por" />
+                            <DataGridTextColumn Binding="{Binding updated_at, Mode=OneWay}" Header="Editado el" />
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <TextBlock
                         x:Name="tbError"
                         Margin="0,10,0,0"
