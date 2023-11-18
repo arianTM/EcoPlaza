@@ -1,7 +1,8 @@
-﻿using Presentacion.helpers;
+﻿using Datos;
+using Negocio.services;
+using Presentacion.helpers;
 using System;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace Presentacion.modals
 {
@@ -10,6 +11,7 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarAsistenciaWindow : Window
     {
+        private NAsistencia _nAsistencia = new NAsistencia();
         #region Constructor
         public AgregarAsistenciaWindow()
         {
@@ -53,8 +55,31 @@ namespace Presentacion.modals
             // VALIDAR CAMPOS
             if (!ValidarCampos()) return;
 
-            // CERRAR FORMULARIO
-            Close();
+            // CREAR OBJETO ASISTENCIA
+            Asistencia asistencia = new Asistencia()
+            {
+                trabajador = txtNombreTrabajador.Text,
+                fecha = dpFecha.SelectedDate.Value,
+                hora = tpHora.SelectedTime.Value.TimeOfDay,
+                subcontrata_id = Administrador.GetIdSubcontrata(),
+                created_at = DateTime.Now,
+                updated_at = DateTime.Now,
+                created_by = Administrador.GetIdUsuario(),
+                updated_by = Administrador.GetIdUsuario()
+            };
+
+            try
+            {
+                // REGISTRAR
+                _nAsistencia.Registrar(asistencia);
+
+                // CERRAR FORMULARIO
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MostrarError(ex.Message);
+            }
         }
 
         private void Limpiar()
