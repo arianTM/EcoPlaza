@@ -108,7 +108,7 @@ namespace Presentacion.pages
 
         #region Reporte 1
 
-        private SeriesCollection R1SeriesCollection { get; set; }
+        public SeriesCollection R1SeriesCollection { get; set; }
 
         private void MostrarReporte1()
         {
@@ -138,9 +138,9 @@ namespace Presentacion.pages
 
         #region Reporte 3
 
-        private SeriesCollection R3SeriesCollection { get; set; }
-        private string[] R3Labels { get; set; }
-        private Func<double, string> R3YFormatter { get; set; }
+        public SeriesCollection R3SeriesCollection { get; set; }
+        public string[] R3Labels { get; set; }
+        public Func<double, string> R3YFormatter { get; set; }
 
         private void MostrarReporte3()
         {
@@ -193,7 +193,8 @@ namespace Presentacion.pages
         #endregion
 
         #region Reporte 5
-        private SeriesCollection R5SeriesCollection { get; set; }
+
+        public SeriesCollection R5SeriesCollection { get; set; }
 
         private void MostrarReporte5()
         {
