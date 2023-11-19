@@ -3,7 +3,6 @@ using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using Negocio;
-using Negocio.services;
 using Presentacion.helpers;
 using Presentacion.modals;
 using System;
@@ -20,8 +19,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class MenuPage : Page
     {
-        private NUsuario _nUsuario = new NUsuario();
-        private NSubcontrata _nSubcontrata = new NSubcontrata();
+        private readonly Controlador _controlador = new Controlador();
 
         #region Constructor
         public MenuPage()
@@ -62,7 +60,7 @@ namespace Presentacion.pages
         {
             try
             {
-                Usuario usuario = _nUsuario.GetUsuario(Administrador.GetIdUsuario());
+                Usuario usuario = _controlador.GetUsuario(Administrador.GetIdUsuario());
                 tbUsuario.Text = usuario.username;
             }
             catch (Exception)
@@ -78,7 +76,7 @@ namespace Presentacion.pages
         {
             try
             {
-                List<Subcontrata> subcontratas = _nSubcontrata.GetSubcontratas();
+                List<Subcontrata> subcontratas = _controlador.GetSubcontratas();
                 icSubcontratas.ItemsSource = subcontratas;
             }
             catch (Exception)
@@ -104,17 +102,14 @@ namespace Presentacion.pages
 
         #region Dashboard (reportes)
 
-        private NMaterial _nMaterial = new NMaterial();
-        private NIncidencia _nIncidencia = new NIncidencia();
-
         #region Reporte 1
 
         public SeriesCollection R1SeriesCollection { get; set; }
 
         private void MostrarReporte1()
         {
-            List<String> marcas = Proveedor.GetMarcas();
-            List<int> cantidades = _nMaterial.CantidadesPorMarca(marcas);
+            List<String> marcas = _controlador.GetMarcas();
+            List<int> cantidades = _controlador.MaterialesPorMarca(marcas);
 
             R1SeriesCollection = new SeriesCollection();
 
@@ -201,8 +196,8 @@ namespace Presentacion.pages
         {
             R5SeriesCollection = new SeriesCollection();
 
-            List<String> categorias = Proveedor.GetCategorias();
-            List<int> cantidades = _nIncidencia.CantidadesPorCategoria(categorias);
+            List<String> categorias = _controlador.GetCategorias();
+            List<int> cantidades = _controlador.IncidenciasPorCategoria(categorias);
 
             for (int i = 0; i < categorias.Count; i++)
             {

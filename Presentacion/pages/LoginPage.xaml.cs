@@ -1,4 +1,4 @@
-﻿using Negocio.services;
+﻿using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -11,7 +11,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class LoginPage : Page
     {
-        private NUsuario _nUsuario = new NUsuario();
+        private readonly Controlador _controlador = new Controlador();
 
         #region Constructor
         public LoginPage()
@@ -31,7 +31,7 @@ namespace Presentacion.pages
         {
             try
             {
-                _nUsuario.CargaInicial();
+                _controlador.CargaInicial();
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace Presentacion.pages
             try
             {
                 // LOGIN y GUARDAR CLAVE DEL USUARIO
-                Administrador.SetIdUsuario(_nUsuario.GetIdUsuario(txtNombre.Text, txtContra.Password));
+                Administrador.SetIdUsuario(_controlador.GetIdUsuario(txtNombre.Text, txtContra.Password));
 
                 // NAVEGAR
                 Navegar(new MenuPage());

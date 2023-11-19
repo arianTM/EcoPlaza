@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using Presentacion.modals;
 using System;
@@ -34,8 +34,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class IncidenciasPage : Page
     {
-        private NUsuario _nUsuario = new NUsuario();
-        private NIncidencia _nIncidencia = new NIncidencia();
+        private readonly Controlador _controlador = new Controlador();
         /// <summary>
         /// _incidenciasOC guarda los registros de incidencias con el formato de IncidenciaViewModel
         /// </summary>
@@ -116,7 +115,7 @@ namespace Presentacion.pages
             List<Incidencia> incidencias = new List<Incidencia>();
             try
             {
-                incidencias = _nIncidencia.GetIncidencias();
+                incidencias = _controlador.GetIncidencias();
             }
             catch (Exception ex)
             {
@@ -131,8 +130,8 @@ namespace Presentacion.pages
                 TimeSpan hora = incidencia.hora;
                 DateTime fechaIncidencia = fecha.Add(hora);
 
-                Usuario creador = _nUsuario.GetUsuario(incidencia.created_by);
-                Usuario editor = _nUsuario.GetUsuario(incidencia.updated_by);
+                Usuario creador = _controlador.GetUsuario(incidencia.created_by);
+                Usuario editor = _controlador.GetUsuario(incidencia.updated_by);
 
                 IncidenciaViewModel incidenciaViewModel = new IncidenciaViewModel()
                 {
@@ -195,7 +194,7 @@ namespace Presentacion.pages
             try
             {
                 // ELIMINAR INCIDENCIA
-                _nIncidencia.Eliminar(idIncidencia);
+                _controlador.EliminarIncidencia(idIncidencia);
 
                 // MOSTRAR DATOS
                 MostrarDatos();

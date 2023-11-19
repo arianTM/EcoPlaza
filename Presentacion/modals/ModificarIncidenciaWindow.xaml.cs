@@ -1,6 +1,5 @@
 ﻿using Datos;
 using Negocio;
-using Negocio.services;
 using Presentacion.helpers;
 using System;
 using System.Collections.Generic;
@@ -15,8 +14,8 @@ namespace Presentacion.modals
     /// </summary>
     public partial class ModificarIncidenciaWindow : Window
     {
-        private NIncidencia _nIncidencia = new NIncidencia();
-        private int _idIncidencia = 0;
+        private readonly Controlador _controlador = new Controlador();
+        private readonly int _idIncidencia = 0;
 
         #region Constructor
         public ModificarIncidenciaWindow(int idIncidencia)
@@ -40,7 +39,7 @@ namespace Presentacion.modals
 
         private void LlenarComboBox()
         {
-            List<String> categorias = Proveedor.GetCategorias();
+            List<String> categorias = _controlador.GetCategorias();
             categorias.ForEach(c =>
             {
                 ComboBoxItem categoria = new ComboBoxItem();
@@ -97,7 +96,7 @@ namespace Presentacion.modals
             LlenarComboBox();
             try
             {
-                Incidencia incidenciaSeleccionada = _nIncidencia.GetIncidencia(_idIncidencia);
+                Incidencia incidenciaSeleccionada = _controlador.GetIncidencia(_idIncidencia);
                 SetTextToRichTextBox(txtDescripcion, incidenciaSeleccionada.descripcion);
                 SetTextoComboBox(cbCategoria, incidenciaSeleccionada.categoria);
                 dpFecha.SelectedDate = incidenciaSeleccionada.fecha;
@@ -134,7 +133,7 @@ namespace Presentacion.modals
             try
             {
                 // MODIFICAR
-                _nIncidencia.Modificar(incidencia);
+                _controlador.ModificarIncidencia(incidencia);
 
                 // CERRAR FORMULARIO
                 Close();

@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using Presentacion.modals;
 using System;
@@ -36,8 +36,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class MaterialesPage : Page
     {
-        private NMaterial _nMaterial = new NMaterial();
-        private NUsuario _nUsuario = new NUsuario();
+        private readonly Controlador _controlador = new Controlador();
         /// <summary>
         /// _materialesOC guarda los registros de materiales con el formato de MaterialViewModel
         /// </summary>
@@ -116,7 +115,7 @@ namespace Presentacion.pages
             List<Material> materiales = new List<Material>();
             try
             {
-                materiales = _nMaterial.GetMaterialesPorSubcontrata(Administrador.GetIdSubcontrata());
+                materiales = _controlador.GetMaterialesPorSubcontrata(Administrador.GetIdSubcontrata());
             }
             catch (Exception ex)
             {
@@ -127,8 +126,8 @@ namespace Presentacion.pages
 
             materiales.ForEach(material =>
             {
-                Usuario creador = _nUsuario.GetUsuario(material.created_by);
-                Usuario editor = _nUsuario.GetUsuario(material.updated_by);
+                Usuario creador = _controlador.GetUsuario(material.created_by);
+                Usuario editor = _controlador.GetUsuario(material.updated_by);
 
                 MaterialViewModel materialViewModel = new MaterialViewModel()
                 {
@@ -192,7 +191,7 @@ namespace Presentacion.pages
             try
             {
                 // ELIMINAR INCIDENCIA
-                _nMaterial.Eliminar(idMaterial);
+                _controlador.EliminarMaterial(idMaterial);
 
                 // MOSTRAR DATOS
                 MostrarDatos();

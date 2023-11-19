@@ -6,8 +6,6 @@ namespace Datos.repositories
 {
     public class DSubcontrata
     {
-        private DMaterial _dMaterial = new DMaterial();
-        private DAsistencia _dAsistencia = new DAsistencia();
         public void Registrar(Subcontrata subcontrata)
         {
             try
@@ -72,9 +70,6 @@ namespace Datos.repositories
             }
         }
 
-        /// <summary>
-        /// Antes de eliminar la subcontrata, se deben eliminar sus asistencias y sus materiales
-        /// </summary>
         public void Eliminar(int id)
         {
             try
@@ -82,8 +77,6 @@ namespace Datos.repositories
                 using (var context = new BDEFEntities())
                 {
                     Subcontrata subcontrata = context.Subcontratas.Find(id) ?? throw new OwnException("¡Subcontrata no encontrada!");
-                    _dAsistencia.EliminarAsistenciasDeSubcontrata(subcontrata.id);
-                    _dMaterial.EliminarMaterialesDeSubcontrata(subcontrata.id);
                     context.Subcontratas.Remove(subcontrata);
                     context.SaveChanges();
                 }

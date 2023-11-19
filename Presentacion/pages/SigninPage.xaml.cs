@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -12,7 +12,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class SigninPage : Page
     {
-        private NUsuario _nUsuario = new NUsuario();
+        private readonly Controlador _controlador = new Controlador();
 
         #region Constructor
         public SigninPage()
@@ -94,10 +94,10 @@ namespace Presentacion.pages
             try
             {
                 // REGISTRAR USUARIO
-                _nUsuario.Registrar(usuario);
+                _controlador.RegistrarUsuario(usuario);
 
                 // GUARDAR CLAVE DEL USUARIO
-                Administrador.SetIdUsuario(_nUsuario.GetIdUsuario(usuario.username, usuario.contra));
+                Administrador.SetIdUsuario(_controlador.GetIdUsuario(usuario.username, usuario.contra));
 
                 // NAVEGAR
                 Navegar(new MenuPage());

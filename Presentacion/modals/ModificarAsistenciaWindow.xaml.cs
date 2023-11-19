@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -11,8 +11,8 @@ namespace Presentacion.modals
     /// </summary>
     public partial class ModificarAsistenciaWindow : Window
     {
-        private NAsistencia _nAsistencia = new NAsistencia();
-        private int _idAsistencia = 0;
+        private readonly Controlador _controlador = new Controlador();
+        private readonly int _idAsistencia = 0;
         #region Constructor
         public ModificarAsistenciaWindow(int idAsistencia)
         {
@@ -57,7 +57,7 @@ namespace Presentacion.modals
         {
             try
             {
-                Asistencia asistencia = _nAsistencia.GetAsistencia(_idAsistencia);
+                Asistencia asistencia = _controlador.GetAsistencia(_idAsistencia);
                 txtNombreTrabajador.Text = asistencia.trabajador;
                 dpFecha.SelectedDate = asistencia.fecha;
                 tpHora.SelectedTime = asistencia.fecha + asistencia.hora;
@@ -87,7 +87,7 @@ namespace Presentacion.modals
             try
             {
                 // MODIFICAR
-                _nAsistencia.Modificar(asistencia);
+                _controlador.ModificarAsistencia(asistencia);
 
                 // CERRAR FORMULARIO
                 Close();

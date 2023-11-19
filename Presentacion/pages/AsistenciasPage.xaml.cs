@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using Presentacion.modals;
 using System;
@@ -27,8 +27,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class AsistenciasPage : Page
     {
-        private NAsistencia _nAsistencia = new NAsistencia();
-        private NUsuario _nUsuario = new NUsuario();
+        private readonly Controlador _controlador = new Controlador();
         /// <summary>
         /// _asistenciasOC guarda los registros de asistencias con el formato de AsistenciaViewModel
         /// </summary>
@@ -108,7 +107,7 @@ namespace Presentacion.pages
             List<Asistencia> asistencias = new List<Asistencia>();
             try
             {
-                asistencias = _nAsistencia.GetAsistenciasPorSubcontrata(Administrador.GetIdSubcontrata());
+                asistencias = _controlador.GetAsistenciasPorSubcontrata(Administrador.GetIdSubcontrata());
             }
             catch (Exception ex)
             {
@@ -123,8 +122,8 @@ namespace Presentacion.pages
                 TimeSpan hora = asistencia.hora;
                 DateTime fechaAsistencia = fecha.Add(hora);
 
-                Usuario creador = _nUsuario.GetUsuario(asistencia.created_by);
-                Usuario editor = _nUsuario.GetUsuario(asistencia.updated_by);
+                Usuario creador = _controlador.GetUsuario(asistencia.created_by);
+                Usuario editor = _controlador.GetUsuario(asistencia.updated_by);
 
                 AsistenciaViewModel materialViewModel = new AsistenciaViewModel()
                 {
@@ -186,7 +185,7 @@ namespace Presentacion.pages
             try
             {
                 // ELIMINAR INCIDENCIA
-                _nAsistencia.Eliminar(idAsistencia);
+                _controlador.EliminarAsistencia(idAsistencia);
 
                 // MOSTRAR DATOS
                 MostrarDatos();

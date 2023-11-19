@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -12,7 +12,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class UsuarioPage : Page
     {
-        private NUsuario _nUsuario = new NUsuario();
+        private readonly Controlador _controlador = new Controlador();
 
         #region Constructor
         public UsuarioPage()
@@ -73,7 +73,7 @@ namespace Presentacion.pages
         {
             try
             {
-                Usuario usuario = _nUsuario.GetUsuario(Administrador.GetIdUsuario());
+                Usuario usuario = _controlador.GetUsuario(Administrador.GetIdUsuario());
                 tbUsuario.Text = txtNombreUsuario.Text = usuario.username;
                 txtNombresYApellidos.Text = usuario.nombre;
             }
@@ -107,7 +107,7 @@ namespace Presentacion.pages
             try
             {
                 // GUARDAR CAMBIOS
-                _nUsuario.Modificar(usuario);
+                _controlador.ModificarUsuario(usuario);
 
                 // MOSTRAR DATOS
                 MostrarDatos();
@@ -148,7 +148,7 @@ namespace Presentacion.pages
             try
             {
                 // ELIMINAR CUENTA
-                _nUsuario.Eliminar(Administrador.GetIdUsuario());
+                _controlador.EliminarUsuario(Administrador.GetIdUsuario());
 
                 // NAVEGAR
                 Navegar(new LoginPage());

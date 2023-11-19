@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -13,7 +13,7 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarSubcontrataWindow : Window
     {
-        private NSubcontrata _nSubcontrata = new NSubcontrata();
+        private readonly Controlador _controlador = new Controlador();
 
         #region Constructor
         public AgregarSubcontrataWindow()
@@ -87,7 +87,7 @@ namespace Presentacion.modals
             try
             {
                 // REGISTRAR
-                _nSubcontrata.Registrar(subcontrata);
+                _controlador.RegistrarSubcontrata(subcontrata);
 
                 // CERRAR FORMULARIO
                 Close();

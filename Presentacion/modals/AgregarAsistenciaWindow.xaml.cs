@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -11,7 +11,7 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarAsistenciaWindow : Window
     {
-        private NAsistencia _nAsistencia = new NAsistencia();
+        private readonly Controlador _controlador = new Controlador();
         #region Constructor
         public AgregarAsistenciaWindow()
         {
@@ -71,7 +71,7 @@ namespace Presentacion.modals
             try
             {
                 // REGISTRAR
-                _nAsistencia.Registrar(asistencia);
+                _controlador.RegistrarAsistencia(asistencia);
 
                 // CERRAR FORMULARIO
                 Close();

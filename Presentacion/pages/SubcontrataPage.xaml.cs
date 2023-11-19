@@ -1,5 +1,5 @@
 ﻿using Datos;
-using Negocio.services;
+using Negocio;
 using Presentacion.helpers;
 using System;
 using System.Windows;
@@ -13,8 +13,7 @@ namespace Presentacion.pages
     /// </summary>
     public partial class SubcontrataPage : Page
     {
-        private NUsuario _nUsuario = new NUsuario();
-        private NSubcontrata _nSubcontrata = new NSubcontrata();
+        private readonly Controlador _controlador = new Controlador();
         #region Constructor
         public SubcontrataPage()
         {
@@ -83,17 +82,17 @@ namespace Presentacion.pages
         {
             try
             {
-                Subcontrata subcontrata = _nSubcontrata.GetSubcontrata(Administrador.GetIdSubcontrata());
+                Subcontrata subcontrata = _controlador.GetSubcontrata(Administrador.GetIdSubcontrata());
                 tbNombre.Text = txtNombre.Text = subcontrata.nombre;
                 SetTextToRichTextBox(txtDescripcion, subcontrata.descripcion);
                 txtRuc.Text = subcontrata.ruc;
                 txtCelular.Text = subcontrata.celular;
 
-                Usuario usuarioCreador = _nUsuario.GetUsuario(subcontrata.created_by);
+                Usuario usuarioCreador = _controlador.GetUsuario(subcontrata.created_by);
                 DateTime fechaCreacion = subcontrata.created_at;
                 tbCreadoPor.Text = $"Creado por {usuarioCreador.username} el {fechaCreacion.ToString("dd/MM/yyyy")} a las {fechaCreacion.ToString("HH:mm")}";
 
-                Usuario usuarioEditor = _nUsuario.GetUsuario(subcontrata.updated_by);
+                Usuario usuarioEditor = _controlador.GetUsuario(subcontrata.updated_by);
                 DateTime fechaEdicion = subcontrata.updated_at;
                 tbEditadoPor.Text = $"Editado por última vez por {usuarioEditor.username} el {fechaEdicion.Date.ToString("dd/MM/yyyy")} a las {fechaEdicion.ToString("HH:mm")}";
             }
@@ -134,7 +133,7 @@ namespace Presentacion.pages
             try
             {
                 // GUARDAR CAMBIOS
-                _nSubcontrata.Modificar(subcontrata);
+                _controlador.ModificarSubcontrata(subcontrata);
 
                 // MOSTRAR DATOS
                 MostrarDatos();
@@ -157,7 +156,7 @@ namespace Presentacion.pages
             try
             {
                 // ELIMINAR
-                _nSubcontrata.Eliminar(Administrador.GetIdSubcontrata());
+                _controlador.EliminarSubcontrata(Administrador.GetIdSubcontrata());
 
                 // NAVEGAR
                 Navegar(new MenuPage());

@@ -1,6 +1,5 @@
 ﻿using Datos;
 using Negocio;
-using Negocio.services;
 using Presentacion.helpers;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,8 @@ namespace Presentacion.modals
     /// </summary>
     public partial class AgregarMaterialWindow : Window
     {
-        private NMaterial _nMaterial = new NMaterial();
+
+        private readonly Controlador _controlador = new Controlador();
         #region Constructor
         public AgregarMaterialWindow()
         {
@@ -48,7 +48,7 @@ namespace Presentacion.modals
 
         private void LlenarComboBox()
         {
-            List<String> marcas = Proveedor.GetMarcas();
+            List<String> marcas = _controlador.GetMarcas();
             marcas.ForEach(m =>
             {
                 ComboBoxItem marca = new ComboBoxItem();
@@ -97,7 +97,7 @@ namespace Presentacion.modals
             try
             {
                 // REGISTRAR
-                _nMaterial.Registrar(material);
+                _controlador.RegistrarMaterial(material);
 
                 // CERRAR FORMULARIO
                 Close();

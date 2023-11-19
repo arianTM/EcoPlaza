@@ -6,8 +6,6 @@ namespace Datos.repositories
 {
     public class DIncidencia
     {
-        #region CRUD
-
         public void Registrar(Incidencia incidencia)
         {
             try
@@ -109,23 +107,5 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
-
-        #endregion
-
-        #region Reportes
-
-        public List<int> CantidadesPorCategoria(List<String> categorias)
-        {
-            List<int> cantidadesPorCategoria = new List<int>();
-            List<Incidencia> incidencias = GetIncidencias();
-            categorias.ForEach(categoria =>
-            {
-                int cantidad = incidencias.Count(i => i.categoria.Equals(categoria));
-                cantidadesPorCategoria.Add(cantidad);
-            });
-            return cantidadesPorCategoria;
-        }
-
-        #endregion
     }
 }
