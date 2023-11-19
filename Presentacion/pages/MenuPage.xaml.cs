@@ -7,6 +7,7 @@ using Presentacion.helpers;
 using Presentacion.modals;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -126,9 +127,13 @@ namespace Presentacion.pages
         #endregion
 
         #region Reporte 2
+
+        private ObservableCollection<R2ViewModel> _marcasViewModelOC { get; set; }
+
         private void MostrarReporte2()
         {
-
+            _marcasViewModelOC = new ObservableCollection<R2ViewModel>(_controlador.Top5MarcasPorCostoTotal());
+            dgReporte2.ItemsSource = _marcasViewModelOC;
         }
         #endregion
 

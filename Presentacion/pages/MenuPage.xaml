@@ -128,13 +128,16 @@
                     </lvc:PieChart.DataTooltip>
                 </lvc:PieChart>
                 <DataGrid
+                    x:Name="dgReporte2"
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="0,15,0,7">
+                    Margin="0,15,0,7"
+                    AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nombre de marca" />
-                        <DataGridTextColumn Header="Cantidad" />
-                        <DataGridTextColumn Header="Costo total" />
+                        <DataGridTextColumn Binding="{Binding Marca, Mode=OneWay}" Header="Marca" />
+                        <DataGridTextColumn Binding="{Binding Cantidad, Mode=OneWay}" Header="Cantidad" />
+                        <DataGridTextColumn Binding="{Binding Costo, Mode=OneWay}" Header="Costo total" />
+                        <DataGridTextColumn Binding="{Binding Subcontratas, Mode=OneWay}" Header="Subcontratas que usan la marca" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <lvc:CartesianChart

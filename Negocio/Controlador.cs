@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Negocio
 {
+    #region Controlador
     public class Controlador
     {
         #region CRUD
@@ -189,7 +190,7 @@ namespace Negocio
         #region Reportes
 
         /// <summary>
-        /// REPORTE 1: Cantidad de Materiales por Marca
+        /// REPORTE 1: Cantidad de Materiales por Marca (DeWalt, Makita, ...)
         /// </summary>
         public List<int> MaterialesPorMarca(List<String> marcas)
         {
@@ -204,7 +205,56 @@ namespace Negocio
         }
 
         /// <summary>
-        /// REPORTE 5: Número de incidencias por cada categoría (Robo, Accidente, ...)
+        /// REPORTE 2: 5 MARCAS CON MAS COSTOS
+        /// </summary>
+        public List<R2ViewModel> Top5MarcasPorCostoTotal()
+        {
+            List<R2ViewModel> resultado = new List<R2ViewModel>();
+
+            // Marcas y materiales
+            List<String> marcas = GetMarcas();
+            List<Material> materiales = GetMateriales();
+
+            marcas.ForEach(marca =>
+            {
+                List<Material> materialesPorMarca = materiales.FindAll(m => m.marca.Equals(marca));
+
+                // Extraer los ids únicos de las subcontratas, de todos los materiales de una marca
+                List<int> idSubcontratas = new List<int>();
+                materialesPorMarca.ForEach(material =>
+                {
+                    idSubcontratas.Add(material.subcontrata_id);
+                });
+                idSubcontratas = idSubcontratas.Distinct().ToList();
+
+                // Obtener los nombres de las subcontratas
+                String subcontratas = String.Empty;
+                idSubcontratas.ForEach(id =>
+                {
+                    String nombre = GetSubcontrata(id).nombre;
+                    subcontratas += $"{nombre}, ";
+                });
+
+                // Guardar datos
+                R2ViewModel fila = new R2ViewModel();
+                fila.Marca = marca;
+                fila.Cantidad = materialesPorMarca.Count();
+                fila.Costo = materialesPorMarca.Sum(m => m.costo * m.cantidad);
+                fila.Subcontratas = subcontratas;
+
+                // Añadir a la lista
+                resultado.Add(fila);
+            });
+
+            // Ordenar descendentemente según costo
+            resultado.Sort((x, y) => y.Costo.CompareTo(x.Costo));
+
+            // Retornar los 5 primeros
+            return resultado.Take(5).ToList();
+        }
+
+        /// <summary>
+        /// REPORTE 5: Número de incidencias por Categoría (Robo, Accidente, ...)
         /// </summary>
         public List<int> IncidenciasPorCategoria(List<String> categorias)
         {
@@ -252,5 +302,20 @@ namespace Negocio
         }
 
         #endregion
+
     }
+
+    #endregion
+
+    #region View Models
+
+    public class R2ViewModel
+    {
+        public String Marca { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Costo { get; set; }
+        public String Subcontratas { get; set; }
+    }
+
+    #endregion
 }
