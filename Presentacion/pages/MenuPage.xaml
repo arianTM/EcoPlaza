@@ -91,15 +91,28 @@
                 </Button>
             </Grid>
         </Border>
-        <StackPanel Grid.Column="1">
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <TextBlock
+                Grid.Row="0"
                 HorizontalAlignment="Center"
-                FontSize="30"
+                VerticalAlignment="Center"
+                FontSize="16"
                 Text="Menú principal" />
-            <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="12"
-                Text="*Aquí van los reportes" />
-        </StackPanel>
+            <Grid x:Name="Dashboard" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
