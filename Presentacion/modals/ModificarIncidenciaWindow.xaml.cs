@@ -1,7 +1,9 @@
 ﻿using Datos;
+using Negocio;
 using Negocio.services;
 using Presentacion.helpers;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -34,6 +36,17 @@ namespace Presentacion.modals
             }
 
             return true;
+        }
+
+        private void LlenarComboBox()
+        {
+            List<String> categorias = Proveedor.GetCategorias();
+            categorias.ForEach(c =>
+            {
+                ComboBoxItem categoria = new ComboBoxItem();
+                categoria.Content = c;
+                cbCategoria.Items.Add(categoria);
+            });
         }
 
         private void SetTextToRichTextBox(RichTextBox rtx, String msg)
@@ -145,6 +158,7 @@ namespace Presentacion.modals
         {
             OcultarError();
             Mostrar();
+            LlenarComboBox();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)

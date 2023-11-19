@@ -23,5 +23,18 @@ namespace Negocio
                 "Ryobi",
             };
         }
+
+        public static List<String> GetCategorias()
+        {
+            return new List<String>()
+            {
+                "Robo",
+                "Desperfecto",
+                "Retraso",
+                "Accidente",
+                "Riesgo",
+                "Otro",
+            };
+        }
     }
 }

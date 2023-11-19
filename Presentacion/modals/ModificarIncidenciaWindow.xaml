@@ -84,14 +84,7 @@
                         Margin="5,10"
                         FontSize="14"
                         SelectionChanged="cbCategoria_SelectionChanged"
-                        Style="{StaticResource MaterialDesignComboBox}">
-                        <ComboBoxItem Content="Robo" />
-                        <ComboBoxItem Content="Desperfecto" />
-                        <ComboBoxItem Content="Retraso" />
-                        <ComboBoxItem Content="Accidente" />
-                        <ComboBoxItem Content="Riesgo" />
-                        <ComboBoxItem Content="Otro" />
-                    </ComboBox>
+                        Style="{StaticResource MaterialDesignComboBox}" />
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
