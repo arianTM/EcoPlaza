@@ -126,5 +126,21 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
+
+        public List<Asistencia> GetAsistencias()
+        {
+            try
+            {
+                using (var context = new BDEFEntities())
+                {
+                    return context.Asistencias.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
+            }
+        }
     }
 }
