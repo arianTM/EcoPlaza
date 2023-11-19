@@ -6,6 +6,8 @@ namespace Datos.repositories
 {
     public class DMaterial
     {
+        #region CRUD
+
         public void Registrar(Material material)
         {
             try
@@ -127,5 +129,39 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
+
+        private List<Material> GetMateriales()
+        {
+            try
+            {
+                using (var context = new BDEFEntities())
+                {
+                    return context.Materials.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
+            }
+        }
+
+        #endregion
+
+        #region Reportes
+
+        public List<int> CantidadesPorMarca(List<String> marcas)
+        {
+            List<int> cantidadesPorMarca = new List<int>();
+            List<Material> materiales = GetMateriales();
+            marcas.ForEach(marca =>
+            {
+                int cantidad = materiales.Count(m => m.marca.Equals(marca));
+                cantidadesPorMarca.Add(cantidad);
+            });
+            return cantidadesPorMarca;
+        }
+
+        #endregion
     }
 }
