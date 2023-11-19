@@ -189,8 +189,9 @@ namespace Negocio
 
         #region Reportes
 
+        #region Reporte 1
         /// <summary>
-        /// REPORTE 1: Cantidad de Materiales por Marca (DeWalt, Makita, ...)
+        /// Cantidad de Materiales por Marca (DeWalt, Makita, ...)
         /// </summary>
         public List<int> MaterialesPorMarca(List<String> marcas)
         {
@@ -203,9 +204,11 @@ namespace Negocio
             });
             return materialesPorCategoria;
         }
+        #endregion
 
+        #region Reporte 2
         /// <summary>
-        /// REPORTE 2: 5 MARCAS CON MAS COSTOS
+        /// 5 MARCAS CON MAS COSTOS
         /// </summary>
         public List<R2ViewModel> Top5MarcasPorCostoTotal()
         {
@@ -253,6 +256,35 @@ namespace Negocio
             return resultado.Take(5).ToList();
         }
 
+        #endregion
+
+        #region Reporte 3
+        /// <summary>
+        /// Números de asistencias por cada día durante los últimos 7 días
+        /// </summary>
+        public List<int> AsistenciasPorSubcontrata(int idSubcontrata)
+        {
+            List<int> numeroAsistencias = new List<int>();
+
+            DateTime fecha = DateTime.Now;
+
+            for (int i = 1; i <= 7; i++)
+            {
+                int asistenciasPorSubcontrata = GetAsistenciasPorSubcontrata(idSubcontrata).Count(a => a.fecha.Day == fecha.Day);
+
+                numeroAsistencias.Add(asistenciasPorSubcontrata); // numero asistencias subcontrata
+
+                fecha = fecha.AddDays(-1);
+            }
+
+            numeroAsistencias.Reverse();
+
+            return numeroAsistencias;
+        }
+
+        #endregion
+
+        #region Reporte 5
         /// <summary>
         /// REPORTE 5: Número de incidencias por Categoría (Robo, Accidente, ...)
         /// </summary>
@@ -267,6 +299,8 @@ namespace Negocio
             });
             return incidenciasPorCategoria;
         }
+
+        #endregion
 
         #endregion
 

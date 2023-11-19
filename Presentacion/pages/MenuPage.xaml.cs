@@ -11,7 +11,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Presentacion.pages
 {
@@ -145,44 +144,74 @@ namespace Presentacion.pages
 
         private void MostrarReporte3()
         {
-            R3SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Series 3",
-                    Values = new ChartValues<double> { 4,2,7,2,7 },
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 15
-                }
-            };
+            DateTime fechaActual = DateTime.Now;
 
-            R3Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
-            R3YFormatter = value => value.ToString("C");
+            List<String> ultimasFechas = new List<String>();
 
-            //modifying the series collection will animate and update the chart
-            R3SeriesCollection.Add(new LineSeries
+            for (int i = 1; i <= 7; i++)
             {
-                Title = "Series 4",
-                Values = new ChartValues<double> { 5, 3, 2, 4 },
-                LineSmoothness = 0, //0: straight lines, 1: really smooth lines
-                PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-                PointGeometrySize = 50,
-                PointForeground = Brushes.Gray
+                ultimasFechas.Add(fechaActual.ToString("yyyy-MM-dd"));
+
+                fechaActual = fechaActual.AddDays(-1);
+            }
+
+            ultimasFechas.Reverse();
+
+            R3Labels = ultimasFechas.ToArray();
+
+            R3SeriesCollection = new SeriesCollection();
+
+            List<Subcontrata> subcontratas = _controlador.GetSubcontratas();
+
+            subcontratas.ForEach(subcontrata =>
+            {
+                List<int> asistencias = _controlador.AsistenciasPorSubcontrata(subcontrata.id);
+
+                R3SeriesCollection.Add(new LineSeries
+                {
+                    Title = subcontrata.nombre,
+                    Values = new ChartValues<int>(asistencias)
+                });
             });
 
-            //modifying any series values will also animate and update the chart
-            R3SeriesCollection[3].Values.Add(5d);
+            //R3SeriesCollection = new SeriesCollection
+            //{
+            //    new LineSeries
+            //    {
+            //        Title = "Series 1",
+            //        Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
+            //    },
+            //    new LineSeries
+            //    {
+            //        Title = "Series 2",
+            //        Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
+            //        PointGeometry = null
+            //    },
+            //    new LineSeries
+            //    {
+            //        Title = "Series 3",
+            //        Values = new ChartValues<double> { 4,2,7,2,7 },
+            //        PointGeometry = DefaultGeometries.Square,
+            //        PointGeometrySize = 15
+            //    }
+            //};
+
+            //R3Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
+            //R3YFormatter = value => value.ToString("C");
+
+            ////modifying the series collection will animate and update the chart
+            //R3SeriesCollection.Add(new LineSeries
+            //{
+            //    Title = "Series 4",
+            //    Values = new ChartValues<double> { 5, 3, 2, 4 },
+            //    LineSmoothness = 0, //0: straight lines, 1: really smooth lines
+            //    PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
+            //    PointGeometrySize = 50,
+            //    PointForeground = Brushes.Gray
+            //});
+
+            ////modifying any series values will also animate and update the chart
+            //R3SeriesCollection[3].Values.Add(5d);
         }
         #endregion
 
