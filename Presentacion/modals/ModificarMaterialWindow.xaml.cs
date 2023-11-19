@@ -1,7 +1,9 @@
 ﻿using Datos;
+using Negocio;
 using Negocio.services;
 using Presentacion.helpers;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,6 +16,7 @@ namespace Presentacion.modals
     {
         private NMaterial _nMaterial = new NMaterial();
         private int _idMaterial = 0;
+
         #region Constructor
         public ModificarMaterialWindow(int idMaterial)
         {
@@ -44,6 +47,17 @@ namespace Presentacion.modals
             }
 
             return true;
+        }
+
+        private void LlenarComboBox()
+        {
+            List<String> marcas = Proveedor.GetMarcas();
+            marcas.ForEach(m =>
+            {
+                ComboBoxItem marca = new ComboBoxItem();
+                marca.Content = m;
+                cbMarca.Items.Add(marca);
+            });
         }
 
         private void SetTextoComboBox(ComboBox cb, String txt)
@@ -148,6 +162,7 @@ namespace Presentacion.modals
         {
             OcultarError();
             Mostrar();
+            LlenarComboBox();
         }
 
         private void txtNombre_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

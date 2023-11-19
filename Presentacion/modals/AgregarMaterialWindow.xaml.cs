@@ -1,8 +1,11 @@
 ﻿using Datos;
+using Negocio;
 using Negocio.services;
 using Presentacion.helpers;
 using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Presentacion.modals
 {
@@ -42,6 +45,18 @@ namespace Presentacion.modals
 
             return true;
         }
+
+        private void LlenarComboBox()
+        {
+            List<String> marcas = Proveedor.GetMarcas();
+            marcas.ForEach(m =>
+            {
+                ComboBoxItem marca = new ComboBoxItem();
+                marca.Content = m;
+                cbMarca.Items.Add(marca);
+            });
+        }
+
         #endregion
 
         #region Errores
@@ -107,6 +122,7 @@ namespace Presentacion.modals
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
+            LlenarComboBox();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
