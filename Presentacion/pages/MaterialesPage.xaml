@@ -58,7 +58,8 @@
                             <DataGridTextColumn Binding="{Binding nombre, Mode=OneWay}" Header="Nombre" />
                             <DataGridTextColumn Binding="{Binding marca, Mode=OneWay}" Header="Marca" />
                             <DataGridTextColumn Binding="{Binding cantidad, Mode=OneWay}" Header="Cantidad" />
-                            <DataGridTextColumn Binding="{Binding costo, Mode=OneWay}" Header="Costo" />
+                            <DataGridTextColumn Binding="{Binding costo_unitario, Mode=OneWay}" Header="Costo unitario" />
+                            <DataGridTextColumn Binding="{Binding costo_total, Mode=OneWay}" Header="Costo total" />
                             <DataGridTextColumn Binding="{Binding created_by, Mode=OneWay}" Header="Creado por" />
                             <DataGridTextColumn Binding="{Binding created_at, Mode=OneWay}" Header="Creado el" />
                             <DataGridTextColumn Binding="{Binding updated_by, Mode=OneWay}" Header="Editado por" />

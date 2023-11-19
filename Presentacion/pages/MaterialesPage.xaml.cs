@@ -22,7 +22,8 @@ namespace Presentacion.pages
         public String nombre { get; set; }
         public String marca { get; set; }
         public String cantidad { get; set; }
-        public String costo { get; set; }
+        public String costo_unitario { get; set; }
+        public String costo_total { get; set; }
         public String created_by { get; set; }
         public String created_at { get; set; }
         public String updated_by { get; set; }
@@ -135,7 +136,8 @@ namespace Presentacion.pages
                     nombre = material.nombre,
                     marca = material.marca,
                     cantidad = material.cantidad.ToString(),
-                    costo = $"S/. {material.costo:0.00}",
+                    costo_unitario = $"S/. {material.costo:0.00}",
+                    costo_total = $"S/. {(material.costo * material.cantidad):0.00}",
                     created_by = creador.username,
                     created_at = material.created_at.ToString("dd/MM/yyyy HH:mm"),
                     updated_by = editor.username,
