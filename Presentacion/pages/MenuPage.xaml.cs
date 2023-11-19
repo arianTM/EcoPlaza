@@ -2,11 +2,13 @@
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Negocio;
 using Negocio.services;
 using Presentacion.helpers;
 using Presentacion.modals;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -102,39 +104,28 @@ namespace Presentacion.pages
 
         #region Dashboard (reportes)
 
+        private NMaterial _nMaterial = new NMaterial();
+
         #region Reporte 1
 
-        public SeriesCollection R1SeriesCollection { get; set; }
+        private SeriesCollection R1SeriesCollection { get; set; }
+
 
         private void MostrarReporte1()
         {
-            R1SeriesCollection = new SeriesCollection
+            List<String> marcas = Proveedor.GetMarcas();
+            List<int> cantidades = _nMaterial.CantidadesPorMarca(marcas);
+
+            R1SeriesCollection = new SeriesCollection();
+
+            for (int i = 0; i < marcas.Count; i++)
             {
-                new PieSeries
+                R1SeriesCollection.Add(new PieSeries()
                 {
-                    Title = "Chrome",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(8) },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Mozilla",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(6) },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Opera",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(10) },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Explorer",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(4) },
-                    DataLabels = true
-                }
-            };
+                    Title = marcas.ElementAt(i),
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(cantidades.ElementAt(i)) }
+                });
+            }
         }
 
         #endregion
@@ -148,9 +139,9 @@ namespace Presentacion.pages
 
         #region Reporte 3
 
-        public SeriesCollection R3SeriesCollection { get; set; }
-        public string[] R3Labels { get; set; }
-        public Func<double, string> R3YFormatter { get; set; }
+        private SeriesCollection R3SeriesCollection { get; set; }
+        private string[] R3Labels { get; set; }
+        private Func<double, string> R3YFormatter { get; set; }
 
         private void MostrarReporte3()
         {
@@ -203,7 +194,7 @@ namespace Presentacion.pages
         #endregion
 
         #region Reporte 5
-        public SeriesCollection R5SeriesCollection { get; set; }
+        private SeriesCollection R5SeriesCollection { get; set; }
 
         private void MostrarReporte5()
         {
