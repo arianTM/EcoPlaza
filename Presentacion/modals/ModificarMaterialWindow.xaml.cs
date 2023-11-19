@@ -92,6 +92,7 @@ namespace Presentacion.modals
 
         private void Mostrar()
         {
+            LlenarComboBox();
             try
             {
                 Material materialSeleccionado = _nMaterial.GetMaterial(_idMaterial);
@@ -162,7 +163,6 @@ namespace Presentacion.modals
         {
             OcultarError();
             Mostrar();
-            LlenarComboBox();
         }
 
         private void txtNombre_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

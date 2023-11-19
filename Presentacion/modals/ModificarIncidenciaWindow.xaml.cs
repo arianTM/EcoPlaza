@@ -94,6 +94,7 @@ namespace Presentacion.modals
 
         private void Mostrar()
         {
+            LlenarComboBox();
             try
             {
                 Incidencia incidenciaSeleccionada = _nIncidencia.GetIncidencia(_idIncidencia);
@@ -158,7 +159,6 @@ namespace Presentacion.modals
         {
             OcultarError();
             Mostrar();
-            LlenarComboBox();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)

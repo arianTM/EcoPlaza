@@ -110,8 +110,6 @@ namespace Presentacion.pages
 
         private SeriesCollection R1SeriesCollection { get; set; }
 
-
-
         private void MostrarReporte1()
         {
             List<String> marcas = Proveedor.GetMarcas();
