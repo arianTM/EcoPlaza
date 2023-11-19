@@ -218,7 +218,7 @@ namespace Presentacion.pages
         #region Reporte 4
         private void MostrarReporte4()
         {
-            tbAsistenciasPorFecha.Text = _controlador.AsistenciasPorDia(dpFechaAsistencias.SelectedDate).ToString();
+
         }
         #endregion
 
@@ -257,9 +257,6 @@ namespace Presentacion.pages
             MostrarReporte1();
             MostrarReporte2();
             MostrarReporte3();
-
-            dpFechaAsistencias.SelectedDate = DateTime.Now;
-
             MostrarReporte4();
             MostrarReporte5();
             MostrarReporte6();
@@ -288,12 +285,6 @@ namespace Presentacion.pages
         {
             VerSubcontrata(sender);
         }
-
-        private void dpFechaAsistencias_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MostrarReporte4();
-        }
-
         #endregion
     }
 }

@@ -43,11 +43,6 @@ namespace Negocio
             _dAsistencia.EliminarAsistenciasDeSubcontrata(idSubcontrata);
         }
 
-        private List<Asistencia> GetAsistencias()
-        {
-            return _dAsistencia.GetAsistencias();
-        }
-
         #endregion
 
         #region Incidencia
@@ -285,16 +280,6 @@ namespace Negocio
             numeroAsistencias.Reverse();
 
             return numeroAsistencias;
-        }
-
-        #endregion
-
-        #region Reporte 4
-
-        public int AsistenciasPorDia(DateTime? fecha)
-        {
-            List<Asistencia> asistencias = GetAsistencias();
-            return asistencias.Count(a => a.fecha.Day == fecha.Value.Day);
         }
 
         #endregion
