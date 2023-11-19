@@ -105,6 +105,7 @@ namespace Presentacion.pages
         #region Dashboard (reportes)
 
         private NMaterial _nMaterial = new NMaterial();
+        private NIncidencia _nIncidencia = new NIncidencia();
 
         #region Reporte 1
 
@@ -198,33 +199,20 @@ namespace Presentacion.pages
 
         private void MostrarReporte5()
         {
-            R5SeriesCollection = new SeriesCollection
+            R5SeriesCollection = new SeriesCollection();
+
+            List<String> categorias = Proveedor.GetCategorias();
+            List<int> cantidades = _nIncidencia.CantidadesPorCategoria(categorias);
+
+            for (int i = 0; i < categorias.Count; i++)
             {
-                new PieSeries
+                R5SeriesCollection.Add(new PieSeries
                 {
-                    Title = "Chrome",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(8) },
+                    Title = categorias.ElementAt(i),
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(cantidades.ElementAt(i)) },
                     DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Mozilla",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(6) },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Opera",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(10) },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Explorer",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(4) },
-                    DataLabels = true
-                }
-            };
+                });
+            }
         }
         #endregion
 

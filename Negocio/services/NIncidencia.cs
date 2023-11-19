@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Datos.repositories;
+using System;
 using System.Collections.Generic;
 
 namespace Negocio.services
@@ -7,6 +8,9 @@ namespace Negocio.services
     public class NIncidencia
     {
         private DIncidencia _dIncidencia = new DIncidencia();
+
+        #region CRUD
+
         public void Registrar(Incidencia incidencia)
         {
             _dIncidencia.Registrar(incidencia);
@@ -31,5 +35,16 @@ namespace Negocio.services
         {
             return _dIncidencia.GetIncidencias();
         }
+
+        #endregion
+
+        #region Reportes
+
+        public List<int> CantidadesPorCategoria(List<String> categorias)
+        {
+            return _dIncidencia.CantidadesPorCategoria(categorias);
+        }
+
+        #endregion
     }
 }
