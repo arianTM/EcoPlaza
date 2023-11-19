@@ -108,18 +108,24 @@ namespace Presentacion.pages
 
         private void MostrarReporte1()
         {
-            List<String> marcas = _controlador.GetMarcas();
-            List<int> cantidades = _controlador.MaterialesPorMarca(marcas);
-
             R1SeriesCollection = new SeriesCollection();
 
-            for (int i = 0; i < marcas.Count; i++)
+            try
             {
-                R1SeriesCollection.Add(new PieSeries()
+                List<String> marcas = _controlador.GetMarcas();
+                List<int> cantidades = _controlador.MaterialesPorMarca(marcas);
+
+                for (int i = 0; i < marcas.Count; i++)
                 {
-                    Title = marcas.ElementAt(i),
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(cantidades.ElementAt(i)) }
-                });
+                    R1SeriesCollection.Add(new PieSeries()
+                    {
+                        Title = marcas.ElementAt(i),
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(cantidades.ElementAt(i)) }
+                    });
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -131,8 +137,16 @@ namespace Presentacion.pages
 
         private void MostrarReporte2()
         {
-            _marcasViewModelOC = new ObservableCollection<R2ViewModel>(_controlador.Top5MarcasPorCostoTotal());
-            dgReporte2.ItemsSource = _marcasViewModelOC;
+            _marcasViewModelOC = new ObservableCollection<R2ViewModel> { new R2ViewModel() };
+            try
+            {
+                _marcasViewModelOC = new ObservableCollection<R2ViewModel>(_controlador.Top5MarcasPorCostoTotal());
+                dgReporte2.ItemsSource = _marcasViewModelOC;
+            }
+            catch (Exception)
+            {
+
+            }
         }
         #endregion
 
@@ -161,64 +175,38 @@ namespace Presentacion.pages
 
             R3SeriesCollection = new SeriesCollection();
 
-            List<Subcontrata> subcontratas = _controlador.GetSubcontratas();
-
-            subcontratas.ForEach(subcontrata =>
+            try
             {
-                List<int> asistencias = _controlador.AsistenciasPorSubcontrata(subcontrata.id);
+                List<Subcontrata> subcontratas = _controlador.GetSubcontratas();
 
-                R3SeriesCollection.Add(new LineSeries
+                subcontratas.ForEach(subcontrata =>
                 {
-                    Title = subcontrata.nombre,
-                    Values = new ChartValues<int>(asistencias)
+                    List<int> asistencias = _controlador.AsistenciasPorSubcontrata(subcontrata.id);
+
+                    R3SeriesCollection.Add(new LineSeries
+                    {
+                        Title = subcontrata.nombre,
+                        Values = new ChartValues<int>(asistencias)
+                    });
                 });
-            });
+            }
+            catch (Exception)
+            {
 
-            //R3SeriesCollection = new SeriesCollection
-            //{
-            //    new LineSeries
-            //    {
-            //        Title = "Series 1",
-            //        Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-            //    },
-            //    new LineSeries
-            //    {
-            //        Title = "Series 2",
-            //        Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-            //        PointGeometry = null
-            //    },
-            //    new LineSeries
-            //    {
-            //        Title = "Series 3",
-            //        Values = new ChartValues<double> { 4,2,7,2,7 },
-            //        PointGeometry = DefaultGeometries.Square,
-            //        PointGeometrySize = 15
-            //    }
-            //};
-
-            //R3Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
-            //R3YFormatter = value => value.ToString("C");
-
-            ////modifying the series collection will animate and update the chart
-            //R3SeriesCollection.Add(new LineSeries
-            //{
-            //    Title = "Series 4",
-            //    Values = new ChartValues<double> { 5, 3, 2, 4 },
-            //    LineSmoothness = 0, //0: straight lines, 1: really smooth lines
-            //    PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-            //    PointGeometrySize = 50,
-            //    PointForeground = Brushes.Gray
-            //});
-
-            ////modifying any series values will also animate and update the chart
-            //R3SeriesCollection[3].Values.Add(5d);
+            }
         }
         #endregion
 
         #region Reporte 4
         private void MostrarReporte4()
         {
-            tbAsistenciasPorFecha.Text = _controlador.AsistenciasPorDia(dpFechaAsistencias.SelectedDate).ToString();
+            try
+            {
+                tbAsistenciasPorFecha.Text = _controlador.AsistenciasPorDia(dpFechaAsistencias.SelectedDate).ToString();
+            }
+            catch (Exception)
+            {
+            }
         }
         #endregion
 
@@ -230,17 +218,23 @@ namespace Presentacion.pages
         {
             R5SeriesCollection = new SeriesCollection();
 
-            List<String> categorias = _controlador.GetCategorias();
-            List<int> cantidades = _controlador.IncidenciasPorCategoria(categorias);
-
-            for (int i = 0; i < categorias.Count; i++)
+            try
             {
-                R5SeriesCollection.Add(new PieSeries
+                List<String> categorias = _controlador.GetCategorias();
+                List<int> cantidades = _controlador.IncidenciasPorCategoria(categorias);
+
+                for (int i = 0; i < categorias.Count; i++)
                 {
-                    Title = categorias.ElementAt(i),
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(cantidades.ElementAt(i)) },
-                    DataLabels = true
-                });
+                    R5SeriesCollection.Add(new PieSeries
+                    {
+                        Title = categorias.ElementAt(i),
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(cantidades.ElementAt(i)) },
+                        DataLabels = true
+                    });
+                }
+            }
+            catch (Exception)
+            {
             }
         }
         #endregion
@@ -253,10 +247,19 @@ namespace Presentacion.pages
 
         private void MostrarReporte6()
         {
-            _incidenciasPorFecha = _controlador.IncidenciasPorFecha(dpFechaIncidencias.SelectedDate);
-            _incidenciaSeleccionada = _incidenciasPorFecha.Count > 0 ? _incidenciasPorFecha[0] : new Incidencia();
+            _incidenciasPorFecha = new List<Incidencia>();
+            _incidenciaSeleccionada = new Incidencia();
             indiceCarruselIncidencias = 0;
-            MostrarTarjetaActual();
+            try
+            {
+                _incidenciasPorFecha = _controlador.IncidenciasPorFecha(dpFechaIncidencias.SelectedDate);
+                _incidenciaSeleccionada = _incidenciasPorFecha.Count > 0 ? _incidenciasPorFecha[0] : new Incidencia();
+                MostrarTarjetaActual();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void MostrarTarjetaActual()
