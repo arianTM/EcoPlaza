@@ -218,7 +218,9 @@ namespace Presentacion.pages
         #region Reporte 4
         private void MostrarReporte4()
         {
+            dpFechaAsistencias.SelectedDate = DateTime.Now;
 
+            tbAsistenciasPorFecha.Text = _controlador.AsistenciasPorDia(dpFechaAsistencias.SelectedDate).ToString();
         }
         #endregion
 
