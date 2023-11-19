@@ -182,34 +182,37 @@
                         <lvc:DefaultTooltip BulletSize="15" />
                     </lvc:PieChart.DataTooltip>
                 </lvc:PieChart>
-                <Grid Grid.Row="1" Grid.Column="2">
-                    <ListBox x:Name="carrusel" HorizontalContentAlignment="Stretch">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <!--  Aquí defines la apariencia de cada tarjeta  -->
-                                <Border
-                                    Margin="5"
-                                    BorderBrush="Black"
-                                    BorderThickness="1">
-                                    <TextBlock Padding="10" Text="{Binding}" />
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                <StackPanel Grid.Row="1" Grid.Column="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Fecha:" />
+                        <DatePicker
+                            x:Name="dpFechaIncidencias"
+                            Grid.Column="1"
+                            SelectedDateChanged="dpFechaIncidencias_SelectedDateChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <TextBlock x:Name="tbIncidenciaDescripcion" />
+                    </Grid>
 
                     <StackPanel
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Orientation="Horizontal">
-                        <Button Content="◄" />
-                        <Button Content="►" />
+                        <Button
+                            x:Name="btnCarruselIncidenciasRetroceder"
+                            Click="btnCarruselIncidenciasRetroceder_Click"
+                            Content="◄" />
+                        <Button
+                            x:Name="btnCarruselIncidenciasAvanzar"
+                            Click="btnCarruselIncidenciasAvanzar_Click"
+                            Content="►" />
                     </StackPanel>
-                </Grid>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

@@ -246,10 +246,44 @@ namespace Presentacion.pages
         #endregion
 
         #region Reporte 6
+
+        private List<Incidencia> _incidenciasPorFecha { get; set; }
+        private Incidencia _incidenciaSeleccionada { get; set; }
+        private int indiceCarruselIncidencias = 0;
+
         private void MostrarReporte6()
         {
-
+            _incidenciasPorFecha = _controlador.IncidenciasPorFecha(dpFechaIncidencias.SelectedDate);
+            _incidenciaSeleccionada = _incidenciasPorFecha.Count > 0 ? _incidenciasPorFecha[0] : new Incidencia();
+            indiceCarruselIncidencias = 0;
+            MostrarTarjetaActual();
         }
+
+        private void MostrarTarjetaActual()
+        {
+            tbIncidenciaDescripcion.Text = _incidenciaSeleccionada.descripcion;
+        }
+
+        private void Avanzar()
+        {
+            if (indiceCarruselIncidencias < _incidenciasPorFecha.Count() - 1)
+            {
+                indiceCarruselIncidencias++;
+                _incidenciaSeleccionada = _incidenciasPorFecha[indiceCarruselIncidencias];
+                MostrarTarjetaActual();
+            }
+        }
+
+        private void Retroceder()
+        {
+            if (indiceCarruselIncidencias > 0)
+            {
+                indiceCarruselIncidencias--;
+                _incidenciaSeleccionada = _incidenciasPorFecha[indiceCarruselIncidencias];
+                MostrarTarjetaActual();
+            }
+        }
+
         #endregion
 
         private void MostrarReportes()
@@ -262,6 +296,9 @@ namespace Presentacion.pages
 
             MostrarReporte4();
             MostrarReporte5();
+
+            dpFechaIncidencias.SelectedDate = DateTime.Now;
+
             MostrarReporte6();
         }
 
@@ -292,6 +329,21 @@ namespace Presentacion.pages
         private void dpFechaAsistencias_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             MostrarReporte4();
+        }
+
+        private void btnCarruselIncidenciasAvanzar_Click(object sender, RoutedEventArgs e)
+        {
+            Avanzar();
+        }
+
+        private void btnCarruselIncidenciasRetroceder_Click(object sender, RoutedEventArgs e)
+        {
+            Retroceder();
+        }
+
+        private void dpFechaIncidencias_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MostrarReporte6();
         }
 
         #endregion

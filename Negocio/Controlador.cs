@@ -317,6 +317,16 @@ namespace Negocio
 
         #endregion
 
+        #region Reporte 6
+
+        public List<Incidencia> IncidenciasPorFecha(DateTime? fecha)
+        {
+            List<Incidencia> incidencias = GetIncidencias();
+            return incidencias.FindAll(incidencia => incidencia.fecha.Day == fecha.Value.Day);
+        }
+
+        #endregion
+
         #endregion
 
         #region Tablas estáticas
