@@ -158,7 +158,10 @@
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
                         <Label Content="Fecha:" />
-                        <DatePicker x:Name="dpFechaAsistencias" Grid.Column="1" />
+                        <DatePicker
+                            x:Name="dpFechaAsistencias"
+                            Grid.Column="1"
+                            SelectedDateChanged="dpFechaAsistencias_SelectedDateChanged" />
                     </Grid>
                     <StackPanel>
                         <TextBlock x:Name="tbAsistenciasPorFecha" Text="30" />
