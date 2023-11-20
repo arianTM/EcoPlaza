@@ -123,6 +123,11 @@ namespace Negocio
             return _dMaterial.GetMateriales();
         }
 
+        public List<Material> GetMaterialesPorSubcontrataYTrabajador(int idSubcontrata, String nombre)
+        {
+            return _dMaterial.GetMaterialesPorSubcontrataYTrabajador(idSubcontrata, nombre);
+        }
+
         #endregion
 
         #region Subcontrata

@@ -145,5 +145,11 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
+
+        public List<Material> GetMaterialesPorSubcontrataYTrabajador(int idSubcontrata, String nombre)
+        {
+            List<Material> materiales = GetMaterialesPorSubcontrata(idSubcontrata);
+            return materiales.FindAll(material => String.Equals(material.nombre, nombre));
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace Presentacion.pages
 
         private void VentanaCerrada(object sender, EventArgs e)
         {
-            MostrarDatos();
+            MostrarMaterialesTotal();
         }
 
         private MessageBoxResult MostrarDecision(String mensaje, String titulo)
@@ -110,12 +110,13 @@ namespace Presentacion.pages
         #endregion
 
         #region Opciones de Materiales (Mostrar datos, Registrar, Modificar y Eliminar)
-        private void MostrarDatos()
+
+        private void MostrarDatos(String nombreMaterial = "")
         {
             List<Material> materiales = new List<Material>();
             try
             {
-                materiales = _controlador.GetMaterialesPorSubcontrata(Administrador.GetIdSubcontrata());
+                materiales = nombreMaterial == "" ? _controlador.GetMaterialesPorSubcontrata(Administrador.GetIdSubcontrata()) : _controlador.GetMaterialesPorSubcontrataYTrabajador(Administrador.GetIdSubcontrata(), nombreMaterial);
             }
             catch (Exception ex)
             {
@@ -148,6 +149,17 @@ namespace Presentacion.pages
 
             dgMateriales.ItemsSource = _materialesOC;
         }
+
+        private void MostrarMaterialesTotal()
+        {
+            MostrarDatos();
+        }
+
+        private void MostrarMaterialesFiltro(String material)
+        {
+            MostrarDatos(material);
+        }
+
         private void Registrar()
         {
             OcultarError();
@@ -194,7 +206,7 @@ namespace Presentacion.pages
                 _controlador.EliminarMaterial(idMaterial);
 
                 // MOSTRAR DATOS
-                MostrarDatos();
+                MostrarMaterialesTotal();
             }
             catch (Exception ex)
             {
@@ -208,7 +220,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
-            MostrarDatos();
+            MostrarMaterialesTotal();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
@@ -230,6 +242,18 @@ namespace Presentacion.pages
         {
             Eliminar();
         }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarMaterialesFiltro(txtNombreMaterial.Text);
+
+        }
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarMaterialesTotal();
+        }
+
         #endregion
     }
 }
