@@ -83,7 +83,7 @@ namespace Presentacion.pages
 
         private void VentanaCerrada(object sender, EventArgs e)
         {
-            MostrarDatos();
+            MostrarIncidenciasTotal();
         }
 
         private int ObtenerIdSeleccionado()
@@ -110,12 +110,12 @@ namespace Presentacion.pages
 
         #region Opciones de Incidencias (Mostrar, Registrar, Modificar y Eliminar)
 
-        private void MostrarDatos()
+        private void MostrarDatos(String descripcion = "")
         {
             List<Incidencia> incidencias = new List<Incidencia>();
             try
             {
-                incidencias = _controlador.GetIncidencias();
+                incidencias = descripcion == "" ? _controlador.GetIncidencias() : _controlador.GetIncidenciasPorDescripcion(descripcion);
             }
             catch (Exception ex)
             {
@@ -149,6 +149,16 @@ namespace Presentacion.pages
             });
 
             dgIncidencias.ItemsSource = _incidenciasOC;
+        }
+
+        private void MostrarIncidenciasTotal()
+        {
+            MostrarDatos();
+        }
+
+        private void MostrarIncidenciasFiltro(String descripcion)
+        {
+            MostrarDatos(descripcion);
         }
 
         private void Registrar()
@@ -197,7 +207,7 @@ namespace Presentacion.pages
                 _controlador.EliminarIncidencia(idIncidencia);
 
                 // MOSTRAR DATOS
-                MostrarDatos();
+                MostrarIncidenciasTotal();
             }
             catch (Exception ex)
             {
@@ -210,7 +220,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
-            MostrarDatos();
+            MostrarIncidenciasTotal();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
@@ -232,6 +242,17 @@ namespace Presentacion.pages
         {
             Eliminar();
         }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarIncidenciasFiltro(txtDescripcion.Text);
+        }
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarIncidenciasTotal();
+        }
+
         #endregion
     }
 }

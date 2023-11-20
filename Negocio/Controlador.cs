@@ -83,6 +83,11 @@ namespace Negocio
             return _dIncidencia.GetIncidencias();
         }
 
+        public List<Incidencia> GetIncidenciasPorDescripcion(String descripcion)
+        {
+            return _dIncidencia.GetIncidenciasPorDescripcion(descripcion);
+        }
+
         #endregion
 
         #region Material

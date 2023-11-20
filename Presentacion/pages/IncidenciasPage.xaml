@@ -46,6 +46,38 @@
                         FontSize="24"
                         Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                         Text="Incidencias" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            VerticalContentAlignment="Center"
+                            Content="Descripción:"
+                            FontSize="16" />
+                        <TextBox
+                            x:Name="txtDescripcion"
+                            Grid.Column="1"
+                            Margin="15,10"
+                            FontSize="16" />
+                        <Button
+                            x:Name="btnBuscar"
+                            Grid.Column="2"
+                            Margin="3,0"
+                            Click="btnBuscar_Click">
+                            <materialDesign:PackIcon Kind="Search" />
+                        </Button>
+                        <Button
+                            x:Name="btnLimpiar"
+                            Grid.Column="3"
+                            Margin="3,0"
+                            Click="btnLimpiar_Click"
+                            Style="{StaticResource MaterialDesignOutlinedButton}">
+                            <materialDesign:PackIcon Kind="Clear" />
+                        </Button>
+                    </Grid>
                     <DataGrid
                         x:Name="dgIncidencias"
                         MaxHeight="500"

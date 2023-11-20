@@ -109,5 +109,11 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
+
+        public List<Incidencia> GetIncidenciasPorDescripcion(String descripcion)
+        {
+            List<Incidencia> incidencias = GetIncidencias();
+            return incidencias.FindAll(incidencia => String.Equals(incidencia.descripcion, descripcion));
+        }
     }
 }
