@@ -97,7 +97,9 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    return context.Asistencias.ToList().FindAll(el => el.subcontrata_id == idSubcontrata);
+                    List<Asistencia> asistencias = context.Asistencias.ToList().FindAll(el => el.subcontrata_id == idSubcontrata);
+                    asistencias.Reverse();
+                    return asistencias;
                 }
             }
             catch (Exception ex)
