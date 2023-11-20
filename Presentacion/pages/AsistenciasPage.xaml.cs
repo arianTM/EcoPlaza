@@ -59,7 +59,7 @@ namespace Presentacion.pages
 
         private void VentanaCerrada(object sender, EventArgs e)
         {
-            MostrarDatos();
+            MostrarAsistenciasTotal();
         }
 
         private MessageBoxResult MostrarDecision(String mensaje, String titulo)
@@ -102,12 +102,12 @@ namespace Presentacion.pages
 
         #region Opciones de Asistencias (Mostrar datos, Registrar, Modificar y Eliminar)
 
-        private void MostrarDatos()
+        private void MostrarDatos(String trabajador = "")
         {
             List<Asistencia> asistencias = new List<Asistencia>();
             try
             {
-                asistencias = _controlador.GetAsistenciasPorSubcontrata(Administrador.GetIdSubcontrata());
+                asistencias = trabajador == "" ? _controlador.GetAsistenciasPorSubcontrata(Administrador.GetIdSubcontrata()) : _controlador.GetAsistenciasPorSubcontrataYTrabajador(Administrador.GetIdSubcontrata(), trabajador);
             }
             catch (Exception ex)
             {
@@ -140,6 +140,16 @@ namespace Presentacion.pages
             });
 
             dgAsistencias.ItemsSource = _asistenciasOC;
+        }
+
+        private void MostrarAsistenciasTotal()
+        {
+            MostrarDatos();
+        }
+
+        private void MostrarAsistenciaFiltro(String trabajador)
+        {
+            MostrarDatos(trabajador);
         }
 
         private void Registrar()
@@ -188,7 +198,7 @@ namespace Presentacion.pages
                 _controlador.EliminarAsistencia(idAsistencia);
 
                 // MOSTRAR DATOS
-                MostrarDatos();
+                MostrarAsistenciasTotal();
             }
             catch (Exception ex)
             {
@@ -203,7 +213,7 @@ namespace Presentacion.pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             OcultarError();
-            MostrarDatos();
+            MostrarAsistenciasTotal();
         }
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
@@ -224,6 +234,16 @@ namespace Presentacion.pages
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             Eliminar();
+        }
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarAsistenciasTotal();
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            MostrarAsistenciaFiltro(txtNombreTrabajador.Text);
         }
 
         #endregion

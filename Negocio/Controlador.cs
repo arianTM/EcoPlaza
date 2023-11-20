@@ -48,6 +48,11 @@ namespace Negocio
             return _dAsistencia.GetAsistencias();
         }
 
+        public List<Asistencia> GetAsistenciasPorSubcontrataYTrabajador(int idSubcontrata, String trabajador)
+        {
+            return _dAsistencia.GetAsistenciasPorSubcontrataYTrabajador(idSubcontrata, trabajador);
+        }
+
         #endregion
 
         #region Incidencia

@@ -144,5 +144,11 @@ namespace Datos.repositories
                 throw new Exception("¡Ocurrió un error de conexión! Inténtelo nuevamente más tarde.");
             }
         }
+
+        public List<Asistencia> GetAsistenciasPorSubcontrataYTrabajador(int idSubcontrata, String trabajador)
+        {
+            List<Asistencia> asistencias = GetAsistenciasPorSubcontrata(idSubcontrata);
+            return asistencias.FindAll(asistencia => String.Equals(asistencia.trabajador, trabajador));
+        }
     }
 }
