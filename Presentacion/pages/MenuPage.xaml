@@ -398,73 +398,75 @@
                         <materialDesign:Card MaxWidth="450" Margin="0,20">
                             <Border Padding="10">
                                 <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Viewbox MaxHeight="20">
-                                        <TextBlock
-                                            x:Name="tbIncidenciaDescripcion"
-                                            TextAlignment="Center"
-                                            TextTrimming="CharacterEllipsis"
-                                            TextWrapping="Wrap" />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Viewbox MaxWidth="40">
+                                        <Button
+                                            x:Name="btnCarruselIncidenciasRetroceder"
+                                            Padding="0"
+                                            Click="btnCarruselIncidenciasRetroceder_Click"
+                                            Style="{StaticResource MaterialDesignIconButton}">
+                                            <materialDesign:PackIcon Kind="ArrowBack" />
+                                        </Button>
                                     </Viewbox>
 
-                                    <Viewbox
-                                        Grid.Row="1"
-                                        MaxHeight="18"
-                                        Margin="0,15,0,0">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Viewbox MaxHeight="20">
                                             <TextBlock
-                                                x:Name="tbIncidenciaHora"
-                                                Margin="15,0"
-                                                Foreground="#555"
-                                                Text="Hora: 10:30"
-                                                TextAlignment="Center" />
-                                            <TextBlock
-                                                x:Name="tbIncidenciaCategoria"
-                                                Grid.Column="1"
-                                                Margin="15,0"
-                                                Foreground="#555"
-                                                Text="Categoría: Robo"
-                                                TextAlignment="Center" />
-                                        </Grid>
+                                                x:Name="tbIncidenciaDescripcion"
+                                                TextAlignment="Center"
+                                                TextTrimming="CharacterEllipsis"
+                                                TextWrapping="Wrap" />
+                                        </Viewbox>
+
+                                        <Viewbox
+                                            Grid.Row="1"
+                                            MaxHeight="18"
+                                            Margin="0,15,0,0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock
+                                                    x:Name="tbIncidenciaHora"
+                                                    Margin="15,0"
+                                                    Foreground="#555"
+                                                    Text="Hora: 10:30"
+                                                    TextAlignment="Center" />
+                                                <TextBlock
+                                                    x:Name="tbIncidenciaCategoria"
+                                                    Grid.Column="1"
+                                                    Margin="15,0"
+                                                    Foreground="#555"
+                                                    Text="Categoría: Robo"
+                                                    TextAlignment="Center" />
+                                            </Grid>
+                                        </Viewbox>
+                                    </Grid>
+                                    <Viewbox Grid.Column="2" MaxWidth="40">
+                                        <Button
+                                            x:Name="btnCarruselIncidenciasAvanzar"
+                                            Padding="0"
+                                            Click="btnCarruselIncidenciasAvanzar_Click"
+                                            Style="{StaticResource MaterialDesignIconButton}">
+                                            <materialDesign:PackIcon Kind="ArrowForward" />
+                                        </Button>
                                     </Viewbox>
+
 
                                 </Grid>
                             </Border>
                         </materialDesign:Card>
-
-
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Viewbox MaxHeight="30" HorizontalAlignment="Stretch">
-                                <Button
-                                    x:Name="btnCarruselIncidenciasRetroceder"
-                                    Click="btnCarruselIncidenciasRetroceder_Click"
-                                    Content="◄" />
-                            </Viewbox>
-                            <Viewbox
-                                Grid.Column="1"
-                                MaxHeight="30"
-                                HorizontalAlignment="Stretch">
-                                <Button
-                                    x:Name="btnCarruselIncidenciasAvanzar"
-                                    Click="btnCarruselIncidenciasAvanzar_Click"
-                                    Content="►" />
-                            </Viewbox>
-                        </Grid>
                     </StackPanel>
                 </materialDesign:Card>
             </Grid>
