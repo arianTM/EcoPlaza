@@ -98,7 +98,9 @@ namespace Datos.repositories
             {
                 using (var context = new BDEFEntities())
                 {
-                    return context.Incidencias.ToList();
+                    List<Incidencia> incidencias = context.Incidencias.ToList();
+                    incidencias.Reverse();
+                    return incidencias;
                 }
             }
             catch (Exception ex)
