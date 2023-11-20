@@ -16,6 +16,11 @@
             <ColumnDefinition Width="250" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
+
+        <!--
+            PANEL LATERAL
+        -->
+
         <Border
             BorderBrush="{StaticResource AttentionToActionBrush}"
             BorderThickness="1"
@@ -92,7 +97,12 @@
                 </Button>
             </Grid>
         </Border>
-        <Grid Grid.Column="1">
+
+        <!--
+            DASHBOARD
+        -->
+
+        <Grid Grid.Column="1" Background="{StaticResource MaterialDesignLightBackground}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -101,7 +111,7 @@
                 Grid.Row="0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="16"
+                FontSize="24"
                 Style="{StaticResource MaterialDesignHeadline1TextBlock}"
                 Text="REPORTES DE ECOPLAZA" />
             <Grid x:Name="Dashboard" Grid.Row="1">
@@ -114,162 +124,281 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Margin="0,10"
-                        HorizontalAlignment="Center"
-                        FontSize="18"
-                        Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                        Text="Cantidad de materiales por marca" />
-                    <Grid Grid.Row="1" Margin="20">
-                        <lvc:PieChart
-                            Padding="10,0,10,0"
-                            InnerRadius="150"
-                            LegendLocation="Right"
-                            Series="{Binding R1SeriesCollection}">
-                            <lvc:PieChart.ChartLegend>
-                                <lvc:DefaultLegend BulletSize="15" FontFamily="{StaticResource MaterialDesignFont}" />
-                            </lvc:PieChart.ChartLegend>
-                            <lvc:PieChart.DataTooltip>
-                                <lvc:DefaultTooltip BulletSize="15" />
-                            </lvc:PieChart.DataTooltip>
-                        </lvc:PieChart>
-                    </Grid>
 
-                </Grid>
-                <StackPanel Grid.Row="1" Grid.Column="0">
-                    <TextBlock
-                        Margin="0,10"
-                        HorizontalAlignment="Center"
-                        FontSize="18"
-                        Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                        Text="Top 5 marcas que generan más costos" />
-                    <DataGrid
-                        x:Name="dgReporte2"
-                        Margin="0,15,0,7"
-                        AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Marca, Mode=OneWay}" Header="Marca" />
-                            <DataGridTextColumn Binding="{Binding Cantidad, Mode=OneWay}" Header="Cantidad" />
-                            <DataGridTextColumn Binding="{Binding Costo, Mode=OneWay}" Header="Costo total" />
-                            <DataGridTextColumn Binding="{Binding Subcontratas, Mode=OneWay}" Header="Subcontratas que usan la marca" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
+                <!--
+                    REPORTE 1
+                -->
 
-                <Grid Grid.Row="0" Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Margin="0,10"
-                        HorizontalAlignment="Center"
-                        FontSize="18"
-                        Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                        Text="Asistencias diarias por subcontrata" />
-                    <Grid Grid.Row="1" Margin="10">
-                        <lvc:CartesianChart LegendLocation="Right" Series="{Binding R3SeriesCollection}">
-                            <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Número de asistencias" />
-                            </lvc:CartesianChart.AxisY>
-                            <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="Fecha" Labels="{Binding R3Labels}" />
-                            </lvc:CartesianChart.AxisX>
-                        </lvc:CartesianChart>
-                    </Grid>
-                </Grid>
-
-                <StackPanel Grid.Row="1" Grid.Column="1">
-                    <TextBlock
-                        Margin="0,10"
-                        HorizontalAlignment="Center"
-                        FontSize="18"
-                        Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                        Text="Número de asistencias por fecha" />
+                <materialDesign:Card Margin="20" Padding="20">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Content="Fecha:" />
-                        <DatePicker
-                            x:Name="dpFechaAsistencias"
-                            Grid.Column="1"
-                            SelectedDateChanged="dpFechaAsistencias_SelectedDateChanged" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                            Text="Cantidad de materiales por marca" />
+                        <Grid Grid.Row="1" Margin="20">
+                            <lvc:PieChart
+                                Padding="10,0,10,0"
+                                InnerRadius="50"
+                                LegendLocation="Right"
+                                Series="{Binding R1SeriesCollection}">
+                                <lvc:PieChart.ChartLegend>
+                                    <lvc:DefaultLegend BulletSize="15" FontFamily="{StaticResource MaterialDesignFont}" />
+                                </lvc:PieChart.ChartLegend>
+                                <lvc:PieChart.DataTooltip>
+                                    <lvc:DefaultTooltip BulletSize="15" />
+                                </lvc:PieChart.DataTooltip>
+                            </lvc:PieChart>
+                        </Grid>
                     </Grid>
+                </materialDesign:Card>
+                <!--
+                    REPORTE 2
+                -->
+
+                <materialDesign:Card
+                    Grid.Row="1"
+                    Margin="20"
+                    Padding="5,20">
                     <StackPanel>
-                        <TextBlock x:Name="tbAsistenciasPorFecha" Text="30" />
-                        <TextBlock Text="Asistencias registradas" />
+                        <TextBlock
+                            Margin="0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                            Text="Top 5 marcas que generan más costos" />
+                        <DataGrid
+                            x:Name="dgReporte2"
+                            Margin="0,15,0,7"
+                            AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Marca, Mode=OneWay}" Header="Marca" />
+                                <DataGridTextColumn Binding="{Binding Cantidad, Mode=OneWay}" Header="Cantidad" />
+                                <DataGridTextColumn Binding="{Binding Costo, Mode=OneWay}" Header="Costo total" />
+                                <DataGridTextColumn Binding="{Binding Subcontratas, Mode=OneWay}" Header="Subcontratas que usan la marca" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </StackPanel>
-                </StackPanel>
+                </materialDesign:Card>
 
-                <Grid Grid.Row="0" Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Margin="0,10"
-                        HorizontalAlignment="Center"
-                        FontSize="18"
-                        Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                        Text="Número de incidencias por categoría" />
-                    <Grid Grid.Row="1" Margin="20">
-                        <lvc:PieChart
-                            InnerRadius="0"
-                            LegendLocation="Right"
-                            Series="{Binding R5SeriesCollection}">
-                            <lvc:PieChart.ChartLegend>
-                                <lvc:DefaultLegend BulletSize="15" />
-                            </lvc:PieChart.ChartLegend>
-                            <lvc:PieChart.DataTooltip>
-                                <lvc:DefaultTooltip BulletSize="15" />
-                            </lvc:PieChart.DataTooltip>
-                        </lvc:PieChart>
-                    </Grid>
-                </Grid>
 
-                <StackPanel Grid.Row="1" Grid.Column="2">
-                    <TextBlock
-                        Margin="0,10"
-                        HorizontalAlignment="Center"
-                        FontSize="18"
-                        Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                        Text="Últimas incidencias por fecha" />
+                <!--
+                    REPORTE 3
+                -->
+
+                <materialDesign:Card
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="20"
+                    Padding="5,20">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Content="Fecha:" />
-                        <DatePicker
-                            x:Name="dpFechaIncidencias"
-                            Grid.Column="1"
-                            SelectedDateChanged="dpFechaIncidencias_SelectedDateChanged" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                            Text="Asistencias diarias por subcontrata" />
+                        <Grid Grid.Row="1" Margin="10">
+                            <lvc:CartesianChart LegendLocation="Right" Series="{Binding R3SeriesCollection}">
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="Número de asistencias" />
+                                </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="Fecha" Labels="{Binding R3Labels}" />
+                                </lvc:CartesianChart.AxisX>
+                            </lvc:CartesianChart>
+                        </Grid>
                     </Grid>
-                    <Grid>
-                        <TextBlock x:Name="tbIncidenciaDescripcion" />
-                    </Grid>
+                </materialDesign:Card>
 
-                    <StackPanel
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom"
-                        Orientation="Horizontal">
-                        <Button
-                            x:Name="btnCarruselIncidenciasRetroceder"
-                            Click="btnCarruselIncidenciasRetroceder_Click"
-                            Content="◄" />
-                        <Button
-                            x:Name="btnCarruselIncidenciasAvanzar"
-                            Click="btnCarruselIncidenciasAvanzar_Click"
-                            Content="►" />
+                <!--
+                    REPORTE 4
+                -->
+
+                <materialDesign:Card
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20"
+                    Padding="5,20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                            Text="Número de asistencias por fecha" />
+                        <StackPanel
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                HorizontalAlignment="Right"
+                                Content="Fecha:"
+                                FontSize="14" />
+                            <DatePicker
+                                x:Name="dpFechaAsistencias"
+                                MinWidth="200"
+                                HorizontalAlignment="Left"
+                                FontSize="14"
+                                SelectedDateChanged="dpFechaAsistencias_SelectedDateChanged" />
+                        </StackPanel>
+                        <materialDesign:Card
+                            Grid.Row="2"
+                            MaxWidth="300"
+                            MaxHeight="300"
+                            Margin="0,20,0,0"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center">
+                            <Border Padding="50">
+                                <StackPanel>
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <TextBlock
+                                            x:Name="tbAsistenciasPorFecha"
+                                            Margin="5,0"
+                                            HorizontalAlignment="Center"
+                                            FontSize="38"
+                                            FontWeight="Bold"
+                                            Text="30" />
+                                        <materialDesign:PackIcon
+                                            Width="36"
+                                            Height="36"
+                                            VerticalAlignment="Center"
+                                            Kind="Worker" />
+                                    </StackPanel>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="16"
+                                        Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                        Text="Asistencia(s) registrada(s)" />
+                                </StackPanel>
+                            </Border>
+                        </materialDesign:Card>
+                    </Grid>
+                </materialDesign:Card>
+
+                <!--
+                    REPORTE 5
+                -->
+
+                <materialDesign:Card
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="20"
+                    Padding="5,20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                            Text="Número de incidencias por categoría" />
+                        <Grid Grid.Row="1" Margin="20">
+                            <lvc:PieChart
+                                InnerRadius="0"
+                                LegendLocation="Right"
+                                Series="{Binding R5SeriesCollection}">
+                                <lvc:PieChart.ChartLegend>
+                                    <lvc:DefaultLegend BulletSize="15" />
+                                </lvc:PieChart.ChartLegend>
+                                <lvc:PieChart.DataTooltip>
+                                    <lvc:DefaultTooltip BulletSize="15" />
+                                </lvc:PieChart.DataTooltip>
+                            </lvc:PieChart>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+
+                <!--
+                    REPORTE 6
+                -->
+
+                <materialDesign:Card
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="20"
+                    Padding="5,20">
+                    <StackPanel>
+                        <TextBlock
+                            Margin="0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                            Text="Últimas incidencias por fecha" />
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Label Content="Fecha:" FontSize="14" />
+                            <DatePicker
+                                x:Name="dpFechaIncidencias"
+                                Grid.Column="1"
+                                MinWidth="200"
+                                FontSize="14"
+                                SelectedDateChanged="dpFechaIncidencias_SelectedDateChanged" />
+                        </StackPanel>
+
+                        <materialDesign:Card MaxWidth="300" Margin="0,20">
+                            <Border Padding="50">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock
+                                        x:Name="tbIncidenciaDescripcion"
+                                        FontSize="20"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
+                                    <Grid Grid.Row="1" Margin="0,15,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Foreground="#555"
+                                            Text="Hora: 10:30"
+                                            TextAlignment="Center" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Foreground="#555"
+                                            Text="Categoría: Robo"
+                                            TextAlignment="Center" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </materialDesign:Card>
+
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="btnCarruselIncidenciasRetroceder"
+                                Click="btnCarruselIncidenciasRetroceder_Click"
+                                Content="◄" />
+                            <Button
+                                x:Name="btnCarruselIncidenciasAvanzar"
+                                Click="btnCarruselIncidenciasAvanzar_Click"
+                                Content="►" />
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </materialDesign:Card>
             </Grid>
         </Grid>
     </Grid>
