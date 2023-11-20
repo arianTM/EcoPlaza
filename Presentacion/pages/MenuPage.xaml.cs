@@ -253,7 +253,7 @@ namespace Presentacion.pages
             try
             {
                 _incidenciasPorFecha = _controlador.IncidenciasPorFecha(dpFechaIncidencias.SelectedDate);
-                _incidenciaSeleccionada = _incidenciasPorFecha.Count > 0 ? _incidenciasPorFecha[0] : new Incidencia();
+                _incidenciaSeleccionada = _incidenciasPorFecha.Count > 0 ? _incidenciasPorFecha[0] : null;
                 MostrarTarjetaActual();
             }
             catch (Exception)
@@ -264,7 +264,18 @@ namespace Presentacion.pages
 
         private void MostrarTarjetaActual()
         {
-            tbIncidenciaDescripcion.Text = _incidenciaSeleccionada.descripcion;
+            if (_incidenciaSeleccionada != null)
+            {
+                tbIncidenciaDescripcion.Text = $"\"{_incidenciaSeleccionada.descripcion}\"";
+                tbIncidenciaHora.Text = $"Hora: {_incidenciaSeleccionada.hora}";
+                tbIncidenciaCategoria.Text = $"Categoría: {_incidenciaSeleccionada.categoria}";
+            }
+            else
+            {
+                tbIncidenciaDescripcion.Text = "¡No hay incidencias en esta fecha!";
+                tbIncidenciaCategoria.Text = String.Empty;
+                tbIncidenciaHora.Text = String.Empty;
+            }
         }
 
         private void Avanzar()

@@ -47,7 +47,8 @@
                             <TextBlock
                                 x:Name="tbUsuario"
                                 Margin="5,0"
-                                Text="ariantm" />
+                                Text="ariantm"
+                                TextTrimming="CharacterEllipsis" />
                         </StackPanel>
                     </Button>
                     <Button
@@ -74,9 +75,10 @@
                                 <Button
                                     Margin="0,0,0,5"
                                     Click="btnVerSubcontrata_Click"
-                                    Content="{Binding nombre}"
                                     Style="{StaticResource MaterialDesignOutlinedButton}"
-                                    Tag="{Binding id}" />
+                                    Tag="{Binding id}">
+                                    <TextBlock Text="{Binding nombre}" TextTrimming="CharacterEllipsis" />
+                                </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -353,17 +355,19 @@
                                 SelectedDateChanged="dpFechaIncidencias_SelectedDateChanged" />
                         </StackPanel>
 
-                        <materialDesign:Card MaxWidth="300" Margin="0,20">
+                        <materialDesign:Card MaxWidth="450" Margin="0,20">
                             <Border Padding="50">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="50" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <TextBlock
                                         x:Name="tbIncidenciaDescripcion"
+                                        Width="350"
                                         FontSize="20"
                                         TextAlignment="Center"
+                                        TextTrimming="CharacterEllipsis"
                                         TextWrapping="Wrap" />
                                     <Grid Grid.Row="1" Margin="0,15,0,0">
                                         <Grid.ColumnDefinitions>
@@ -371,10 +375,12 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock
+                                            x:Name="tbIncidenciaHora"
                                             Foreground="#555"
                                             Text="Hora: 10:30"
                                             TextAlignment="Center" />
                                         <TextBlock
+                                            x:Name="tbIncidenciaCategoria"
                                             Grid.Column="1"
                                             Foreground="#555"
                                             Text="Categoría: Robo"
