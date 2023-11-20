@@ -104,7 +104,7 @@
                         Grid.Column="0"
                         Margin="5,10"
                         HorizontalContentAlignment="Right"
-                        Content="Costo por unidad (S/. ):"
+                        Content="Costo unitario (S/. ):"
                         FontSize="14" />
                     <TextBox
                         x:Name="txtCosto"
