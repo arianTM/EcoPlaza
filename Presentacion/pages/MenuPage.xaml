@@ -137,12 +137,13 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock
+                        <Viewbox
+                            MaxHeight="32"
                             Margin="0,10"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                            Text="Cantidad de materiales por marca" />
+                            HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource MaterialDesignHeadline2TextBlock}" Text="Cantidad de materiales por marca" />
+                        </Viewbox>
+
                         <Grid Grid.Row="1" Margin="20">
                             <lvc:PieChart
                                 Padding="10,0,10,0"
@@ -150,10 +151,10 @@
                                 LegendLocation="Right"
                                 Series="{Binding R1SeriesCollection}">
                                 <lvc:PieChart.ChartLegend>
-                                    <lvc:DefaultLegend BulletSize="15" FontFamily="{StaticResource MaterialDesignFont}" />
+                                    <lvc:DefaultLegend BulletSize="12" FontFamily="{StaticResource MaterialDesignFont}" />
                                 </lvc:PieChart.ChartLegend>
                                 <lvc:PieChart.DataTooltip>
-                                    <lvc:DefaultTooltip BulletSize="15" />
+                                    <lvc:DefaultTooltip BulletSize="12" />
                                 </lvc:PieChart.DataTooltip>
                             </lvc:PieChart>
                         </Grid>
@@ -168,23 +169,30 @@
                     Margin="20"
                     Padding="5,20">
                     <StackPanel>
-                        <TextBlock
+                        <Viewbox
+                            MaxHeight="32"
                             Margin="0,10"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                            Text="Top 5 marcas que generan más costos" />
-                        <DataGrid
-                            x:Name="dgReporte2"
-                            Margin="0,15,0,7"
-                            AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Marca, Mode=OneWay}" Header="Marca" />
-                                <DataGridTextColumn Binding="{Binding Cantidad, Mode=OneWay}" Header="Cantidad" />
-                                <DataGridTextColumn Binding="{Binding Costo, Mode=OneWay}" Header="Costo total" />
-                                <DataGridTextColumn Binding="{Binding Subcontratas, Mode=OneWay}" Header="Subcontratas que usan la marca" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                            HorizontalAlignment="Center">
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                                Text="Top 5 marcas que generan más costos" />
+                        </Viewbox>
+                        <Viewbox>
+                            <DataGrid
+                                x:Name="dgReporte2"
+                                Margin="0,15,0,7"
+                                AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Marca, Mode=OneWay}" Header="Marca" />
+                                    <DataGridTextColumn Binding="{Binding Cantidad, Mode=OneWay}" Header="Cantidad" />
+                                    <DataGridTextColumn Binding="{Binding Costo, Mode=OneWay}" Header="Costo total" />
+                                    <DataGridTextColumn Binding="{Binding Subcontratas, Mode=OneWay}" Header="Subcontratas que usan la marca" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Viewbox>
+
                     </StackPanel>
                 </materialDesign:Card>
 
@@ -203,12 +211,16 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock
+                        <Viewbox
+                            MaxHeight="32"
                             Margin="0,10"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                            Text="Asistencias diarias por subcontrata" />
+                            HorizontalAlignment="Center">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                                Text="Asistencias diarias por subcontrata" />
+                        </Viewbox>
+
                         <Grid Grid.Row="1" Margin="10">
                             <lvc:CartesianChart LegendLocation="Right" Series="{Binding R3SeriesCollection}">
                                 <lvc:CartesianChart.AxisY>
@@ -237,27 +249,31 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock
+                        <Viewbox
+                            MaxHeight="32"
                             Margin="0,10"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                            Text="Número de asistencias por fecha" />
-                        <StackPanel
-                            Grid.Row="1"
-                            HorizontalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Label
-                                HorizontalAlignment="Right"
-                                Content="Fecha:"
-                                FontSize="14" />
-                            <DatePicker
-                                x:Name="dpFechaAsistencias"
-                                MinWidth="200"
-                                HorizontalAlignment="Left"
-                                FontSize="14"
-                                SelectedDateChanged="dpFechaAsistencias_SelectedDateChanged" />
-                        </StackPanel>
+                            HorizontalAlignment="Center">
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                                Text="Número de asistencias por fecha" />
+                        </Viewbox>
+                        <Viewbox Grid.Row="1" MaxHeight="30">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <Label
+                                    HorizontalAlignment="Right"
+                                    Content="Fecha:"
+                                    FontSize="14" />
+                                <DatePicker
+                                    x:Name="dpFechaAsistencias"
+                                    MinWidth="200"
+                                    HorizontalAlignment="Left"
+                                    FontSize="14"
+                                    SelectedDateChanged="dpFechaAsistencias_SelectedDateChanged" />
+                            </StackPanel>
+                        </Viewbox>
+
                         <materialDesign:Card
                             Grid.Row="2"
                             MaxWidth="300"
@@ -266,28 +282,41 @@
                             VerticalAlignment="Top"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center">
-                            <Border Padding="50">
-                                <StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <TextBlock
-                                            x:Name="tbAsistenciasPorFecha"
-                                            Margin="5,0"
-                                            HorizontalAlignment="Center"
-                                            FontSize="38"
-                                            FontWeight="Bold"
-                                            Text="30" />
-                                        <materialDesign:PackIcon
-                                            Width="36"
-                                            Height="36"
-                                            VerticalAlignment="Center"
-                                            Kind="Worker" />
+                            <Border Padding="25">
+                                <Viewbox>
+                                    <StackPanel>
+                                        <Viewbox>
+                                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+
+                                                <TextBlock
+                                                    x:Name="tbAsistenciasPorFecha"
+                                                    Margin="5,0"
+                                                    HorizontalAlignment="Center"
+                                                    FontSize="38"
+                                                    FontWeight="Bold"
+                                                    Text="30" />
+
+
+                                                <materialDesign:PackIcon
+                                                    Width="36"
+                                                    Height="36"
+                                                    VerticalAlignment="Center"
+                                                    Kind="Worker" />
+                                            </StackPanel>
+                                        </Viewbox>
+
+                                        <Viewbox>
+
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                FontSize="16"
+                                                Style="{StaticResource MaterialDesignCaptionTextBlock}"
+                                                Text="Asistencia(s) registrada(s)" />
+                                        </Viewbox>
                                     </StackPanel>
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        FontSize="16"
-                                        Style="{StaticResource MaterialDesignCaptionTextBlock}"
-                                        Text="Asistencia(s) registrada(s)" />
-                                </StackPanel>
+                                </Viewbox>
+
                             </Border>
                         </materialDesign:Card>
                     </Grid>
@@ -307,22 +336,26 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock
+                        <Viewbox
+                            MaxHeight="32"
                             Margin="0,10"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                            Text="Número de incidencias por categoría" />
+                            HorizontalAlignment="Center">
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                                Text="Número de incidencias por categoría" />
+                        </Viewbox>
                         <Grid Grid.Row="1" Margin="20">
                             <lvc:PieChart
                                 InnerRadius="0"
                                 LegendLocation="Right"
                                 Series="{Binding R5SeriesCollection}">
                                 <lvc:PieChart.ChartLegend>
-                                    <lvc:DefaultLegend BulletSize="15" />
+                                    <lvc:DefaultLegend BulletSize="12" />
                                 </lvc:PieChart.ChartLegend>
                                 <lvc:PieChart.DataTooltip>
-                                    <lvc:DefaultTooltip BulletSize="15" />
+                                    <lvc:DefaultTooltip BulletSize="12" />
                                 </lvc:PieChart.DataTooltip>
                             </lvc:PieChart>
                         </Grid>
@@ -339,70 +372,99 @@
                     Margin="20"
                     Padding="5,20">
                     <StackPanel>
-                        <TextBlock
+                        <Viewbox
+                            MaxHeight="32"
                             Margin="0,10"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource MaterialDesignHeadline2TextBlock}"
-                            Text="Últimas incidencias por fecha" />
-                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                            <Label Content="Fecha:" FontSize="14" />
-                            <DatePicker
-                                x:Name="dpFechaIncidencias"
-                                Grid.Column="1"
-                                MinWidth="200"
-                                FontSize="14"
-                                SelectedDateChanged="dpFechaIncidencias_SelectedDateChanged" />
-                        </StackPanel>
+                            HorizontalAlignment="Center">
 
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MaterialDesignHeadline2TextBlock}"
+                                Text="Últimas incidencias por fecha" />
+                        </Viewbox>
+                        <Viewbox MaxHeight="30">
+
+
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <Label Content="Fecha:" FontSize="14" />
+                                <DatePicker
+                                    x:Name="dpFechaIncidencias"
+                                    Grid.Column="1"
+                                    MinWidth="200"
+                                    FontSize="14"
+                                    SelectedDateChanged="dpFechaIncidencias_SelectedDateChanged" />
+                            </StackPanel>
+                        </Viewbox>
                         <materialDesign:Card MaxWidth="450" Margin="0,20">
-                            <Border Padding="50">
+                            <Border Padding="10">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock
-                                        x:Name="tbIncidenciaDescripcion"
-                                        Width="350"
-                                        FontSize="20"
-                                        TextAlignment="Center"
-                                        TextTrimming="CharacterEllipsis"
-                                        TextWrapping="Wrap" />
-                                    <Grid Grid.Row="1" Margin="0,15,0,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                    <Viewbox MaxHeight="20">
                                         <TextBlock
-                                            x:Name="tbIncidenciaHora"
-                                            Foreground="#555"
-                                            Text="Hora: 10:30"
-                                            TextAlignment="Center" />
-                                        <TextBlock
-                                            x:Name="tbIncidenciaCategoria"
-                                            Grid.Column="1"
-                                            Foreground="#555"
-                                            Text="Categoría: Robo"
-                                            TextAlignment="Center" />
-                                    </Grid>
+                                            x:Name="tbIncidenciaDescripcion"
+                                            TextAlignment="Center"
+                                            TextTrimming="CharacterEllipsis"
+                                            TextWrapping="Wrap" />
+                                    </Viewbox>
+
+                                    <Viewbox
+                                        Grid.Row="1"
+                                        MaxHeight="18"
+                                        Margin="0,15,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                x:Name="tbIncidenciaHora"
+                                                Margin="15,0"
+                                                Foreground="#555"
+                                                Text="Hora: 10:30"
+                                                TextAlignment="Center" />
+                                            <TextBlock
+                                                x:Name="tbIncidenciaCategoria"
+                                                Grid.Column="1"
+                                                Margin="15,0"
+                                                Foreground="#555"
+                                                Text="Categoría: Robo"
+                                                TextAlignment="Center" />
+                                        </Grid>
+                                    </Viewbox>
+
                                 </Grid>
                             </Border>
                         </materialDesign:Card>
 
-                        <StackPanel
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            Orientation="Horizontal">
-                            <Button
-                                x:Name="btnCarruselIncidenciasRetroceder"
-                                Click="btnCarruselIncidenciasRetroceder_Click"
-                                Content="◄" />
-                            <Button
-                                x:Name="btnCarruselIncidenciasAvanzar"
-                                Click="btnCarruselIncidenciasAvanzar_Click"
-                                Content="►" />
-                        </StackPanel>
+
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Viewbox MaxHeight="30" HorizontalAlignment="Stretch">
+                                <Button
+                                    x:Name="btnCarruselIncidenciasRetroceder"
+                                    Click="btnCarruselIncidenciasRetroceder_Click"
+                                    Content="◄" />
+                            </Viewbox>
+                            <Viewbox
+                                Grid.Column="1"
+                                MaxHeight="30"
+                                HorizontalAlignment="Stretch">
+                                <Button
+                                    x:Name="btnCarruselIncidenciasAvanzar"
+                                    Click="btnCarruselIncidenciasAvanzar_Click"
+                                    Content="►" />
+                            </Viewbox>
+                        </Grid>
                     </StackPanel>
                 </materialDesign:Card>
             </Grid>
