@@ -10,7 +10,10 @@
     Loaded="Page_Loaded"
     mc:Ignorable="d">
 
-    <Border MaxWidth="600" Padding="20">
+    <Border
+        MaxWidth="500"
+        MaxHeight="700"
+        Padding="20">
         <materialDesign:Card
             VerticalContentAlignment="Center"
             Background="{StaticResource MaterialDesignPaper}"
