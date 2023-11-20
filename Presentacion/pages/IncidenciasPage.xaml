@@ -48,6 +48,7 @@
                         Text="Incidencias" />
                     <DataGrid
                         x:Name="dgIncidencias"
+                        MaxHeight="500"
                         Margin="0,15,0,7"
                         AutoGenerateColumns="False">
                         <DataGrid.Columns>

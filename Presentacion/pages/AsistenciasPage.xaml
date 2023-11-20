@@ -48,6 +48,7 @@
                         Text="Asistencias" />
                     <DataGrid
                         x:Name="dgAsistencias"
+                        MaxHeight="500"
                         Margin="0,15,0,7"
                         AutoGenerateColumns="False">
                         <DataGrid.Columns>
