@@ -148,7 +148,7 @@ namespace Datos.repositories
         public List<Asistencia> GetAsistenciasPorSubcontrataYTrabajador(int idSubcontrata, String trabajador)
         {
             List<Asistencia> asistencias = GetAsistenciasPorSubcontrata(idSubcontrata);
-            return asistencias.FindAll(asistencia => String.Equals(asistencia.trabajador, trabajador));
+            return asistencias.FindAll(asistencia => asistencia.trabajador.IndexOf(trabajador, StringComparison.OrdinalIgnoreCase) != -1);
         }
     }
 }

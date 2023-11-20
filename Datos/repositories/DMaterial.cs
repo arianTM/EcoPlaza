@@ -149,7 +149,7 @@ namespace Datos.repositories
         public List<Material> GetMaterialesPorSubcontrataYTrabajador(int idSubcontrata, String nombre)
         {
             List<Material> materiales = GetMaterialesPorSubcontrata(idSubcontrata);
-            return materiales.FindAll(material => String.Equals(material.nombre, nombre));
+            return materiales.FindAll(material => material.nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) != -1);
         }
     }
 }

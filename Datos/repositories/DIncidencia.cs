@@ -113,7 +113,7 @@ namespace Datos.repositories
         public List<Incidencia> GetIncidenciasPorDescripcion(String descripcion)
         {
             List<Incidencia> incidencias = GetIncidencias();
-            return incidencias.FindAll(incidencia => String.Equals(incidencia.descripcion, descripcion));
+            return incidencias.FindAll(incidencia => incidencia.descripcion.IndexOf(descripcion, StringComparison.OrdinalIgnoreCase) != -1);
         }
     }
 }
